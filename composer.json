@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "MayIFit\\Core\\Permissions": "src/"
+            "MayIFit\\Core\\Permissions\\": "src/"
         }
     },
     "require": {}
