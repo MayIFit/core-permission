@@ -18,7 +18,6 @@
          */
 
         public function boot(Route $router, Kernel $kernel) {
-            $this->loadRoutesFrom(__DIR__.'/routes/api.php');
             $this->loadMigrationsFrom(__DIR__.'/Database/migrations');
         }
 

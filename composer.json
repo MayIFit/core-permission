@@ -1,6 +1,7 @@
 {
     "name": "mayifit/core-permissions",
     "description": "Core permission system for Laravel based MayIFit systems",
+    "keywords": ["permission", "laravel", "php", "roles", "management"],
     "type": "project",
     "authors": [
         {
@@ -20,7 +21,10 @@
         "laravel": {
             "providers": [
                 "MayIFit\\Core\\Permission\\PermissionServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Permission": "MayIFit\\Core\\Permission\\Facades\\Permission"
+            }
         }
     },
     "minimum-stability": "dev",
