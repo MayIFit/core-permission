@@ -1,11 +1,13 @@
 <?php
-    namespace MayIFit\Permissions;
+    namespace MayIFit\Core\Permissions;
 
     use Illuminate\Support\ServiceProvider;
     use Illuminate\Support\Facades\Gate;
+    use Illuminate\Routing\Route;
+    use Illuminate\Contracts\Http\Kernel;
 
-    use MayIFit\Permissions\Models\Permission;
-    use MayIFit\Permissions\Policies\PermissionPolicy;
+    use MayIFit\Core\Permissions\Models\Permission;
+    use MayIFit\Core\Permissions\Policies\PermissionPolicy;
 
     class PermissionsServiceProvider extends ServiceProvider {
 
@@ -18,9 +20,10 @@
             Permission::class => PermissionPolicy::class,
         ];
 
-        public function boot(\Illuminate\Routing\Router $router, \Illuminate\Contracts\Http\Kernel $kernel) {
+        public function boot(Route $router, Kernel $kernel) {
             $this->loadRoutesFrom(__DIR__.'/routes/api.php');
             $this->loadMigrationsFrom(__DIR__.'/Database/migrations');
+            $this->registerPolicies();
         }
 
         public function register() {

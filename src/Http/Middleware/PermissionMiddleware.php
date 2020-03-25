@@ -1,6 +1,6 @@
 <?php
 
-namespace MayIFit\Permissions\Http\Middleware\API;
+namespace MayIFit\Core\Permissions\Http\Middleware\API;
 
 use Closure;
 use Illuminate\Support\Facades\App;

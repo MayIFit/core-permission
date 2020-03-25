@@ -1,12 +1,12 @@
 <?php
 
-namespace MayIFit\Permissions\Http\Controllers\API;
+namespace MayIFit\Core\Permissions\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
-use MayIFit\Permissions\Models\Permission;
-use MayIFit\Permissions\Models\Role;
+use MayIFit\Core\Permissions\Models\Permission;
+use MayIFit\Core\Permissions\Models\Role;
 
 class PermissionController extends Controller
 {
@@ -35,7 +35,7 @@ class PermissionController extends Controller
     /**
      * Creates Permissions based on routes and Controllers.
      *
-     * @return \MayIFit\Permissions\Models\Permission[]
+     * @return \MayIFit\Core\Permissions\Models\Permission[]
      */
     protected function refreshPermissions() {
         $permission_ids = [];

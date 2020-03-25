@@ -1,0 +1,17 @@
+{
+    "name": "mayifit/core-permissions",
+    "description": "Core permission system for Laravel based MayIFit systems",
+    "type": "project",
+    "authors": [
+        {
+            "name": "MayIFit",
+            "email": "contact@mayifit.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MayIFit\\Core\\Permissions": "src/"
+        }
+    },
+    "require": {}
+}

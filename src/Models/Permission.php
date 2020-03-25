@@ -1,11 +1,11 @@
 <?php
 
-namespace MayIFit\Permissions\Models;
+namespace MayIFit\Core\Permissions\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use MayIFit\Permissions\Models\Role;
-use MayIFit\Permissions\Traits\HasRoles;
+use MayIFit\Core\Permissions\Models\Role;
+use MayIFit\Core\Permissions\Traits\HasRoles;
 
 class Permission extends Model
 {
