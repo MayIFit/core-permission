@@ -1,11 +1,11 @@
 <?php
 
-namespace MayIFit\Core\Permissions\Traits;
+namespace MayIFit\Core\Permission\Traits;
 
 /**
  * Class HasRole
  *
- * @package MayIFit\Core\Permissions\Traits
+ * @package MayIFit\Core\Permission\Traits
  */
 trait HasRoles {
 

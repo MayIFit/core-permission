@@ -1,6 +1,6 @@
 <?php
 
-namespace MayIFit\Core\Permissions\Models;
+namespace MayIFit\Core\Permission\Models;
 
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\DB;
@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 
 use App\User as BaseUser;
-use MayIFit\Core\Permissions\Models\Role;
-use MayIFit\Core\Permissions\Models\Permission;
-use MayIFit\Core\Permissions\Traits\Lockable;
-use MayIFit\Core\Permissions\Traits\HasRoles;
-use MayIFit\Core\Permissions\Traits\HasAdminRole;
+use MayIFit\Core\Permission\Models\Role;
+use MayIFit\Core\Permission\Models\Permission;
+use MayIFit\Core\Permission\Traits\Lockable;
+use MayIFit\Core\Permission\Traits\HasRoles;
+use MayIFit\Core\Permission\Traits\HasAdminRole;
 
 
 class User extends BaseUser {

@@ -13,15 +13,16 @@
             "MayIFit\\Core\\Permissions\\": "src/"
         }
     },
-    "require": {},
+    "require": {
+        "php": "^7.2"
+    },
     "extra": {
         "laravel": {
             "providers": [
-                "MayIFit\\Core\\Permissions\\ServiceProvider"
-            ],
-            "aliases": {
-                "Permission": "MayIFit\\Core\\Permissions\\Models\\Permission"
-            }
+                "MayIFit\\Core\\Permission\\PermissionServiceProvider"
+            ]
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

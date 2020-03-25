@@ -1,13 +1,13 @@
 <?php
 
-namespace MayIFit\Core\Permissions\Traits;
+namespace MayIFit\Core\Permission\Traits;
 
 use Session;
 
 /**
  * Class Lockable
  *
- * @package MayIFit\Core\Permissions\Traits
+ * @package MayIFit\Core\Permission\Traits
  */
 trait Lockable {
 
