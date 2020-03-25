@@ -1,0 +1,20 @@
+{
+    "name": "mayifit/permissions",
+    "description": "Permission System for projects built on the MayIFit system",
+    "authors": [
+        {
+            "name": "Mayifit bt.",
+            "email": "contact@mayifit.net"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5",
+        "laravel/passport": "^8.4",
+        "laravel/ui": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MayIFit\\Permissions\\": "src/"
+        }
+    }
+}
