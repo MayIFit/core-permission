@@ -15,7 +15,7 @@ class ExtendUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('real_name')->nullable();
-            $table->unsignedBigInteger('created_by')->references('id')->on('users')->default(0);
+            $table->unsignedBigInteger('created_by')->references('id')->on('users')->default(1);
             $table->unsignedBigInteger('updated_by')->references('id')->on('users')->nullable();
             $table->softDeletes();
         });
