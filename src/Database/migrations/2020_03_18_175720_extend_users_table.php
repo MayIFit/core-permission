@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class PermissionExtendUsersTable extends Migration
+class ExtendUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -31,7 +31,7 @@ class PermissionExtendUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['profile', 'created_by', 'updated_by']);
+            $table->dropColumn(['real_name', 'created_by', 'updated_by']);
             $table->dropSoftDeletes();
         });
     }
