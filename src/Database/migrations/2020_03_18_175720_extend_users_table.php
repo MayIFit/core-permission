@@ -15,6 +15,8 @@ class ExtendUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('real_name')->nullable();
+            $table->unsignedBigInteger('created_by')->references('id')->on('users')->default(0);
+            $table->unsignedBigInteger('updated_by')->references('id')->on('users')->nullable();
             $table->softDeletes();
         });
     }
@@ -27,7 +29,7 @@ class ExtendUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['profile']);
+            $table->dropColumn(['profile', 'created_by', 'updated_by']);
             $table->dropSoftDeletes();
         });
     }

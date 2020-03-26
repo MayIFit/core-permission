@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
                 'real_name'      => 'Admin',
                 'password'       => bcrypt('password'),
                 'remember_token' => Str::random(60),
-                'created_by' => 1
+                'created_by'     => 1
             ])->roles()->attach($adminRole);
         }
     }
