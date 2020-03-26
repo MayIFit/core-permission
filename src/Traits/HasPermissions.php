@@ -2,6 +2,8 @@
 
 namespace MayIFit\Core\Permission\Traits;
 
+use MayIFit\Core\Permission\Models\Permission;
+
 /**
  * Class HasPermissions
  *

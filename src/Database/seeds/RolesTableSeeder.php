@@ -5,7 +5,13 @@ namespace MayIFit\Core\Permission\Database\Seeds;
 use Illuminate\Database\Seeder;
 
 use MayIFit\Core\Permission\Models\Role;
+use MayIFit\Core\Permission\Models\Permission;
 
+/**
+ * Class RolesTableSeeder
+ *
+ * @package MayIFit\Core\Database\Seeds
+ */
 class RolesTableSeeder extends Seeder
 {
     /**
@@ -16,7 +22,8 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         if (Role::count() == 0) {
-            Role::firstOrCreate(['name' => 'admin', 'active' => true, 'created_by' => 1]);
+            $admin_role = Role::firstOrCreate(['name' => 'admin', 'active' => true, 'created_by' => 1]);
+            $admin_role->permissions()->attach(Permission::get());
             Role::firstOrCreate(['name' => 'moderator', 'active' => true, 'created_by' => 1]);
             Role::firstOrCreate(['name' => 'user', 'active' => true, 'created_by' => 1]);
         }

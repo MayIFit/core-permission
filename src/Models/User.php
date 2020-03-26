@@ -5,7 +5,7 @@ namespace MayIFit\Core\Permission\Models;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\User as BaseUser;
 use MayIFit\Core\Permission\Models\Role;

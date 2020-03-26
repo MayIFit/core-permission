@@ -8,6 +8,11 @@ use Illuminate\Support\Str;
 use MayIFit\Core\Permission\Models\User;
 use MayIFit\Core\Permission\Models\Role;
 
+/**
+ * Class UsersTableSeeder
+ *
+ * @package MayIFit\Core\Database\Seeds
+ */
 class UsersTableSeeder extends Seeder
 {
     /**

@@ -2,6 +2,8 @@
 
 namespace MayIFit\Core\Permission\Traits;
 
+use MayIFit\Core\Permission\Models\User;
+
 /**
  * Class HasUsers
  *
