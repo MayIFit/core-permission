@@ -2,12 +2,6 @@
     namespace MayIFit\Core\Permission;
 
     use Illuminate\Support\ServiceProvider;
-    use Illuminate\Support\Facades\Gate;
-    use Illuminate\Routing\Route;
-    use Illuminate\Contracts\Http\Kernel;
-
-    use MayIFit\Core\Permission\Models\Permission;
-    use MayIFit\Core\Permission\Policies\PermissionPolicy;
 
     class PermissionServiceProvider extends ServiceProvider {
 
@@ -17,7 +11,7 @@
          * @var array
          */
 
-        public function boot(Route $router, Kernel $kernel) {
+        public function boot() {
             $this->loadMigrationsFrom(__DIR__.'/Database/migrations');
         }
 
