@@ -16,6 +16,9 @@
         }
 
         public function register() {
+            $this->app->bind('permission', function () {
+                return new Permission();
+            });
         }
     }
 ?>

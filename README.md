@@ -11,5 +11,5 @@ The purpose of this package is to have an identical permission system accross al
 - `src/Database/Migrations` - Contains all the required migration files for this package
 - `src/Http/Controllers` - Contains all the controllers
 - `src/Http/Models` - Contains all the Eloquen models
-- `src/Http/Models` - Contains all the Eloquen model policies
+- `src/Http/Policies` - Contains all the Eloquen model policies
 - `src/Http/Traits` - Contains all the Eloquen model traits

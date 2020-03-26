@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace MayIFit\Core\Permission\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 
