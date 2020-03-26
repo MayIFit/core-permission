@@ -18,6 +18,7 @@ use MayIFit\Core\Permission\Traits\HasAdminRole;
 class User extends BaseUser {
     use SoftDeletes, HasApiTokens, HasRoles, HasAdminRole, Lockable;
 
+    protected $dates = ['deleted_at'];
 
     /**
      * @param string $permission_name
