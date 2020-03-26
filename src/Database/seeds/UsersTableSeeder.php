@@ -1,9 +1,12 @@
 <?php
 
-use App\Models\User;
-use App\Models\Role;
+namespace MayIFit\Core\Permission\Database\Seeds;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+
+use MayIFit\Core\Permission\Models\User;
+use MayIFit\Core\Permission\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {

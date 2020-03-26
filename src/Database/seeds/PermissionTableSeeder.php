@@ -1,8 +1,11 @@
 <?php
 
-use App\Models\Permission;
-use App\Models\Role;
+namespace MayIFit\Core\Permission\Database\Seeds;
+
 use Illuminate\Database\Seeder;
+
+use MayIFit\Core\Permission\Models\Permission;
+use MayIFit\Core\Permission\Models\Role;
 
 class PermissionTableSeeder extends Seeder
 {
@@ -24,7 +27,7 @@ class PermissionTableSeeder extends Seeder
     {
         $permission_ids = array();
         // iterate though all routes
-        foreach (Route::getRoutes()->getRoutes() as $key => $route) {
+        foreach (\Route::getRoutes()->getRoutes() as $key => $route) {
             // get route action
             $action = $route->getActionname();
             // separating controller and method
@@ -57,7 +60,7 @@ class PermissionTableSeeder extends Seeder
             }
         }
         // find admin role.
-        $admin_role = Role::where('name', 'admin')->first();
+        $admin_role = Role::where('name', 'admin')->firstOrFail();
         // attach all permissions to admin role
         $admin_role->permissions()->attach($permission_ids);
     }
