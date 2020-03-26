@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => ['api', 'auth:api'], 'prefix' => 'api/v1'], function () {
-    Route::namespace('MayIFit\Core\Permission\Http\Controllers\API')->prefix('admin/permission')->name('api.admin.')->group(function() { 
+    Route::namespace('MayIFit\Core\Permission\Http\Controllers\API')->prefix('admin')->name('api.admin.')->group(function() { 
         Route::apiResource('permission', 'PermissionController@', ['except' => ['store', 'show', 'update', 'destroy']]);
     });
 });
