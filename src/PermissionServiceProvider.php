@@ -1,7 +1,12 @@
 <?php
     namespace MayIFit\Core\Permission;
 
+    use Illuminate\Console\Events\CommandFinished;
+    use Illuminate\Support\Facades\Artisan;
+    use Illuminate\Support\Facades\Event;
+    use Illuminate\Support\Facades\Request;
     use Illuminate\Support\ServiceProvider;
+    use Symfony\Component\Console\Output\ConsoleOutput;
     
     use MayIFit\Core\Permission\Models\Permission; 
     use MayIFit\Core\Permission\Policies\PermissionPolicy; 
