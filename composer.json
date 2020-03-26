@@ -1,5 +1,5 @@
 {
-    "name": "mayifit/core-permissions",
+    "name": "mayifit/core-permission",
     "description": "Core permission system for Laravel based MayIFit systems",
     "keywords": ["permission", "laravel", "php", "roles", "management"],
     "type": "project",
