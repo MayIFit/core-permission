@@ -28,10 +28,10 @@
          *
          * @var array
          */
-        protected $seeds_path = '/database/seeds';
+        protected $seeds_path = '/../database/seeds';
 
         public function boot() {
-            $this->loadMigrationsFrom(__DIR__.'/Database/migrations');
+            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
             app('router')->aliasMiddleware('mayifit/core-permission', PermissionMiddleware::class);
             if ($this->app->runningInConsole()) {
                 if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], [ '--class', 'help', '-h' ])) {
