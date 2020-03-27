@@ -40,6 +40,6 @@ class PermissionMiddleware
         }
 
         // none authorized request
-        return response()->json(['error' => 'Unauthenticated.'], 401);
+        return response()->json(['error' => 'Unauthorized.'], 403);
     }
 }

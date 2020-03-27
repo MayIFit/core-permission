@@ -28,10 +28,10 @@
          *
          * @var array
          */
-        protected $seeds_path = '/../database/seeds';
+        protected $database_folder = '/database';
 
         public function boot() {
-            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+            $this->loadMigrationsFrom(__DIR__.$this->database_folder.'/migrations');
             app('router')->aliasMiddleware('mayifit/core-permission', PermissionMiddleware::class);
             if ($this->app->runningInConsole()) {
                 if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], [ '--class', 'help', '-h' ])) {
@@ -74,7 +74,7 @@
                 // Accept command in console only,
                 // exclude all commands from Artisan::call() method.
                 if ($event->output instanceof ConsoleOutput) {
-                    $this->addSeedsFrom(__DIR__ . $this->seeds_path);
+                    $this->addSeedsFrom(__DIR__ . $this->database_folder.'/seeds');
                 }
             });
         }

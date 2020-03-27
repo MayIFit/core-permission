@@ -11,7 +11,7 @@ use MayIFit\Core\Permission\Models\Role;
 /**
  * Class UsersTableSeeder
  *
- * @package MayIFit\Core\Database\Seeds
+ * @package MayIFit\Core\Permission
  */
 class UsersTableSeeder extends Seeder
 {

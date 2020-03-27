@@ -10,7 +10,7 @@ use MayIFit\Core\Permission\Models\Permission;
 /**
  * Class RolesTableSeeder
  *
- * @package MayIFit\Core\Database\Seeds
+ * @package MayIFit\Core\Permission
  */
 class RolesTableSeeder extends Seeder
 {
