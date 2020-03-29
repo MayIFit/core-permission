@@ -4,9 +4,8 @@ namespace MayIFit\Core\Permission\Models;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 use MayIFit\Core\Permission\Models\Role;
 use MayIFit\Core\Permission\Models\Permission;
 use MayIFit\Core\Permission\Traits\Lockable;
@@ -15,7 +14,7 @@ use MayIFit\Core\Permission\Traits\HasAdminRole;
 
 
 class User extends Authenticatable {
-    use SoftDeletes, HasRoles, HasAdminRole, Lockable;
+    use HasRoles, HasAdminRole, Lockable;
 
     protected $dates = ['deleted_at'];
 
