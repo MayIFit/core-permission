@@ -3,7 +3,6 @@
 namespace MayIFit\Core\Permission\Models;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use MayIFit\Core\Permission\Models\Role;
