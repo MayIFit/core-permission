@@ -2,7 +2,6 @@
 
 namespace MayIFit\Core\Permission\Models;
 
-use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,7 +15,7 @@ use MayIFit\Core\Permission\Traits\HasAdminRole;
 
 
 class User extends Authenticatable {
-    use SoftDeletes, HasApiTokens, HasRoles, HasAdminRole, Lockable;
+    use SoftDeletes, HasRoles, HasAdminRole, Lockable;
 
     protected $dates = ['deleted_at'];
 
