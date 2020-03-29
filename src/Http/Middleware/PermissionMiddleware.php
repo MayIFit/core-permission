@@ -19,13 +19,14 @@ class PermissionMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('api')->check()) {
-            $user = $request->user();
+        if (Auth::guard('api')->check() || Auth::user()) {
+            $user = $request->user() ?? Auth::user();
             // get user role permissions
             $roles = $user->roles()->get();
             foreach ($roles as $key => $role) {
                 $permissions = $role->permissions()->get();
                 // get requested action
+                
                 $actionName = class_basename($request->route()->getActionname());
                 // check if requested action is in permissions list
                 foreach ($permissions as $permission) {

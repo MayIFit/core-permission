@@ -15,9 +15,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::group([
+    'prefix' => 'api/auth'
+], function () {
+    Route::post('login', 'MayIFit\Core\Permission\Http\Controllers\API\AuthController@login');
+    Route::post('signup', 'MayIFit\Core\Permission\Http\Controllers\API\AuthController@signup');
+  
+    Route::group([
+      'middleware' => 'auth:api'
+    ], function() {
+        Route::get('logout', 'MayIFit\Core\Permission\Http\Controllers\API\AuthController@logout');
+        Route::get('user', 'MayIFit\Core\Permission\Http\Controllers\API\AuthController@user');
+    });
+});
+
 Route::group(['middleware' => ['api', 'auth:api'], 'prefix' => 'api/v1'], function () {
     Route::namespace('MayIFit\Core\Permission\Http\Controllers\API')->prefix('admin')->name('api.admin.')->group(function() { 
-        Route::apiResource('permission', 'PermissionController@', ['except' => ['store', 'show', 'update', 'destroy']]);
+        Route::apiResource('permission', 'PermissionController', ['except' => ['store', 'show', 'update', 'destroy']]);
     });
 });
 

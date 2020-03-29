@@ -30,8 +30,18 @@ class User extends Authenticatable {
             ->join('roles','role_user.role_id','=','roles.id')
             ->join('permission_role','roles.id','=','permission_role.role_id')
             ->join('permissions','permission_role.permission_id','=','permissions.id')
-            ->select('1')->where('users.id','=', Auth::user()->id)->where('permissions.name', '=', $permission_name)->count();
+            ->select('1')->where('users.id','=',$this->id)->where('permissions.name', '=', $permission_name)->count();
         return $result > 0;
+    }
+
+    public function getAllPermissionsAttribute() {
+        $permissions = [];
+        foreach (Permission::all() as $permission) {
+            if ($this->hasPermission($permission->name)) {
+                $permissions[] = $permission->name;
+            }
+        }
+        return $permissions;
     }
 
 

@@ -52,9 +52,10 @@ class PermissionTableSeeder extends Seeder
                 $name = $routeName.'.'.$this->methodMap[$method];
             }
 
-            if (!$permission_check) {
+            if (!$permission_check && $name != '') {
                 $permission = new Permission;
                 $permission->controller = $controller;
+                $permission->base_controller = class_basename($controller);
                 $permission->method = $method;
                 $permission->name =  $name;
                 $permission->middleware = implode('|', $route->middleware());

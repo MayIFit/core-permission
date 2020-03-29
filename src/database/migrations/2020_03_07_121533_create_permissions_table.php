@@ -18,8 +18,9 @@ class CreatePermissionsTable extends Migration
             $table->string('name')->nullable();
             $table->string('key')->nullable();
             $table->string('controller');
-            $table->string('middleware');
+            $table->string('base_controller');
             $table->string('method');
+            $table->string('middleware');
             $table->timestamps();
         });
     }
