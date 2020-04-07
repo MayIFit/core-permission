@@ -32,7 +32,6 @@
 
         public function boot() {
             $this->loadMigrationsFrom(__DIR__.$this->database_folder.'/migrations');
-            $this->loadRoutesFrom(__DIR__.'/routes/api.php');
             app('router')->aliasMiddleware('mayifit/core-permission', PermissionMiddleware::class);
             if ($this->app->runningInConsole()) {
                 if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], [ '--class', 'help', '-h' ])) {
