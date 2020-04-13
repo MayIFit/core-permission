@@ -1,0 +1,46 @@
+extend type Query @guard(with: ["sanctum"]) {
+    me: User @auth
+    users: [User!]! @paginate(type: "paginator")
+    user(id: ID @eq name: String @eq): User @find
+    permissions: [Permission!]! @all
+    roles: [Role!]! @all
+    role(name: String @eq id: ID @eq): Role @find
+}
+
+extend type Mutation @guard(with: ["sanctum"]) {
+    createUser(
+        name: String @rules(apply: ["required"])
+        email: String @rules(apply: ["required", "email", "unique:users,email"])
+    ): User @create
+    updateUser(
+        id: ID @rules(apply: ["required"])
+        name: String
+        email: String @rules(apply: ["email"])
+    ): User @update
+    deleteUser(
+        id: ID! @rules(apply: ["required"])
+    ): User @delete
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type Permission @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Permission") {
+    id: ID!
+    name: String!
+    method: String!
+    roles: [Role] @belongsToMany 
+}
+
+type Role @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Role") {
+    id: ID!
+    name: String!
+    description: String
+    active: Boolean
+    permissions: [Permission]! @belongsToMany 
+}

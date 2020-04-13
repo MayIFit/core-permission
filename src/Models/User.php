@@ -4,6 +4,7 @@ namespace MayIFit\Core\Permission\Models;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 use MayIFit\Core\Permission\Models\Role;
 use MayIFit\Core\Permission\Models\Permission;
@@ -13,7 +14,7 @@ use MayIFit\Core\Permission\Traits\HasAdminRole;
 
 
 class User extends Authenticatable {
-    use HasRoles, HasAdminRole, Lockable;
+    use HasRoles, HasAdminRole, Lockable, HasApiTokens;
 
     protected $dates = ['deleted_at'];
 
