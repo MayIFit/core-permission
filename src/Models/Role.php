@@ -14,5 +14,6 @@ class Role extends Model
 {
     use SoftDeletes, HasPermissions, HasUsers;
 
+    protected $fillable = ['id', 'name', 'description', 'active', 'permissions'];
    
 }

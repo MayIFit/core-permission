@@ -3,6 +3,7 @@
 namespace MayIFit\Core\Permission\Database\Seeds;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Http;
 
 use MayIFit\Core\Permission\Models\Permission;
 use MayIFit\Core\Permission\Models\Role;
@@ -14,53 +15,60 @@ use MayIFit\Core\Permission\Models\Role;
  */
 class PermissionTableSeeder extends Seeder
 {
-    private $methodMap = [
-        'index' => 'browse',
-        'show' => 'view',
-        'edit' => 'view-edit-screen',
-        'update' => 'edit',
-        'create' => 'view-create-screen',
-        'store' => 'create',
-        'destroy' => 'delete',
-    ];
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
-        // iterate though all routes
-        foreach (\Route::getRoutes()->getRoutes() as $key => $route) {
-            // get route action
-            $action = $route->getActionname();
-            // separating controller and method
-            $_action = explode('@', $action);
-            $controller = $_action[0];
-            $method = end($_action);
-            
-            // check if this permission is already exists
-            $permission_check = Permission::where(
-                ['controller'=> $controller, 'method' => $method]
-            )->first();
-
-            $name = '';
-            if (isset($this->methodMap[$method])) {
-                $explodedRouteName = explode('.', $route->getName());
-                if (count($explodedRouteName) > 1) array_pop($explodedRouteName);
-                $routeName = implode('.', $explodedRouteName) ?? $route->getName();
-                $name = $routeName.'.'.$this->methodMap[$method];
+    public function run() {
+        
+        // Schema introspection
+        $response = $this->graphql("{ 
+            __schema {
+                queryType {
+                    name
+                    fields {
+                        name
+                    }
+               }
+               mutationType {
+                    name
+                    fields {
+                        name
+                    }
+               }
             }
-
-            if (!$permission_check && $name != '') {
+        }");
+        
+        $queries = array_merge(
+            $response['data']['__schema']['queryType']['fields'],
+            $response['data']['__schema']['mutationType']['fields'],
+        );
+        foreach ($queries as $query) {
+            $split = preg_split('/(?=[A-Z])/', $query['name']);
+            if (!\is_array($split) || count($split) <= 1) {
+                continue;
+            }
+            $method = strtolower($split[0]);
+            $name = strtolower($split[1]);
+            $checkDuplicatePermission = Permission::where(
+                ['name'=> $name, 'method' => $method]
+            )->first();
+            if (!$checkDuplicatePermission) {
                 $permission = new Permission;
-                $permission->controller = $controller;
-                $permission->base_controller = class_basename($controller);
+                $permission->controller = 'graphql';
+                $permission->base_controller = 'graphql';
                 $permission->method = $method;
                 $permission->name =  $name;
-                $permission->middleware = implode('|', $route->middleware());
+                $permission->middleware = 'graphql';
                 $permission->save();
             }
         }
+    }
+
+    protected function graphql(string $query) {
+        return Http::post(\Config::get('app.url').'/api/v1/graphql', [
+            'query' => $query
+        ])->throw()->json();
     }
 }

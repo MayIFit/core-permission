@@ -19,8 +19,7 @@ class RolesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         if (Role::count() == 0) {
             $admin_role = Role::firstOrCreate(['name' => 'admin', 'active' => true, 'created_by' => 1]);
             $admin_role->permissions()->attach(Permission::get());

@@ -9,7 +9,7 @@ use Session;
  *
  * @package MayIFit\Core\Permission\Traits
  */
-trait Lockable {
+trait LockableTrait {
 
     /**
      * @return double

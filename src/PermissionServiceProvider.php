@@ -5,12 +5,15 @@
     use Illuminate\Support\Facades\Artisan;
     use Illuminate\Support\Facades\Event;
     use Illuminate\Support\Facades\Request;
-    use Illuminate\Support\ServiceProvider;
+    use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+
+    use Illuminate\Support\Facades\Gate;
     use Symfony\Component\Console\Output\ConsoleOutput;
     
     use MayIFit\Core\Permission\Models\Permission; 
+    use MayIFit\Core\Permission\Models\Role; 
     use MayIFit\Core\Permission\Policies\PermissionPolicy; 
-    use MayIFit\Core\Permission\Http\Middleware\PermissionMiddleware; 
+    use MayIFit\Core\Permission\Policies\RolePolicy; 
 
     class PermissionServiceProvider extends ServiceProvider {
 
@@ -21,6 +24,7 @@
          */
         protected $policies = [
             Permission::class => PermissionPolicy::class,
+            Role::class => RolePolicy::class,
         ];
 
         /**
@@ -32,7 +36,6 @@
 
         public function boot() {
             $this->loadMigrationsFrom(__DIR__.$this->database_folder.'/migrations');
-            app('router')->aliasMiddleware('mayifit/core-permission', PermissionMiddleware::class);
             if ($this->app->runningInConsole()) {
                 if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], [ '--class', 'help', '-h' ])) {
                     $this->addSeedsAfterConsoleCommandFinished();
@@ -41,6 +44,7 @@
             $this->publishes([
                 __DIR__.'/graphql' => './graphql',
             ], '/');
+            $this->registerPolicies();
         }
 
         public function register() {

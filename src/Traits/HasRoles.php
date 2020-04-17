@@ -3,6 +3,7 @@
 namespace MayIFit\Core\Permission\Traits;
 
 use MayIFit\Core\Permission\Models\Role;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class HasRole
@@ -14,7 +15,7 @@ trait HasRoles {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongstoMany
      */
-    public function roles() {
+    public function roles(): BelongsToMany {
         return $this->belongstoMany(Role::class);
     }
 

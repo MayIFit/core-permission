@@ -16,10 +16,10 @@ class CreatePermissionsTable extends Migration
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('controller');
-            $table->string('base_controller');
+            $table->string('controller')->nullable();
+            $table->string('base_controller')->nullable();
             $table->string('method');
-            $table->string('middleware');
+            $table->string('middleware')->nullable();
             $table->timestamps();
         });
     }

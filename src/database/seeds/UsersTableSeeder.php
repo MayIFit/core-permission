@@ -20,8 +20,7 @@ class UsersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         if (User::count() == 0) {
             $systemUser = User::create([
                 'email'          => '',

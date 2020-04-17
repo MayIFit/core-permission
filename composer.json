@@ -11,7 +11,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "MayIFit\\Core\\Permission\\": "src/"
+            "MayIFit\\Core\\Permission\\": "src/",
+            "MayIFit\\Core\\Permission\\Database\\Seeds\\": "src/Database/Seeds/",
+            "MayIFit\\Core\\Permission\\Facades\\": "src/Facades/",
+            "MayIFit\\Core\\Permission\\Models\\": "src/Models/",
+            "MayIFit\\Core\\Permission\\Policies\\": "src/Policies/",
+            "MayIFit\\Core\\Permission\\Traits\\": "src/Traits/"
         }
     },
     "require": {
