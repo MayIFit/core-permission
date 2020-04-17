@@ -13,4 +13,13 @@ class Permission extends Model
 
     protected $table = 'permissions';
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'base_controller', 'controller', 'middleware', 'created_at', 'updated_at',
+    ];
+
 }
