@@ -31,7 +31,7 @@ class RolePolicy
      */
     public function view(User $user, Role $role)
     {
-        return (($role->name == 'admin' && $user->hasRole('admin')) || $role->name !== 'admin' && $user->hasPermission('role.view'));
+        return $role->name !== 'admin' && $user->hasPermission('role.view');
     }
 
     /**
