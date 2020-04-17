@@ -24,7 +24,7 @@ class User extends Authenticatable {
      */
     public function hasPermission($permission) {
         $permission = explode('.', $permission);
-        if (!isarray($permission)) {
+        if (!is_array($permission)) {
             return false;
         }
 
