@@ -18,7 +18,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermission('user.browse');
+        return $user->hasPermission('user.list');
     }
 
     /**

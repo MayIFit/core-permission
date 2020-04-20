@@ -19,7 +19,7 @@ class RolePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermission('role.browse');
+        return $user->hasPermission('role.list');
     }
 
     /**
