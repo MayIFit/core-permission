@@ -10,10 +10,12 @@
     use Illuminate\Support\Facades\Gate;
     use Symfony\Component\Console\Output\ConsoleOutput;
     
-    use MayIFit\Core\Permission\Models\Permission; 
-    use MayIFit\Core\Permission\Models\Role; 
+    use MayIFit\Core\Permission\Models\Permission;
+    use MayIFit\Core\Permission\Models\Role;
+    use MayIFit\Core\Permission\Models\User; 
     use MayIFit\Core\Permission\Policies\PermissionPolicy; 
     use MayIFit\Core\Permission\Policies\RolePolicy; 
+    use MayIFit\Core\Permission\Policies\UserPolicy; 
 
     class PermissionServiceProvider extends ServiceProvider {
 
@@ -25,6 +27,7 @@
         protected $policies = [
             Permission::class => PermissionPolicy::class,
             Role::class => RolePolicy::class,
+            User::class => UserPolicy::class,
         ];
 
         /**

@@ -1,9 +1,11 @@
 extend type Query @guard(with: ["sanctum"]) {
     me: User @auth
-    listUser: [User!]! @paginate(type: "paginator")
-    viewUser(id: ID @eq): User @find
-    listPermission: [Permission!]! @all
-    listRole: [Role!]! @all
+
+    listUser: [User!]! @can(ability: "index") @paginate(type: "paginator")
+    viewUser(id: ID @eq): User @can(ability: "view" find:"id") @find
+
+    listPermission: [Permission!]! @can(ability: "index") @all
+    listRole: [Role!]! @can(ability: "index") @paginate(type: "paginator")
     viewRole(id: ID @eq): Role @can(ability: "view" find:"id") @find
 }
 
@@ -11,21 +13,21 @@ extend type Mutation @guard(with: ["sanctum"]) {
     createUser(
         name: String @rules(apply: ["required"])
         email: String @rules(apply: ["required", "email", "unique:users,email"])
-    ): User @create
+    ): User @can(ability: "create") @create
 
     updateUser(
         id: ID @rules(apply: ["required"])
         name: String
         email: String @rules(apply: ["email"])
-    ): User @update
+    ): User @can(ability: "update" find: "id") @update
 
     deleteUser(
         id: ID! @rules(apply: ["required"])
-    ): User @delete
+    ): User @can(ability: "delete" find: "id") @delete
 
-    updateRole(input: UpdateRoleInput! @spread): Role @update
-    createRole(input: CreateRoleInput! @spread): Role @create
-    deleteRole(id: ID! @rules(apply: ["required"])): Role @delete
+    updateRole(input: UpdateRoleInput! @spread): Role @can(ability: "update" find: "id") @update
+    createRole(input: CreateRoleInput! @spread): Role @can(ability: "create") @create
+    deleteRole(id: ID! @rules(apply: ["required"])): Role @can(ability: "delete" find: "id") @delete
 }
 
 input UpdateRoleInput {
