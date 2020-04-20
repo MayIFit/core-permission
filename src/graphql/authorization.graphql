@@ -1,33 +1,69 @@
 extend type Query @guard(with: ["sanctum"]) {
     me: User @auth
 
-    listUser: [User!]! @can(ability: "index") @paginate(type: "paginator")
-    viewUser(id: ID @eq): User @can(ability: "view" find:"id") @find
+    listPermission: [Permission!]! 
+        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Permission") 
+        @all
 
-    listPermission: [Permission!]! @can(ability: "index") @all
-    listRole: [Role!]! @can(ability: "index") @paginate(type: "paginator")
-    viewRole(id: ID @eq): Role @can(ability: "view" find:"id") @find
+    listUser: [User!]! 
+        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\User") 
+        @paginate(type: "paginator")
+        
+    listRole: [Role!]! 
+        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
+        @paginate(type: "paginator")
+
+    viewRole(
+        id: ID @eq
+    ): Role! 
+        @can(ability: "view" find:"id") @find
+
+    viewUser(
+        id: ID @eq
+    ): User! 
+        @can(ability: "view" find:"id") @find
+
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {
     createUser(
         name: String @rules(apply: ["required"])
         email: String @rules(apply: ["required", "email", "unique:users,email"])
-    ): User @can(ability: "create") @create
+    ): User 
+        @can(ability: "create"model: "MayIFit\\Core\\Permission\\Models\\User") 
+        @create
 
     updateUser(
         id: ID @rules(apply: ["required"])
         name: String
         email: String @rules(apply: ["email"])
-    ): User @can(ability: "update" find: "id") @update
+    ): User 
+        @can(ability: "update" find: "id") 
+        @update
 
     deleteUser(
         id: ID! @rules(apply: ["required"])
-    ): User @can(ability: "delete" find: "id") @delete
+    ): User 
+        @can(ability: "delete" find: "id") 
+        @delete
 
-    updateRole(input: UpdateRoleInput! @spread): Role @can(ability: "update" find: "id") @update
-    createRole(input: CreateRoleInput! @spread): Role @can(ability: "create") @create
-    deleteRole(id: ID! @rules(apply: ["required"])): Role @can(ability: "delete" find: "id") @delete
+    updateRole(
+        input: UpdateRoleInput! @spread
+    ): Role 
+        @can(ability: "update" find: "id") 
+        @update
+
+    createRole(
+        input: CreateRoleInput! @spread
+    ): Role
+        @can(ability: "create" model: "MayIFit\\Core\\Permission\\Models\\Role") 
+        @create
+
+    deleteRole(
+        id: ID! @rules(apply: ["required"])
+    ): Role 
+        @can(ability: "delete" find: "id") 
+        @delete
 }
 
 input UpdateRoleInput {
