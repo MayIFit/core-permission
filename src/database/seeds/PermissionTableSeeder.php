@@ -50,9 +50,6 @@ class PermissionTableSeeder extends Seeder
                 continue;
             }
             $method = strtolower($split[0]);
-            if ($method === 'list') {
-                $method = 'index';
-            }
             $name = strtolower($split[1]);
             $checkDuplicatePermission = Permission::where(
                 ['name'=> $name, 'method' => $method]
