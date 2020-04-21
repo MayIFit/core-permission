@@ -93,9 +93,12 @@ input UpdatePermissionRelation {
 type User {
     id: ID!
     name: String!
+    real_name: String!
     email: String!
     created_at: DateTime!
     updated_at: DateTime!
+    avatar: String
+    roles: [Role!] @belongsToMany
 }
 
 type Permission @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Permission") {
