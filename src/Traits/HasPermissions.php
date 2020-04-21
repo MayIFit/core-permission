@@ -36,7 +36,13 @@ trait HasPermissions {
                 'permissions.name' => $permissionName,
                 'permissions.method' => $permissionMethod,
             ]);
-        })->first();
+        })->orWhereHas('permissions', function($q) use($permissionName, $permissionMethod) {
+            $q->where([
+                'permissions.name' => $permissionName,
+                'permissions.method' => $permissionMethod,
+            ]);
+        })
+        ->first();
 
         return $result ? true : false;
     }
