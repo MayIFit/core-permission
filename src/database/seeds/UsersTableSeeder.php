@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
             ])->roles()->attach($adminRole);
 
             if (env("APP_ENV") !== 'production') {
-                print $systemUser->createToken('development')->plainTextToken;
+                print 'Bearer: '.$systemUser->createToken('development')->plainTextToken;
             }
         }
     }

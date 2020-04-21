@@ -51,18 +51,17 @@ class PermissionTableSeeder extends Seeder
             }
             $method = strtolower($split[0]);
             $name = strtolower($split[1]);
-            $checkDuplicatePermission = Permission::where(
-                ['name'=> $name, 'method' => $method]
-            )->first();
-            if (!$checkDuplicatePermission) {
-                $permission = new Permission;
-                $permission->controller = 'graphql';
-                $permission->base_controller = 'graphql';
-                $permission->method = $method;
-                $permission->name =  $name;
-                $permission->middleware = 'graphql';
-                $permission->save();
+            if ($method === 'all') {
+                $method = 'list';
             }
+            
+            Permission::firstOrCreate([
+                'controller' => 'graphql',
+                'base_controller' => 'graphql',
+                'method' => $method,
+                'name' => $name,
+                'middleware' => 'graphql'
+            ]);
         }
     }
 

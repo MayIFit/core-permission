@@ -1,30 +1,17 @@
+#import permission.graphql
+#import role.graphql
+
 extend type Query @guard(with: ["sanctum"]) {
     me: User @auth
-
-    listPermission: [Permission!]! 
-        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Permission") 
-        @all
 
     listUser: [User!]! 
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\User") 
         @paginate(type: "paginator")
-        
-    listRole: [Role!]! 
-        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
-        @paginate(type: "paginator")
-
-
-
-    viewRole(
-        id: ID @eq
-    ): Role! 
-        @can(ability: "view" find:"id") @find
 
     viewUser(
         id: ID @eq
     ): User! 
         @can(ability: "view" find:"id") @find
-
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {
@@ -48,46 +35,6 @@ extend type Mutation @guard(with: ["sanctum"]) {
     ): User 
         @can(ability: "delete" find: "id") 
         @delete
-
-    updateRole(
-        input: UpdateRoleInput! @spread
-    ): Role 
-        @can(ability: "update" find: "id") 
-        @update
-
-    createRole(
-        input: CreateRoleInput! @spread
-    ): Role
-        @can(ability: "create" model: "MayIFit\\Core\\Permission\\Models\\Role") 
-        @create
-
-    deleteRole(
-        id: ID! @rules(apply: ["required"])
-    ): Role 
-        @can(ability: "delete" find: "id") 
-        @delete
-}
-
-input UpdateRoleInput {
-    id: ID!
-    name: String!
-    active: Boolean!
-    description: String
-    permissions: UpdatePermissionRelation
-    __typename: String
-}
-
-input CreateRoleInput {
-    name: String!
-    active: Boolean!
-    description: String
-    permissions: UpdatePermissionRelation
-    __typename: String
-}
-
-input UpdatePermissionRelation {
-    sync: [ID!]
-    __typename: String
 }
 
 type User {
@@ -99,19 +46,4 @@ type User {
     updated_at: DateTime!
     avatar: String
     roles: [Role!] @belongsToMany
-}
-
-type Permission @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Permission") {
-    id: ID!
-    name: String!
-    method: String!
-    roles: [Role!] @belongsToMany 
-}
-
-type Role @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Role") {
-    id: ID!
-    name: String!
-    description: String
-    active: Boolean
-    permissions: [Permission!]! @belongsToMany 
 }

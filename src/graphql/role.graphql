@@ -1,0 +1,56 @@
+extend type Query @guard(with: ["sanctum"]) {
+    listRole: [Role!]! 
+        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
+        @paginate(type: "paginator")
+
+    viewRole(
+        id: ID @eq
+    ): Role! 
+        @can(ability: "view" find:"id") @find
+}
+
+extend type Mutation @guard(with: ["sanctum"]) {
+    updateRole(
+        input: UpdateRoleInput! @spread
+    ): Role 
+        @can(ability: "update" find: "id") 
+        @update
+
+    createRole(
+        input: CreateRoleInput! @spread
+    ): Role
+        @can(ability: "create" model: "MayIFit\\Core\\Permission\\Models\\Role") 
+        @create
+
+    deleteRole(
+        id: ID! @rules(apply: ["required"])
+    ): Role 
+        @can(ability: "delete" find: "id") 
+        @delete
+}
+
+
+input UpdateRoleInput {
+    id: ID!
+    name: String!
+    active: Boolean!
+    description: String
+    permissions: UpdatePermissionRelation
+    __typename: String
+}
+
+input CreateRoleInput {
+    name: String!
+    active: Boolean!
+    description: String
+    permissions: UpdatePermissionRelation
+    __typename: String
+}
+
+type Role @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Role") {
+    id: ID!
+    name: String!
+    description: String
+    active: Boolean
+    permissions: [Permission!]! @belongsToMany 
+}
