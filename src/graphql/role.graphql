@@ -1,4 +1,9 @@
 extend type Query @guard(with: ["sanctum"]) {
+
+    allRole: [Role!]! 
+        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
+        @all
+
     listRole: [Role!]! 
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
         @paginate(type: "paginator")
