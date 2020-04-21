@@ -13,6 +13,8 @@ extend type Query @guard(with: ["sanctum"]) {
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
         @paginate(type: "paginator")
 
+
+
     viewRole(
         id: ID @eq
     ): Role! 
