@@ -2,8 +2,9 @@
 
 namespace MayIFit\Core\Permission\Traits;
 
-use MayIFit\Core\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+use MayIFit\Core\Permission\Models\Role;
 
 /**
  * Class HasRole
