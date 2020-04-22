@@ -38,8 +38,8 @@ extend type Mutation @guard(with: ["sanctum"]) {
 
 input UpdateUserInput {
     id: ID!
-    name: String!
-    real_name: String!
+    name: String
+    real_name: String
     email: String
     password: String @hash
     permissions: UpdatePermissionRelation
@@ -51,13 +51,13 @@ input UpdateUserInput {
 
 input CreateUserInput {
     name: String!
-    real_name: String!
-    email: String
-    password: String @hash
+    real_name: String
+    email: String!
+    password: String! @hash
     permissions: UpdatePermissionRelation
     roles: UpdateRoleRelation
     avatar: String
-    language: String
+    language: String!
     __typename: String
 }
 
