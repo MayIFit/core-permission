@@ -1,10 +1,8 @@
-
 extend type Query @guard(with: ["sanctum"]) {
     allPermission: [Permission!]! 
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Permission") 
         @all
 }
-
 
 input UpdatePermissionRelation {
     sync: [ID!]

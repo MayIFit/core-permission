@@ -16,16 +16,13 @@ extend type Query @guard(with: ["sanctum"]) {
 
 extend type Mutation @guard(with: ["sanctum"]) {
     createUser(
-        name: String @rules(apply: ["required"])
-        email: String @rules(apply: ["required", "email", "unique:users,email"])
+        input: CreateUserInput @spread
     ): User 
-        @can(ability: "create"model: "MayIFit\\Core\\Permission\\Models\\User") 
+        @can(ability: "create" model: "MayIFit\\Core\\Permission\\Models\\User") 
         @create
 
     updateUser(
-        id: ID @rules(apply: ["required"])
-        name: String
-        email: String @rules(apply: ["email"])
+        input: UpdateUserInput @spread
     ): User 
         @can(ability: "update" find: "id") 
         @update
@@ -35,6 +32,33 @@ extend type Mutation @guard(with: ["sanctum"]) {
     ): User 
         @can(ability: "delete" find: "id") 
         @delete
+}
+
+
+
+input UpdateUserInput {
+    id: ID!
+    name: String!
+    real_name: String!
+    email: String
+    password: String @hash
+    permissions: UpdatePermissionRelation
+    roles: UpdateRoleRelation
+    avatar: String
+    language: String
+    __typename: String
+}
+
+input CreateUserInput {
+    name: String!
+    real_name: String!
+    email: String
+    password: String @hash
+    permissions: UpdatePermissionRelation
+    roles: UpdateRoleRelation
+    avatar: String
+    language: String
+    __typename: String
 }
 
 type User {

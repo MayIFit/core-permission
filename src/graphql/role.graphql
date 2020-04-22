@@ -52,6 +52,11 @@ input CreateRoleInput {
     __typename: String
 }
 
+input UpdateRoleRelation {
+    sync: [ID!]
+    __typename: String
+}
+
 type Role @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Role") {
     id: ID!
     name: String!
