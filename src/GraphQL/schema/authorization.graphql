@@ -70,5 +70,6 @@ type User {
     updated_at: DateTime!
     avatar: String
     language: String
-    roles: [Role!] @belongsToMany
+    roles: [Role!]! @belongsToMany
+    permissions: [Permission!]! @belongsToMany
 }
