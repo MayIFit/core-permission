@@ -22,13 +22,6 @@ trait HasUsers {
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongstoMany
-     */
-    public function orderer(): BelongsTo {
-        return $this->belongsTo(User::class, 'orderer', 'id');
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function createdBy(): BelongsTo {
