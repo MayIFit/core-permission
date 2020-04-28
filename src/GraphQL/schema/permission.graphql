@@ -6,7 +6,6 @@ extend type Query @guard(with: ["sanctum"]) {
 
 input UpdatePermissionRelation {
     sync: [ID!]
-    __typename: String
 }
 
 type Permission @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Permission") {

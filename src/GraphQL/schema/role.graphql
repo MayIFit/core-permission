@@ -1,5 +1,4 @@
 extend type Query @guard(with: ["sanctum"]) {
-
     allRole: [Role!]! 
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
         @all
@@ -41,7 +40,6 @@ input UpdateRoleInput {
     active: Boolean!
     description: String
     permissions: UpdatePermissionRelation
-    __typename: String
 }
 
 input CreateRoleInput {
@@ -49,12 +47,10 @@ input CreateRoleInput {
     active: Boolean!
     description: String
     permissions: UpdatePermissionRelation
-    __typename: String
 }
 
 input UpdateRoleRelation {
     sync: [ID!]
-    __typename: String
 }
 
 type Role @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Role") {

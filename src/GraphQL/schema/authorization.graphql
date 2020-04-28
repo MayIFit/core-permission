@@ -1,6 +1,3 @@
-#import permission.graphql
-#import role.graphql
-
 extend type Query @guard(with: ["sanctum"]) {
     me: User @auth
 
@@ -34,8 +31,6 @@ extend type Mutation @guard(with: ["sanctum"]) {
         @delete
 }
 
-
-
 input UpdateUserInput {
     id: ID!
     name: String
@@ -46,7 +41,6 @@ input UpdateUserInput {
     roles: UpdateRoleRelation
     avatar: String
     language: String
-    __typename: String
 }
 
 input CreateUserInput {
@@ -58,7 +52,6 @@ input CreateUserInput {
     roles: UpdateRoleRelation
     avatar: String
     language: String!
-    __typename: String
 }
 
 type User {
