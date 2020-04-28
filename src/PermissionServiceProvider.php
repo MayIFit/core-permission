@@ -45,10 +45,10 @@
                 }
             }
             $this->publishes([
-                __DIR__.'/GraphQL/schema' => './graphql/core/core_permission',
+                __DIR__.'/GraphQL/schema' => './graphql/core',
             ], '/');
             $this->publishes([
-                __DIR__.'/GraphQL/Mutations' => './App/GraphQL/Mutations/Core/Permission',
+                __DIR__.'/GraphQL/Mutations' => './App/GraphQL/Mutations/Extensions',
             ], '/');
             $this->registerPolicies();
         }

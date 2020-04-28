@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Mutations\Core\Permission;
+namespace App\GraphQL\Mutations\Extensions;
 
 class Upload
 {
