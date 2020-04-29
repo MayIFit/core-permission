@@ -11,6 +11,12 @@ class Upload
         'user_avatar' => 'images'
     ];
 
+    protected $classMatrix = [
+        'product_photo' => \MayIFit\Extensions\Shop\Models\Document::class,
+        'product_file' => \MayIFit\Extensions\Shop\Models\Document::class,
+        'user_avatar' => \MayIFit\Core\Permission\Models\Document::class
+    ];
+
     /**
      * Upload a file, store it on the server and return the path.
      *
@@ -33,6 +39,10 @@ class Upload
         if (!$path) {
             return response()->json(['error' => 'Don\'t know where to save file']);
         }
+
+        $document = new $classMatrix[$type];
+        dd($document);
+
 
         return $file->storeAs($path, $file.'.'.$file->getClientOriginalExtension());
     }
