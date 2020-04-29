@@ -40,6 +40,7 @@ input UpdateRoleInput {
     active: Boolean!
     description: String
     permissions: UpdatePermissionRelation
+    __typename: String
 }
 
 input CreateRoleInput {
@@ -47,6 +48,7 @@ input CreateRoleInput {
     active: Boolean!
     description: String
     permissions: UpdatePermissionRelation
+    __typename: String
 }
 
 input UpdateRoleRelation {
@@ -57,6 +59,6 @@ type Role @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Role") {
     id: ID!
     name: String!
     description: String
-    active: Boolean
-    permissions: [Permission!]! @belongsToMany 
+    active: Boolean!
+    permissions: [Permission]! @belongsToMany 
 }

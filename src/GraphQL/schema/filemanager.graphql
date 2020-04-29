@@ -13,4 +13,5 @@ extend type Mutation {
 input FileUploadInput {
     file: Upload!
     type: String!
+    __typename: String
 }
