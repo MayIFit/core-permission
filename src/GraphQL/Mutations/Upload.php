@@ -4,6 +4,8 @@ namespace App\GraphQL\Mutations\Extensions;
 
 use Illuminate\Support\Facades\Storage;
 
+use \MayIFit\Core\Permission\Models\Document;
+
 class Upload
 {
 
@@ -11,12 +13,6 @@ class Upload
         'product_photo' => 'product_images',
         'product_file' => 'product_additional',
         'user_avatar' => 'images'
-    ];
-
-    protected $classMatrix = [
-        'product_photo' => \MayIFit\Extension\Shop\Models\Document::class,
-        'product_file' => \MayIFit\Extension\Shop\Models\Document::class,
-        'user_avatar' => \MayIFit\Core\Permission\Models\Document::class
     ];
 
     /**
@@ -42,7 +38,7 @@ class Upload
         $storeName = str_replace(' ', '_', $file->getClientOriginalName());
 
         $storedPath = $file->storeAs($path, $storeName);
-        $document = new $this->classMatrix[$type];
+        $document = new Document();
         $document->name = $path;
         $document->resource_url = Storage::url($storedPath);
         $document->original_file_name = $file->getClientOriginalName();
