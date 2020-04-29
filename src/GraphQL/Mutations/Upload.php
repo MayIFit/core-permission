@@ -46,7 +46,7 @@ class Upload
             $storedPath = $file->storeAs($path, $storeName);
             $document = new $this->classMatrix[$type];
             $document->name = $path;
-            $document->resource_url = Storage::url($path).$storedPath;
+            $document->resource_url = Storage::url($storedPath);
             $document->original_file_name = $file->getClientOriginalName();
             $document->save();
     
