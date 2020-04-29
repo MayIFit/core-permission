@@ -26,10 +26,12 @@ class UploadMultiple
      * @param  mixed[]  $args
      * @return string|null
      */
-    public function resolve($root, array $args): ?string
+    public function resolve($root, array $args): ?array
     {
         /** @var \Illuminate\Http\UploadedFile $file */
         $files = $args['input'];
+
+        $retPaths = [];
 
         foreach ($files as $element) {
             $type = $element['type'];
@@ -50,8 +52,11 @@ class UploadMultiple
             $document->original_file_name = $file->getClientOriginalName();
             $document->save();
     
-    
-            return $storedPath;
+            $retPaths[] = [
+                'name' => $file->getClientOriginalName(),
+                'path' => $document->resource_url
+            ];
         }
+        return $retPaths;
     }
 }
