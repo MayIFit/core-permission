@@ -28,12 +28,10 @@ class Upload
      */
     public function resolve($root, array $args): ?string
     {
-        $fileInput = $args['input'];
-        
-        $type = $fileInput['type'];
+        $type = $args['type'];
         
         /** @var \Illuminate\Http\UploadedFile $file */
-        $file = $fileInput['file'];
+        $file = $args['file'];
         
         $path = $this->pathMatrix[$type] ?? '';
 
