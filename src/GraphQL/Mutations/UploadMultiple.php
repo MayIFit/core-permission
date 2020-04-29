@@ -28,13 +28,14 @@ class UploadMultiple
      */
     public function resolve($root, array $args): ?array
     {
-        /** @var \Illuminate\Http\UploadedFile $file */
         $files = $args['input'];
-
+        
         $retPaths = [];
-
+        
         foreach ($files as $element) {
             $type = $element['type'];
+            
+            /** @var \Illuminate\Http\UploadedFile $file */
             $file = $element['file'];
             
             $path = $this->pathMatrix[$type] ?? '';

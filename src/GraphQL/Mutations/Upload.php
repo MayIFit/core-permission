@@ -28,30 +28,29 @@ class Upload
      */
     public function resolve($root, array $args): ?string
     {
+        $fileInput = $args['input'];
+        
+        $type = $fileInput['type'];
+        
         /** @var \Illuminate\Http\UploadedFile $file */
-        $files = $args['input'];
+        $file = $fileInput['file'];
+        
+        $path = $this->pathMatrix[$type] ?? '';
 
-        foreach ($files as $element) {
-            $type = $element['type'];
-            $file = $element['file'];
-            
-            $path = $this->pathMatrix[$type] ?? '';
-    
-            if (!$path) {
-                return json(['error' => 'Don\'t know where to save file']);
-            }
-
-            $storeName = str_replace(' ', '_', $file->getClientOriginalName());
-
-            $storedPath = $file->storeAs($path, $storeName);
-            $document = new $this->classMatrix[$type];
-            $document->name = $path;
-            $document->resource_url = Storage::url($storedPath);
-            $document->original_file_name = $file->getClientOriginalName();
-            $document->save();
-    
-    
-            return $storedPath;
+        if (!$path) {
+            return json(['error' => 'Don\'t know where to save file']);
         }
+
+        $storeName = str_replace(' ', '_', $file->getClientOriginalName());
+
+        $storedPath = $file->storeAs($path, $storeName);
+        $document = new $this->classMatrix[$type];
+        $document->name = $path;
+        $document->resource_url = Storage::url($storedPath);
+        $document->original_file_name = $file->getClientOriginalName();
+        $document->save();
+
+
+        return $storedPath;
     }
 }
