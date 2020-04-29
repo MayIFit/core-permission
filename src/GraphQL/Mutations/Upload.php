@@ -39,7 +39,7 @@ class Upload
 
         $storedPath = $file->storeAs($path, $storeName);
         $document = new Document();
-        $document->name = $path;
+        $document->name = $storeName;
         $document->resource_url = Storage::url($storedPath);
         $document->original_file_name = $file->getClientOriginalName();
         $document->save();
