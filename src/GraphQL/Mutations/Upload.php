@@ -44,7 +44,10 @@ class Upload
         $document->original_file_name = $file->getClientOriginalName();
         $document->save();
 
-
-        return $storedPath;
+        return [
+            'name' => $file->getClientOriginalName(),
+            'path' => $document->resource_url,
+            'id' => $document->id
+        ];
     }
 }

@@ -26,7 +26,7 @@ class UploadMultiple
     {
         $files = $args['input'];
         
-        $retPaths = [];
+        $retFiles = [];
         
         foreach ($files as $element) {
             $type = $element['type'];
@@ -49,11 +49,12 @@ class UploadMultiple
             $document->original_file_name = $file->getClientOriginalName();
             $document->save();
     
-            $retPaths[] = [
+            $retFiles[] = [
                 'name' => $file->getClientOriginalName(),
-                'path' => $document->resource_url
+                'path' => $document->resource_url,
+                'id' => $document->id
             ];
         }
-        return $retPaths;
+        return $retFiles;
     }
 }
