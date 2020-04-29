@@ -37,7 +37,7 @@ class Upload
 
         $storeName = str_replace(' ', '_', $file->getClientOriginalName());
 
-        $storedPath = $file->storeAs($path, $storeName);
+        $storedPath = $file->store($path);
         $document = new Document();
         $document->name = $storeName;
         $document->resource_url = Storage::url($storedPath);

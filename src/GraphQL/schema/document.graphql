@@ -7,7 +7,7 @@ type Document @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Document"
     id: ID!
     name: String!
     original_filename: String!
-    resourcel_url: String!
+    resource_url: String!
     entity: Entity! @morphTo 
 }
 
