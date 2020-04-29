@@ -2,6 +2,8 @@
 
 namespace App\GraphQL\Mutations\Extensions;
 
+use Illuminate\Support\Facades\Storage;
+
 class Upload
 {
 
@@ -12,8 +14,8 @@ class Upload
     ];
 
     protected $classMatrix = [
-        'product_photo' => \MayIFit\Extensions\Shop\Models\Document::class,
-        'product_file' => \MayIFit\Extensions\Shop\Models\Document::class,
+        'product_photo' => \MayIFit\Extension\Shop\Models\Document::class,
+        'product_file' => \MayIFit\Extension\Shop\Models\Document::class,
         'user_avatar' => \MayIFit\Core\Permission\Models\Document::class
     ];
 
@@ -38,11 +40,18 @@ class Upload
             if (!$path) {
                 return json(['error' => 'Don\'t know where to save file']);
             }
-    
+
+            $storeName = str_replace(' ', '_', $file->getClientOriginalName());
+
+            $storedPath = $file->storeAs($path, $storeName);
             $document = new $this->classMatrix[$type];
+            $document->name = $path;
+            $document->resource_url = Storage::url($path).$storedPath;
+            $document->original_file_name = $file->getClientOriginalName();
+            $document->save();
     
     
-            return $file->storeAs($path, $file.'.'.$file->getClientOriginalExtension());
+            return $storedPath;
         }
     }
 }
