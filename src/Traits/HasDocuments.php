@@ -2,7 +2,7 @@
 
 namespace MayIFit\Core\Permission\Traits;
 
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 use MayIFit\Core\Permission\Models\Document;
 
@@ -14,9 +14,9 @@ use MayIFit\Core\Permission\Models\Document;
 trait HasDocuments {
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function documents(): MorphToMany {
+    public function documents(): MorphMany {
         return $this->morphMany(Document::class, 'entity');
     }
 }

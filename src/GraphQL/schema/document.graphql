@@ -1,4 +1,4 @@
-type CoreDocument @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Document") {
+type Document @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Document") {
     id: ID!
     name: String!
     original_filename: String!
