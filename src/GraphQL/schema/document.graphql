@@ -1,0 +1,9 @@
+type CoreDocument @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Document") {
+    id: ID!
+    name: String!
+    original_filename: String!
+    resourcel_url: String!
+    entity: Entity! @morphTo 
+}
+
+union Entity = Product | User
