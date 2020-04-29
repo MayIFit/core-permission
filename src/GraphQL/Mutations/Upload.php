@@ -27,23 +27,22 @@ class Upload
     public function resolve($root, array $args): ?string
     {
         /** @var \Illuminate\Http\UploadedFile $file */
-        $file = $args['file'];
-        $type = $args['type'];
+        $files = $args['input'];
 
-        $args->validate([
-            'file' => 'required|file|mimes:jpeg,png,jpg,gif,svg,doc,xls,pdf,csv,xlsx|max:10240',
-        ]);
-        
-        $path = $pathMatrix[$type] ?? '';
-
-        if (!$path) {
-            return response()->json(['error' => 'Don\'t know where to save file']);
+        foreach ($files as $element) {
+            $type = $element['type'];
+            $file = $element['file'];
+            
+            $path = $this->pathMatrix[$type] ?? '';
+    
+            if (!$path) {
+                return json(['error' => 'Don\'t know where to save file']);
+            }
+    
+            $document = new $this->classMatrix[$type];
+    
+    
+            return $file->storeAs($path, $file.'.'.$file->getClientOriginalExtension());
         }
-
-        $document = new $classMatrix[$type];
-        dd($document);
-
-
-        return $file->storeAs($path, $file.'.'.$file->getClientOriginalExtension());
     }
 }

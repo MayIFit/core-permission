@@ -2,6 +2,11 @@
 scalar Upload @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
 
 extend type Mutation {
-    "Upload a file that is publicly available."
-    upload(file: Upload!, type: String): String
+    "Upload files"
+    upload(input: [FileUploadInput!]! @spread): String
+}
+
+input FileUploadInput {
+    file: Upload!
+    type: String!
 }
