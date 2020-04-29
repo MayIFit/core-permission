@@ -17,7 +17,7 @@ class CreateEntityUploadedDocumentTable extends Migration
             $table->unsignedBigInteger('document_id')->references('id')->on('uploaded_documents');
             $table->unsignedBigInteger('entity_id');
             $table->string('entity_type');
-            $table->primary(['product_photo_id', 'entity_id']);
+            $table->primary(['document_id', 'entity_id']);
         });
     }
 
