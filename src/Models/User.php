@@ -12,10 +12,11 @@ use MayIFit\Core\Permission\Traits\Lockable;
 use MayIFit\Core\Permission\Traits\HasRoles;
 use MayIFit\Core\Permission\Traits\HasAdminRole;
 use MayIFit\Core\Permission\Traits\HasPermissions;
+use MayIFit\Core\Permission\Traits\HasDocuments;
 
 
 class User extends Authenticatable {
-    use HasRoles, HasAdminRole, HasPermissions, Lockable, HasApiTokens;
+    use HasRoles, HasAdminRole, HasPermissions, Lockable, HasApiTokens, HasDocuments;
 
     protected $dates = ['deleted_at'];
 }
