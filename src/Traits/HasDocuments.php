@@ -14,9 +14,11 @@ use MayIFit\Core\Permission\Models\Document;
 trait HasDocuments {
 
     /**
+     * Get the documents that belong to model.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function documents(): MorphMany {
-        return $this->morphMany(Document::class, 'entity');
+        return $this->morphMany(Document::class, 'documentable');
     }
 }

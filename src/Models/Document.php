@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Document extends Model
 {
-    protected $table = 'uploaded_documents';
-
-    /**
-     * Get all of the users that have this document.
+     /**
+     * Get the documentable model that the document belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function entity(): MorphTo {
-        return $this->morphTo();
+    public function documentable(): MorphTo {
+        return $this->morphTo('documentable');
     }
 
 }
