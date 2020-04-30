@@ -8,7 +8,7 @@ type Document @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Document"
     name: String!
     original_filename: String!
     resource_url: String!
-    entity: Entity! @morphTo 
+    documentable: Documentable! @morphTo 
 }
 
-union Entity = Product | User
+union Documentable = Product | User
