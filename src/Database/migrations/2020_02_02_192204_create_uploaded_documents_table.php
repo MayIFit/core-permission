@@ -19,8 +19,8 @@ class CreateUploadedDocumentsTable extends Migration
             $table->string('original_file_name');
             $table->string('resource_url');
             $table->string('description')->nullable();
-            $table->string('entity_id')->nullable();
-            $table->string('entity_type')->nullable();
+            $table->string('documentable_id')->nullable();
+            $table->string('documentable_type')->nullable();
             $table->unsignedBigInteger('created_by')->references('id')->on('users')->nullable();
             $table->timestamps();
             $table->softDeletes();
