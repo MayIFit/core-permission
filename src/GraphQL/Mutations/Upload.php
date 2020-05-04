@@ -37,9 +37,13 @@ class Upload
 
         $storeName = str_replace(' ', '_', $file->getClientOriginalName());
 
+        $pathArray = explode('/', $storeName);
+        $name = array_pop($pathArray);
+
+
         $storedPath = $file->store($path);
         $document = new Document();
-        $document->name = $storeName;
+        $document->name = $name;
         $document->type = $file->getMimeType();
         $document->size = $file->getSize();
         $document->resource_url = Storage::url($storedPath);
