@@ -40,11 +40,10 @@ class UploadMultiple
                 return json(['error' => 'Don\'t know where to save file']);
             }
 
-            $storeName = str_replace(' ', '_', $file->getClientOriginalName());
-            $pathArray = explode('/', $storeName);
-            $name = array_pop($pathArray);
-
             $storedPath = $file->store($path);
+            $pathArray = explode('/', $storedPath);
+            $name = array_pop($pathArray);
+            
             $document = new Document();
             $document->name = $name;
             $document->type = $file->getMimeType();
