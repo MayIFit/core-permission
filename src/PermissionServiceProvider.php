@@ -6,9 +6,10 @@
     use Illuminate\Support\Facades\Event;
     use Illuminate\Support\Facades\Request;
     use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-
     use Illuminate\Support\Facades\Gate;
     use Symfony\Component\Console\Output\ConsoleOutput;
+    use Illuminate\Database\Eloquent\Relations\Relation;
+
     
     use MayIFit\Core\Permission\Models\Permission;
     use MayIFit\Core\Permission\Models\Role;
@@ -38,6 +39,9 @@
         protected $database_folder = '/database';
 
         public function boot() {
+            Relation::morphMap([
+                'user' => 'MayIFit\Core\Permission\Models\User',
+            ]);
             $this->loadMigrationsFrom(__DIR__.$this->database_folder.'/migrations');
             if ($this->app->runningInConsole()) {
                 if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], [ '--class', 'help', '-h' ])) {
