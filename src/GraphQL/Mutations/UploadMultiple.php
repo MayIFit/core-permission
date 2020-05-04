@@ -45,6 +45,8 @@ class UploadMultiple
             $storedPath = $file->store($path);
             $document = new Document();
             $document->name = $storeName;
+            $document->type = $file->getMimeType();
+            $document->size = $file->getSize();
             $document->resource_url = Storage::url($storedPath);
             $document->original_file_name = $file->getClientOriginalName();
             $document->save();

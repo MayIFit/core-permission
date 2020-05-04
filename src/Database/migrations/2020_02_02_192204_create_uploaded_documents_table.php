@@ -18,6 +18,8 @@ class CreateUploadedDocumentsTable extends Migration
             $table->string('name');
             $table->string('original_file_name');
             $table->string('resource_url');
+            $table->string('type');
+            $table->string('size');
             $table->string('description')->nullable();
             $table->string('documentable_id')->nullable();
             $table->string('documentable_type')->nullable();
