@@ -49,11 +49,11 @@ class UploadMultiple
             $document->type = $file->getMimeType();
             $document->size = $file->getSize();
             $document->resource_url = Storage::url($storedPath);
-            $document->original_file_name = $file->getClientOriginalName();
+            $document->original_filename = $file->getClientOriginalName();
             $document->save();
     
             $retFiles[] = [
-                'original_file_name' => $file->getClientOriginalName(),
+                'original_filename' => $file->getClientOriginalName(),
                 'name' => $document->name,
                 'resource_url' => $document->resource_url,
                 'size' => $document->size,
