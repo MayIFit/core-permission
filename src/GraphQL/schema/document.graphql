@@ -1,6 +1,13 @@
-input SyncDocumentInput {
-    sync: [ID!]
-    connect: [ID!]
+input UpdateDocumentHasOne {
+  update: [UpdateDocumentInput]
+  delete: ID
+}
+
+input UpdateDocumentInput {
+    id: ID
+    name: String
+    documentable_type: String
+    documentable_id: Int
 }
 
 type Document @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Document") {

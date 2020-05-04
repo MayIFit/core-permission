@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Document extends Model
 {
+
+    protected $fillable = ['id'];
+    
      /**
      * Get the documentable model that the document belongs to.
      *
