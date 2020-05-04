@@ -43,7 +43,7 @@ class UploadMultiple
             $storedPath = $file->store($path);
             $pathArray = explode('/', $storedPath);
             $name = array_pop($pathArray);
-            
+
             $document = new Document();
             $document->name = $name;
             $document->type = $file->getMimeType();
@@ -53,7 +53,7 @@ class UploadMultiple
             $document->save();
     
             $retFiles[] = [
-                'original_name' => $file->getClientOriginalName(),
+                'original_file_name' => $file->getClientOriginalName(),
                 'name' => $document->name,
                 'resource_url' => $document->resource_url,
                 'size' => $document->size,

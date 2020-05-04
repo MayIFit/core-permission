@@ -48,7 +48,7 @@ class Upload
         $document->save();
 
         return [
-            'original_name' => $file->getClientOriginalName(),
+            'original_file_name' => $file->getClientOriginalName(),
             'name' => $document->name,
             'resource_url' => $document->resource_url,
             'size' => $document->size,
