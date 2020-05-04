@@ -56,7 +56,7 @@ class UploadMultiple
             $retFiles[] = [
                 'original_name' => $file->getClientOriginalName(),
                 'name' => $document->name,
-                'path' => $document->resource_url,
+                'resource_url' => $document->resource_url,
                 'size' => $document->size,
                 'type' => $document->type,
                 'id' => $document->id
