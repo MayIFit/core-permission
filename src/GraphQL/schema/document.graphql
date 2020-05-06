@@ -1,6 +1,6 @@
 input UpdateDocumentHasOne {
-  update: [UpdateDocumentInput]
-  delete: ID
+	update: [UpdateDocumentInput]
+	delete: ID
 }
 
 input UpdateDocumentInput {
