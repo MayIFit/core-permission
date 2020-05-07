@@ -23,27 +23,27 @@ class TranslationTableSeeder extends Seeder
     }
 
     protected function addPermissionRelatedTranslations() {
-        Translation::firstOrCreate([
+        Translation::updateOrCreate([
             'group' => 'permission',
             'key' => 'has_right',
             'text' => ['en' => 'Has Right', 'hu' => 'Jogosult'],
         ]);
-        Translation::firstOrCreate([
+        Translation::updateOrCreate([
             'group' => 'permission',
             'key' => 'permissions',
             'text' => ['en' => 'Permissions', 'hu' => 'Jogosultságok'],
         ]);
-        Translation::firstOrCreate([
+        Translation::updateOrCreate([
             'group' => 'permission',
             'key' => 'permission',
             'text' => ['en' => 'Permission', 'hu' => 'Jogosultság'],
         ]);
-        Translation::firstOrCreate([
+        Translation::updateOrCreate([
             'group' => 'permission',
             'key' => 'roles',
             'text' => ['en' => 'Roles', 'hu' => 'Szerepkörök'],
         ]);
-        Translation::firstOrCreate([
+        Translation::updateOrCreate([
             'group' => 'permission',
             'key' => 'role',
             'text' => ['en' => 'Role', 'hu' => 'Szerepkör'],
