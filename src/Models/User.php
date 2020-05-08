@@ -19,4 +19,12 @@ class User extends Authenticatable {
     use HasRoles, HasAdminRole, HasPermissions, Lockable, HasApiTokens, HasDocuments;
 
     protected $dates = ['deleted_at'];
+
+
+    public function save(array $options = array()) {
+        $this->created_by = auth()->id() ?? 1;
+        $this->updated_by = auth()->id() ?? 1;
+        parent::save($options);
+    }
+
 }
