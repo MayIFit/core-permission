@@ -20,6 +20,7 @@ class TranslationTableSeeder extends Seeder
     public function run()
     {
         $this->addPermissionRelatedTranslations();
+        $this->addFileUploadRelatedTranslations();
     }
 
     protected function addPermissionRelatedTranslations() {
@@ -53,5 +54,32 @@ class TranslationTableSeeder extends Seeder
 			],
             ['text' => ['en' => 'Role', 'hu' => 'Szerepkör']],
 		);
+    }
+
+    protected function addFileUploadRelatedTranslations() {
+        Translation::updateOrCreate([
+                'group' => 'files',
+                'key' => 'to_upload'
+            ],
+            ['text' => ['en' => 'To Upload', 'hu' => 'Feltöltendő']],
+        );
+        Translation::updateOrCreate([
+                'group' => 'files',
+                'key' => 'drop_zone'
+            ],
+            ['text' => ['en' => 'Drop Here', 'hu' => 'Ide Dobja']],
+        );
+        Translation::updateOrCreate([
+                'group' => 'files',
+                'key' => 'no_selected'
+            ],
+            ['text' => ['en' => 'No File Selected', 'hu' => 'Nincs kiválasztott fájl']],
+        );
+        Translation::updateOrCreate([
+                'group' => 'files',
+                'key' => 'upload_file'
+            ],
+            ['text' => ['en' => 'Upload File', 'hu' => 'Fájl Feltöltése']],
+        );
     }
 }
