@@ -18,8 +18,8 @@ class CreateRolesTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->boolean('active')->default(false);
-            $table->unsignedBigInteger('created_by')->references('id')->on('users');
-            $table->unsignedBigInteger('updated_by')->references('id')->on('users')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable()->references('id')->on('users');
+            $table->unsignedBigInteger('updated_by')->nullable()->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });
