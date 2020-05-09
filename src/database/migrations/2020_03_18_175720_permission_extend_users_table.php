@@ -17,7 +17,7 @@ class PermissionExtendUsersTable extends Migration
             $table->string('real_name')->nullable();
             $table->string('avatar')->nullable();
             $table->string('about')->nullable();
-            $table->unsignedBigInteger('created_by')->references('id')->on('users')->default(1);
+            $table->unsignedBigInteger('created_by')->references('id')->on('users');
             $table->unsignedBigInteger('updated_by')->references('id')->on('users')->nullable();
             $table->softDeletes();
         });
