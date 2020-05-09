@@ -61,6 +61,9 @@
             $this->app->bind('permission', function () {
                 return new Permission();
             });
+            $this->app->bind('role', function () {
+                return new Role();
+            });
         }
 
         /**
