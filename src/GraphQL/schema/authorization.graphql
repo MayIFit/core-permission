@@ -14,19 +14,17 @@ extend type Query @guard(with: ["sanctum"]) {
         @field(resolver: "GetOrderFromToken@resolve")
 }
 
-extend type Query {
-    loginUser(
-        input: LoginUserInput!
-    ): User 
-        @field(resolver: "UserAuthentication@resolve")
-}
-
 extend type Mutation {
     registerUser(
         input: RegisterUserInput!
     ): User 
         @field(resolver: "UserRegistration@resolve")
-    
+
+    loginUser(
+        input: LoginUserInput!
+    ): User 
+        @field(resolver: "UserAuthentication@resolve")
+
     logoutUser: Boolean
         @field(resolver: "UserUnauthentication@resolve")
 }
