@@ -7,10 +7,16 @@ use Nuwave\Lighthouse\Exceptions\RendersErrorsExtensions;
 
 class MisMatchedAuthorizationRequest extends Exception implements RendersErrorsExtensions
 {
+    /**
+    * @var @string
+    */
+    private $reason;
 
-    public function __construct(string $message)
+    public function __construct(string $message, string $reason)
     {
         parent::__construct($message);
+
+        $this->reason = $reason;
     }
 
     /**
@@ -35,5 +41,18 @@ class MisMatchedAuthorizationRequest extends Exception implements RendersErrorsE
     public function getCategory(): string
     {
         return 'userAuthentication';
+    }
+
+    /**
+     * Return the content that is put in the "extensions" part
+     * of the returned error.
+     *
+     * @return array
+     */
+    public function extensionsContent(): array
+    {
+        return [
+            'reason' => $this->reason,
+        ];
     }
 }
