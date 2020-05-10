@@ -25,7 +25,7 @@ class UserAuthentication
     
         if (!$user || !Hash::check($password, $user->password)) {
             throw new MisMatchedAuthorizationRequest(
-                'error.no_matching_credentials_found',
+                'error.no_matching_credentials_found'
             );
         }
     
