@@ -16,16 +16,14 @@ extend type Query @guard(with: ["sanctum"]) {
 
 extend type Query {
     loginUser(
-        email: String! 
-        password: String! @rules(apply: ["required"])
+        input: LoginUserInput!
     ): User 
         @field(resolver: "UserAuthentication@resolve")
 }
 
 extend type Mutation {
     registerUser(
-        email: String!
-        password: String! @hash
+        input: RegisterUserInput!
     ): User 
         @field(resolver: "UserRegistration@resolve")
 }
@@ -48,6 +46,16 @@ extend type Mutation @guard(with: ["sanctum"]) {
     ): User 
         @can(ability: "delete" find: "id") 
         @delete
+}
+
+input LoginUserInput {
+    email: String! @rules(apply: ["required", "email"])
+    password: String! @rules(apply: ["required"])
+}
+
+input RegisterUserInput {
+    email: String! @rules(apply: ["required", "email"])
+    password: String! @hash @rules(apply: ["required", "min:8"])
 }
 
 input UpdateUserInput {
