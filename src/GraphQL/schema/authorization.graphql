@@ -10,22 +10,24 @@ extend type Query @guard(with: ["sanctum"]) {
     ): User! 
         @can(ability: "view" find:"id") @find
 
-    hasPermission(entity:String! permission: String!): Boolean! 
+    hasPermission(entity: String! permission: String!): Boolean! 
         @field(resolver: "GetOrderFromToken@resolve")
 }
 
 extend type Query {
     loginUser(
-        email: String!
-        password: String!
+        email: String! 
+        password: String! @rules(apply: ["required"])
     ): User 
-        @field(resolver: "UserAuthentication@login")
-    
+        @field(resolver: "UserAuthentication@resolve")
+}
+
+extend type Mutation {
     registerUser(
         email: String!
         password: String! @hash
     ): User 
-        @field(resolver: "UserAuthentication@register")
+        @field(resolver: "UserRegistration@resolve")
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {

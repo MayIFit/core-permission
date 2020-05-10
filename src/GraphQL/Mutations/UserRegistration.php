@@ -10,25 +10,31 @@ use Illuminate\Support\Facades\Hash;
 use MayIFit\Core\Permission\Exceptions\MisMatchedAuthorizationRequest;
 use App\Models\User;
 
-class UserAuthentication
+class UserRegistration
 {
     /**
-     * Try to authenticate the User
+     * Try to register a new User 
      * 
      * @return void
      */
     public static function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
         $email = $args['email'];
-        $password = $args['password'];
-
-        $user = User::where('email', $email)->first();
-    
-        if (!$user || !Hash::check($password, $user->password)) {
+        $hashedPassword = $args['password'];
+        
+        $checkUser = User::where('email', $email)->first();
+        if ($checkUser) {
             throw new MisMatchedAuthorizationRequest(
-                'error.no_matching_credentials_found',
+                'error.user_with_email_already_exists',
                 ''
             );
         }
+
+        $user = User::create([
+            'email'          => $email,
+            'name'           => Str::random(60),
+            'password'       => $hashedPassword,
+            'remember_token' => Str::random(60)
+        ]);
     
         $token = $user->createToken(config('app.name'))->plainTextToken;
     
