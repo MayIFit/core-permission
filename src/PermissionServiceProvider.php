@@ -54,6 +54,9 @@
             $this->publishes([
                 __DIR__.'/GraphQL/Mutations' => './app/GraphQL/Mutations/Extensions',
             ]);
+            $this->publishes([
+                __DIR__.'/GraphQL/Queries' => './app/GraphQL/Queries/Core',
+            ]);
             $this->registerPolicies();
         }
 

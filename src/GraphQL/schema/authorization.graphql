@@ -9,6 +9,23 @@ extend type Query @guard(with: ["sanctum"]) {
         id: ID @eq
     ): User! 
         @can(ability: "view" find:"id") @find
+
+    hasPermission(entity:String! permission: String!): Boolean! 
+        @field(resolver: "GetOrderFromToken@resolve")
+}
+
+extend type Query {
+    loginUser(
+        email: String!
+        password: String!
+    ): User 
+        @field(resolver: "UserAuthentication@login")
+    
+    registerUser(
+        email: String!
+        password: String! @hash
+    ): User 
+        @field(resolver: "UserAuthentication@register")
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {
