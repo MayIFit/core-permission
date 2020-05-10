@@ -7,6 +7,7 @@ use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+use MayIFit\Core\Permission\Exceptions\MisMatchedAuthorizationRequest;
 use App\Models\User;
 
 class UserAuthentication
@@ -23,7 +24,9 @@ class UserAuthentication
         $user = User::where('email', $email)->first();
     
         if (!$user || !Hash::check($password, $user->password)) {
-            return  ['message' => 'global.no_matching_credentials_found'];
+            throw new MisMatchedAuthorizationRequest(
+                'error.no_matching_credentials_found',
+            );
         }
     
         $token = $user->createToken(config('app.name'))->plainTextToken;
@@ -47,7 +50,9 @@ class UserAuthentication
         
         $checkUser = User::where('email', $email)->first();
         if ($checkUser) {
-            return ['message' => 'error.user_already_exists'];
+            throw new MisMatchedAuthorizationRequest(
+                'error.user_with_email_already_exists'
+            );
         }
 
         $user = User::create([
