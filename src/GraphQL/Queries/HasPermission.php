@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Queries\Extensions;
+namespace App\GraphQL\Queries\Core;
 
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
