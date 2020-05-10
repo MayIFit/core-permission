@@ -26,6 +26,9 @@ extend type Mutation {
         input: RegisterUserInput!
     ): User 
         @field(resolver: "UserRegistration@resolve")
+    
+    logoutUser(): Boolean
+        @field(resolver: "UserUnauthentication@resolve")
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {
