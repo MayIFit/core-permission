@@ -27,7 +27,7 @@ extend type Mutation {
     ): User 
         @field(resolver: "UserRegistration@resolve")
     
-    logoutUser(): Boolean
+    logoutUser: Boolean
         @field(resolver: "UserUnauthentication@resolve")
 }
 
