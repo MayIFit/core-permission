@@ -75,13 +75,14 @@ input CreateUserInput {
 
 type User {
     id: ID!
-    name: String!
+    name: String
     real_name: String
     email: String!
     created_at: DateTime!
     updated_at: DateTime!
     avatar: String
     language: String
+    access_token: String
     roles: [Role!] @belongsToMany
     permissions: [Permission!] @belongsToMany
 }
