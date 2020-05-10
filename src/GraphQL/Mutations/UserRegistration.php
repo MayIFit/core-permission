@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Queries\Core;
+namespace App\GraphQL\Mutations\Core;
 
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
@@ -18,8 +18,8 @@ class UserRegistration
      * @return void
      */
     public static function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
-        $email = $args['email'];
-        $hashedPassword = $args['password'];
+        $email = $args['input']['email'];
+        $hashedPassword = $args['input']['password'];
         
         $checkUser = User::where('email', $email)->first();
         if ($checkUser) {
