@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Mutations\Extensions;
+namespace App\GraphQL\Mutations\Core;
 
 use Illuminate\Support\Facades\Storage;
 

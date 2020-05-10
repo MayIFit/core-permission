@@ -51,7 +51,7 @@
                 __DIR__.'/GraphQL/schema' => './graphql/core',
             ]);
             $this->publishes([
-                __DIR__.'/GraphQL/Mutations' => './app/GraphQL/Mutations/Extensions',
+                __DIR__.'/GraphQL/Mutations' => './app/GraphQL/Mutations/Core',
             ]);
             $this->publishes([
                 __DIR__.'/GraphQL/Queries' => './app/GraphQL/Queries/Core',
