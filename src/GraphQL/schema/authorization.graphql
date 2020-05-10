@@ -11,7 +11,7 @@ extend type Query @guard(with: ["sanctum"]) {
         @can(ability: "view" find:"id") @find
 
     hasPermission(entity: String! permission: String!): Boolean! 
-        @field(resolver: "GetOrderFromToken@resolve")
+        @field(resolver: "HasPermission@resolve")
 }
 
 extend type Mutation {
