@@ -10,7 +10,7 @@ class Upload
 {
 
     protected $pathMatrix = [
-        'product_photo' => 'product_images',
+        'product_photo' => 'public/product_images',
         'product_file' => 'public/product_additional',
         'user_avatar' => 'public/images'
     ];
