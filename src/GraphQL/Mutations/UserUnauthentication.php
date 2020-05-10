@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 use MayIFit\Core\Permission\Exceptions\MisMatchedAuthorizationRequest;
 use App\Models\User;
 
-class UserUnathentication
+class UserUnauthentication
 {
     /**
      * Try to register a new User 
