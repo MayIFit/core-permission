@@ -1,5 +1,7 @@
 <?php
 
+namespace MayIFit\Core\Permission\Exceptions;
+
 use Exception;
 use Nuwave\Lighthouse\Exceptions\RendersErrorsExtensions;
 

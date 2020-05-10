@@ -7,9 +7,8 @@
     use Illuminate\Support\Facades\Request;
     use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
     use Illuminate\Support\Facades\Gate;
-    use Symfony\Component\Console\Output\ConsoleOutput;
     use Illuminate\Database\Eloquent\Relations\Relation;
-
+    use Symfony\Component\Console\Output\ConsoleOutput;
     
     use MayIFit\Core\Permission\Models\Permission;
     use MayIFit\Core\Permission\Models\Role;
