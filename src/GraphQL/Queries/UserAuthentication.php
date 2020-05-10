@@ -31,12 +31,8 @@ class UserAuthentication
         }
     
         $token = $user->createToken(config('app.name'))->plainTextToken;
-    
-        $response = [
-            'user' => $user,
-            'access_token' => $token
-        ];
+        $user['access_token'] = $token;
 
-        return $response;
+        return $user;
     }
 }
