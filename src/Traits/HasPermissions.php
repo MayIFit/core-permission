@@ -29,7 +29,7 @@ trait HasPermissions {
         if (!is_array($permission)) {
             return false;
         }
-
+       
         $permissionName = $permission[0];
         $permissionMethod = $permission[1];
         $result = \Auth::user()->whereHas('roles.permissions', function($q) use($permissionName, $permissionMethod) {
@@ -37,13 +37,7 @@ trait HasPermissions {
                 'permissions.name' => $permissionName,
                 'permissions.method' => $permissionMethod,
             ]);
-        })->orWhereHas('permissions', function($q) use($permissionName, $permissionMethod) {
-            $q->where([
-                'permissions.name' => $permissionName,
-                'permissions.method' => $permissionMethod,
-            ]);
-        })
-        ->first();
+        })->find(\Auth::id());
 
         return $result ? true : false;
     }
