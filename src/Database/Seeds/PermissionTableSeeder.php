@@ -66,7 +66,7 @@ class PermissionTableSeeder extends Seeder
     }
 
     protected function graphql(string $query) {
-        return Http::post(config('app.url').'/api/v1/graphql', [
+        return Http::post(rtrim(config('app.url'), '/').'/api/v1/graphql', [
             'query' => $query
         ])->throw()->json();
     }
