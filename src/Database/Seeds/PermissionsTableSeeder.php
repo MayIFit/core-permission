@@ -9,11 +9,11 @@ use MayIFit\Core\Permission\Models\Permission;
 use MayIFit\Core\Permission\Models\Role;
 
 /**
- * Class PermissionTableSeeder
+ * Class PermissionsTableSeeder
  *
  * @package MayIFit\Core\Permission
  */
-class PermissionTableSeeder extends Seeder
+class PermissionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

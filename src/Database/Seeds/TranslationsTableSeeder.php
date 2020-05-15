@@ -10,7 +10,7 @@ use MayIFit\Core\Translation\Models\Translation;
  *
  * @package MayIFit\Core\Permission
  */
-class TranslationTableSeeder extends Seeder
+class TranslationsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
