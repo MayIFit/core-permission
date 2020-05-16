@@ -19,7 +19,7 @@ class UserUnauthentication
      * @return void
      */
     public static function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
-        Auth::user()->tokens()->delete();
+        $context->user->tokens()->delete();
         return false;
     }
 }
