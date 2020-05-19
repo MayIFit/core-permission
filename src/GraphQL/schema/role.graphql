@@ -40,7 +40,6 @@ input UpdateRoleInput {
     active: Boolean!
     description: String
     permissions: UpdatePermissionRelation
-    __typename: String
 }
 
 input CreateRoleInput {
@@ -48,7 +47,6 @@ input CreateRoleInput {
     active: Boolean!
     description: String
     permissions: UpdatePermissionRelation
-    __typename: String
 }
 
 input UpdateRoleRelation {

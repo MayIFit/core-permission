@@ -69,7 +69,6 @@ input UpdateUserInput {
     roles: UpdateRoleRelation
     avatar: String
     language: String
-    __typename: String
 }
 
 input CreateUserInput {
@@ -81,7 +80,6 @@ input CreateUserInput {
     roles: UpdateRoleRelation
     avatar: String
     language: String!
-    __typename: String
 }
 
 type User {

@@ -13,5 +13,4 @@ extend type Mutation @guard(with: ["sanctum"]) {
 input FileUploadInput {
     file: Upload!
     type: String!
-    __typename: String
 }
