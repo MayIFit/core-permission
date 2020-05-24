@@ -28,7 +28,6 @@ class UsersTableSeeder extends Seeder
                 'name'           => 'system',
                 'password'       => bcrypt('a^MvR$jr>h9DyM<4x"AUV"#dg{4jCdawtJ29V}2$'),
                 'remember_token' => Str::random(60),
-                'created_by'     => 1
             ]);
             $adminRole = Role::where('name', 'admin')->firstOrFail();
             User::create([
@@ -37,7 +36,6 @@ class UsersTableSeeder extends Seeder
                 'name'           => 'admin',
                 'password'       => bcrypt('password'),
                 'remember_token' => Str::random(60),
-                'created_by'     => 1
             ])->roles()->attach($adminRole);
 
             if (env("APP_ENV") === 'local') {

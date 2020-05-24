@@ -19,4 +19,11 @@ class Document extends Model
         return $this->morphTo('documentable');
     }
 
+    protected static function booted() {
+        static::creating(function ($model) {
+            $model->createdBy()->associate(auth()->id());
+            $model->updatedBy()->associate(auth()->id());
+        });
+    }
+
 }

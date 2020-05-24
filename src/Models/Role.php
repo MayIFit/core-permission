@@ -14,11 +14,15 @@ class Role extends Model
 
     protected $fillable = ['id', 'name', 'description', 'active', 'permissions'];
 
+    protected $attributes = [
+        'active' => true
+    ];
 
-    public function save(array $options = array()) {
-        $this->created_by = auth()->id() ?? 1;
-        $this->updated_by = auth()->id();
-        parent::save($options);
+    protected static function booted() {
+        static::creating(function ($model) {
+            $model->createdBy()->associate(auth()->id());
+            $model->updatedBy()->associate(auth()->id());
+        });
     }
    
 }
