@@ -23,7 +23,7 @@ class CreateDocumentsTable extends Migration
             $table->string('description')->nullable();
             $table->string('documentable_id')->nullable();
             $table->string('documentable_type')->nullable();
-            $table->unsignedBigInteger('created_by')->nullable()->references('id')->on('users');
+            $table->foreignId('created_by')->nullable()->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });

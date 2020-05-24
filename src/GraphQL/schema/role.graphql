@@ -33,7 +33,6 @@ extend type Mutation @guard(with: ["sanctum"]) {
         @delete
 }
 
-
 input UpdateRoleInput {
     id: ID!
     name: String!

@@ -1,6 +1,6 @@
 input UpdateDocumentHasOne {
-	update: [UpdateDocumentInput]
-	delete: ID
+	update: [UpdateDocumentInput!]
+	delete: [ID!]
 }
 
 input UpdateDocumentInput {
@@ -20,4 +20,4 @@ type Document @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Document"
     documentable: Documentable! @morphTo 
 }
 
-union Documentable = Product | User
+union Documentable = Product | User | ProductCategory

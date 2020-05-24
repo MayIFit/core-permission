@@ -2,10 +2,8 @@
 scalar Upload @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
 
 extend type Mutation @guard(with: ["sanctum"]) {
-
     "Upload multiple files"
     uploadMultiple(input: [FileUploadInput!]! @spread): ObjectScalar
-
     "Upload a file"
     upload(input: FileUploadInput! @spread): String
 }

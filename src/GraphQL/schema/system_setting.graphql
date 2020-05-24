@@ -1,0 +1,32 @@
+extend type Query @guard(with: ["sanctum"]) {
+    listSystemSetting: [SystemSetting!]! 
+        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\SystemSetting") 
+        @paginate(type: "paginator")
+
+    viewSystemSetting(
+        id: ID @eq
+    ): SystemSetting! 
+        @can(ability: "view" find:"id") @find
+}
+
+extend type Mutation @guard(with: ["sanctum"]) {
+    updateSystemSetting(
+        input: UpdateSystemSettingInput! @spread
+    ): SystemSetting
+        @can(ability: "update" find: "id") 
+        @update
+}
+
+input UpdateSystemSettingInput {
+    id: ID!
+    name: String!,
+    description: String
+    value: Boolean!
+}
+
+type SystemSetting @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\SystemSetting") {
+    id: ID!
+    name: String!
+    description: String
+    value: Boolean!
+}

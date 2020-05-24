@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
-use MayIFit\Core\Permission\Models\Role;
-use MayIFit\Core\Permission\Models\Permission;
 use MayIFit\Core\Permission\Traits\Lockable;
 use MayIFit\Core\Permission\Traits\HasRoles;
 use MayIFit\Core\Permission\Traits\HasAdminRole;
@@ -20,11 +18,10 @@ class User extends Authenticatable {
 
     protected $dates = ['deleted_at'];
 
-
     public function save(array $options = array()) {
         $this->created_by = auth()->id() ?? 1;
         $this->updated_by = auth()->id();
         parent::save($options);
     }
-
+    
 }
