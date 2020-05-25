@@ -45,16 +45,17 @@ class PermissionsTableSeeder extends Seeder
             $response['data']['__schema']['mutationType']['fields'],
         );
         foreach ($queries as $query) {
-            $split = preg_split('/(?=[A-Z])/', $query['name'], 2);
-            if (!\is_array($split) || count($split) <= 1) {
+            $split = preg_split('/(?=[A-Z])/', $query['name']);
+            var_dump($split);
+            if (!is_array($split) || count($split) <= 1) {
                 continue;
             }
-            $method = strtolower($split[0]);
-            $name = strtolower($split[1]);
+            $method = strtolower(array_shift($split));
+            $name = strtolower(implode('-', $split));
             if ($method === 'all') {
                 $method = 'list';
             }
-            
+
             Permission::firstOrCreate([
                 'controller' => 'graphql',
                 'base_controller' => 'graphql',
