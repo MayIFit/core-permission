@@ -12,12 +12,12 @@ input UpdateDocumentInput {
 
 type Document @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Document") {
     id: ID!
-    name: String!
-    original_filename: String!
-    resource_url: String!
-    size: String!
-    type: String!
-    documentable: Documentable! @morphTo 
+    name: String
+    original_filename: String
+    resource_url: String
+    size: String
+    type: String
+    documentable: Documentable @morphTo 
 }
 
 union Documentable = Product | User | ProductCategory
