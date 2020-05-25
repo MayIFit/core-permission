@@ -6,7 +6,7 @@ input UpdateDocumentHasOne {
 input UpdateDocumentInput {
     id: ID!
     name: String
-    documentable_type: String!
+    documentable_type: String
     documentable_id: Int
 }
 
