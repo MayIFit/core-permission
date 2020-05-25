@@ -45,7 +45,7 @@ class PermissionsTableSeeder extends Seeder
             $response['data']['__schema']['mutationType']['fields'],
         );
         foreach ($queries as $query) {
-            $split = preg_split('/(?=[A-Z])/', $query['name']);
+            $split = preg_split('/(?=[A-Z])/', $query['name'], 2);
             if (!\is_array($split) || count($split) <= 1) {
                 continue;
             }
