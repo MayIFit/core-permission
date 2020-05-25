@@ -46,7 +46,6 @@ class PermissionsTableSeeder extends Seeder
         );
         foreach ($queries as $query) {
             $split = preg_split('/(?=[A-Z])/', $query['name']);
-            var_dump($split);
             if (!is_array($split) || count($split) <= 1) {
                 continue;
             }
