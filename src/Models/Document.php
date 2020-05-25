@@ -5,9 +5,12 @@ namespace MayIFit\Core\Permission\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+use MayIFit\Core\Permission\Traits\HasUsers;
+
 class Document extends Model
 {
-
+    use HasUsers;
+    
     protected $fillable = ['id'];
     
      /**
@@ -22,7 +25,6 @@ class Document extends Model
     protected static function booted() {
         static::creating(function ($model) {
             $model->createdBy()->associate(auth()->id());
-            $model->updatedBy()->associate(auth()->id());
         });
     }
 
