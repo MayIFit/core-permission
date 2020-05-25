@@ -21,7 +21,7 @@ class CreateDocumentsTable extends Migration
             $table->string('type');
             $table->string('size');
             $table->string('description')->nullable();
-            $table->string('documentable_id')->nullable();
+            $table->unsignedBigInteger('documentable_id')->nullable();
             $table->string('documentable_type')->nullable();
             $table->foreignId('created_by')->nullable()->references('id')->on('users');
             $table->timestamps();
