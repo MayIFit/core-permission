@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
 
             if (env("APP_ENV") === 'local') {
                 $systemUser->roles()->attach($adminRole);
-                print 'Bearer '.$systemUser->createToken('development')->plainTextToken;
+                print 'Bearer '.$systemUser->createToken('development')->plainTextToken."\n";
             }
         }
     }
