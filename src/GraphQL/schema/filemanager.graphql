@@ -5,7 +5,7 @@ extend type Mutation @guard(with: ["sanctum"]) {
     "Upload multiple files"
     uploadMultiple(input: [FileUploadInput!]! @spread): ObjectScalar
     "Upload a file"
-    upload(input: FileUploadInput! @spread): String
+    upload(input: FileUploadInput! @spread): ObjectScalar
 }
 
 input FileUploadInput {
