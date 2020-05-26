@@ -1,6 +1,11 @@
-input UpdateDocumentHasOne {
+input UpdateDocumentHasMany {
 	update: [UpdateDocumentInput!]
 	delete: [ID!]
+}
+
+input UpdateDocumentHasOne {
+	update: UpdateDocumentInput
+	delete: ID
 }
 
 input UpdateDocumentInput {

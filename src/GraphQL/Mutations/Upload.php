@@ -20,9 +20,9 @@ class Upload
      *
      * @param  mixed  $root
      * @param  mixed[]  $args
-     * @return string|null
+     * @return array|null
      */
-    public function resolve($root, array $args): ?string
+    public function resolve($root, array $args): ?array
     {
         $type = $args['type'];
         
