@@ -14,10 +14,9 @@ class CreateSystemSettingsTable extends Migration
     public function up()
     {
         Schema::create('system_settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('setting_name');
+            $table->string('setting_name')->primary();
+            $table->string('setting_value');
             $table->string('setting_description');
-            $table->boolean('setting_value');
             $table->foreignId('created_by')->nullable()->references('id')->on('users');
             $table->foreignId('updated_by')->nullable()->references('id')->on('users');
             $table->timestamps();
