@@ -7,6 +7,7 @@
     use Illuminate\Support\Facades\Request;
     use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
     use Illuminate\Support\Facades\Gate;
+    use Illuminate\Support\Str;
     use Illuminate\Database\Eloquent\Relations\Relation;
     use Symfony\Component\Console\Output\ConsoleOutput;
     
@@ -84,7 +85,8 @@
             $args = Request::server('argv', null);
             if (is_array($args)) {
                 $command = implode(' ', $args);
-                if (str_contains($command, $contain_options) && ($exclude_options == null || !str_contains($command, $exclude_options))) {
+                var_dump($command, $contain_options, $exclude_options);
+                if (Str::contains($command, $contain_options) && ($exclude_options == null || !Str::contains($command, $exclude_options))) {
                     return true;
                 }
             }
