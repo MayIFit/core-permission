@@ -23,14 +23,14 @@ extend type Mutation @guard(with: ["sanctum"]) {
 
 input UpdateSystemSettingInput {
     id: ID!
-    name: String!
-    description: String
-    value: String!
+    setting_name: String!
+    setting_description: String
+    setting_value: String!
 }
 
 type SystemSetting @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\SystemSetting") {
     id: ID!
-    name: String!
-    description: String
-    value: String!
+    setting_name: String!
+    setting_description: String
+    setting_value: String!
 }
