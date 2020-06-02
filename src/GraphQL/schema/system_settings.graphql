@@ -1,3 +1,7 @@
+extend type Query {
+    allSystemSettings: [Currency!]! @cache
+}
+
 extend type Query @guard(with: ["sanctum"]) {
     listSystemSetting: [SystemSetting!]! 
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\SystemSetting") 
@@ -19,14 +23,14 @@ extend type Mutation @guard(with: ["sanctum"]) {
 
 input UpdateSystemSettingInput {
     id: ID!
-    name: String!,
+    name: String!
     description: String
-    value: Boolean!
+    value: String!
 }
 
 type SystemSetting @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\SystemSetting") {
     id: ID!
     name: String!
     description: String
-    value: Boolean!
+    value: String!
 }
