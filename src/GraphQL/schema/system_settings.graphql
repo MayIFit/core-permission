@@ -1,5 +1,5 @@
 extend type Query {
-    allSystemSettings: [Currency!]! @cache
+    allSystemSettings: [SystemSetting!]! @cache
 }
 
 extend type Query @guard(with: ["sanctum"]) {
