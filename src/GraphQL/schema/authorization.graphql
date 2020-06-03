@@ -82,6 +82,10 @@ input CreateUserInput {
     language: String!
 }
 
+input UpdateUserRelation {
+    connect: ID
+}
+
 type User {
     id: ID!
     name: String
