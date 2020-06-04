@@ -17,8 +17,8 @@ class PermissionExtendUsersTable extends Migration
             $table->string('real_name')->nullable();
             $table->string('avatar')->nullable();
             $table->string('about')->nullable();
-            $table->string('provider');
-            $table->string('provider_id');
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
             $table->foreignId('created_by')->nullable()->references('id')->on('users');
             $table->foreignId('updated_by')->nullable()->references('id')->on('users');
             $table->softDeletes();
