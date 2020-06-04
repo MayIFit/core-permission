@@ -12,7 +12,7 @@ class SystemSetting extends Model
     use SoftDeletes, HasUsers;
 
     public static function booted() {
-        self::save(function(Model $model) {
+        self::creating(function(Model $model) {
             $model->created_by = auth()->id();
             $model->updated_by = auth()->id();
         });
