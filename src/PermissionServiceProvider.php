@@ -5,6 +5,7 @@
     use Illuminate\Support\Facades\Artisan;
     use Illuminate\Support\Facades\Event;
     use Illuminate\Support\Facades\Request;
+    use Illuminate\Contracts\Cache\Factory;
     use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
     use Illuminate\Support\Facades\Gate;
     use Illuminate\Support\Str;
@@ -41,25 +42,24 @@
          */
         protected $database_folder = '/Database';
 
-        public function boot() {
+        public function boot(Factory $cache, SystemSetting $settings) {
             Relation::morphMap([
                 'user' => 'MayIFit\Core\Permission\Models\User',
             ]);
+
             $this->loadMigrationsFrom(__DIR__.$this->database_folder.'/migrations');
             if ($this->app->runningInConsole()) {
                 if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], [ '--class', 'help', '-h' ])) {
                     $this->addSeedsAfterConsoleCommandFinished();
                 }
             }
-            $this->publishes([
-                __DIR__.'/GraphQL/schema' => './graphql/core',
-            ]);
-            $this->publishes([
-                __DIR__.'/GraphQL/Mutations' => './app/GraphQL/Mutations/Core',
-            ]);
-            $this->publishes([
-                __DIR__.'/GraphQL/Queries' => './app/GraphQL/Queries/Core',
-            ]);
+
+            $settings = $cache->remember('system_settings', 60, function() use ($settings) {
+                return $settings->pluck('setting_value', 'setting_name')->all();
+            });
+            config()->set('settings', $settings);
+            
+            $this->publishResources();
             $this->registerPolicies();
         }
 
@@ -70,6 +70,23 @@
             $this->app->bind('role', function () {
                 return new Role();
             });
+        }
+
+        /**
+         * Publish resources
+         *
+         * @return void
+         */
+        protected function publishResources() {
+            $this->publishes([
+                __DIR__.'/GraphQL/schema' => './graphql/core',
+            ]);
+            $this->publishes([
+                __DIR__.'/GraphQL/Mutations' => './app/GraphQL/Mutations/Core',
+            ]);
+            $this->publishes([
+                __DIR__.'/GraphQL/Queries' => './app/GraphQL/Queries/Core',
+            ]);
         }
 
         /**

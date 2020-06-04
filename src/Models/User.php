@@ -17,6 +17,9 @@ class User extends Authenticatable {
     use HasRoles, HasAdminRole, HasPermissions, Lockable, HasApiTokens, HasDocuments;
 
     protected $dates = ['deleted_at'];
+    protected $fillable = [
+        'provider', 'provider_id'
+    ];
 
     public function save(array $options = array()) {
         $this->created_by = auth()->id();

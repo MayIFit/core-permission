@@ -17,6 +17,8 @@ class PermissionExtendUsersTable extends Migration
             $table->string('real_name')->nullable();
             $table->string('avatar')->nullable();
             $table->string('about')->nullable();
+            $table->string('provider');
+            $table->string('provider_id');
             $table->foreignId('created_by')->nullable()->references('id')->on('users');
             $table->foreignId('updated_by')->nullable()->references('id')->on('users');
             $table->softDeletes();
@@ -31,7 +33,7 @@ class PermissionExtendUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['real_name', 'created_by', 'updated_by', 'avatar', 'about']);
+            $table->dropColumn(['real_name', 'created_by', 'updated_by', 'avatar', 'about', 'provider', 'provider_id']);
             $table->dropSoftDeletes();
         });
     }

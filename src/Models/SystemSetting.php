@@ -11,10 +11,10 @@ class SystemSetting extends Model
 {
     use SoftDeletes, HasUsers;
 
-    public function save(array $options = array()) {
-        $this->created_by = auth()->id();
-        $this->updated_by = auth()->id();
-        parent::save($options);
+    public static function booted() {
+        self::save(function(Model $model) {
+            $model->created_by = auth()->id();
+            $model->updated_by = auth()->id();
+        });
     }
-    
 }
