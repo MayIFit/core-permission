@@ -53,11 +53,6 @@
                     $this->addSeedsAfterConsoleCommandFinished();
                 }
             }
-
-            $settings = $cache->remember('system_settings', 60, function() use ($settings) {
-                return $settings->pluck('setting_value', 'setting_name')->all();
-            });
-            config()->set('settings', $settings);
             
             $this->publishResources();
             $this->registerPolicies();
