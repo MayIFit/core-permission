@@ -3,7 +3,9 @@ extend type Query @guard(with: ["sanctum"]) {
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
         @all
 
-    listRole: [Role!]! 
+    listRole(
+        name: String @where(operator: "like")
+    ): [Role!]! 
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
         @paginate(type: "paginator")
 

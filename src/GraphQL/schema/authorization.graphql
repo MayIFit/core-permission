@@ -1,7 +1,11 @@
 extend type Query @guard(with: ["sanctum"]) {
     me: User @auth
 
-    listUser: [User!]! 
+    listUser(
+        real_name: String @where(operator: "like")
+        email: String @where(operator: "like")
+        name: String @where(operator: "like")
+    ): [User!]! 
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\User") 
         @paginate(type: "paginator")
 
