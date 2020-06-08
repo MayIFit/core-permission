@@ -3,13 +3,12 @@
 namespace MayIFit\Core\Permission\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 use MayIFit\Core\Permission\Traits\HasUsers;
 
 class SystemSetting extends Model
 {
-    use SoftDeletes, HasUsers;
+    use HasUsers;
 
     public static function booted() {
         self::creating(function(Model $model) {
