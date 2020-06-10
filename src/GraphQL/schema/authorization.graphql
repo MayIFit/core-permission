@@ -6,7 +6,7 @@ extend type Query @guard(with: ["sanctum"]) {
         email: String @where(operator: "like")
         name: String @where(operator: "like")
     ): [User!]! 
-        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\User") 
+        @can(ability: "viewAny" model: "App\\Models\\User") 
         @paginate(type: "paginator")
 
     viewUser(
@@ -20,12 +20,12 @@ extend type Query @guard(with: ["sanctum"]) {
 
 extend type Mutation {
     registerUser(
-        input: RegisterUserInput!
+        input: RegisterUserInput! @spread
     ): User 
         @field(resolver: "UserRegistration@resolve")
 
     loginUser(
-        input: LoginUserInput!
+        input: LoginUserInput! @spread
     ): User 
         @field(resolver: "UserAuthentication@resolve")
 
@@ -37,7 +37,7 @@ extend type Mutation @guard(with: ["sanctum"]) {
     createUser(
         input: CreateUserInput @spread
     ): User 
-        @can(ability: "create" model: "MayIFit\\Core\\Permission\\Models\\User") 
+        @can(ability: "create" model: "App\\Models\\User") 
         @create
 
     updateUser(
