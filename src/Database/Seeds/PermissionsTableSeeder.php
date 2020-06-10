@@ -60,9 +60,6 @@ class PermissionsTableSeeder extends Seeder
             }
             $method = strtolower(array_shift($split));
             $name = strtolower(implode('-', $split));
-            if ($method === 'all') {
-                $method = 'list';
-            }
 
             foreach ($this->whitelist as $accepted) {
                 if (strpos($method, $accepted) !== false) {
