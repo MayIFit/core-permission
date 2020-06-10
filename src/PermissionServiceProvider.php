@@ -41,7 +41,7 @@
 
         public function boot(Factory $cache, SystemSetting $settings) {
             Relation::morphMap([
-                'user' => 'MayIFit\Core\Permission\Models\User',
+                'user' => 'App\Models\User',
             ]);
 
             $this->loadMigrationsFrom(__DIR__.$this->database_folder.'/migrations');

@@ -5,7 +5,7 @@ namespace MayIFit\Core\Permission\Policies;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 use MayIFit\Core\Permission\Models\Role;
-use MayIFit\Core\Permission\Models\User;
+use App\Models\User;
 
 class RolePolicy
 {
@@ -14,7 +14,7 @@ class RolePolicy
     /**
      * Determine whether the user can view any roles.
      *
-     * @param  \MayIFit\Core\Permission\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -25,7 +25,7 @@ class RolePolicy
     /**
      * Determine whether the user can view the role.
      *
-     * @param  \MayIFit\Core\Permission\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
@@ -37,7 +37,7 @@ class RolePolicy
     /**
      * Determine whether the user can create roles.
      *
-     * @param  \MayIFit\Core\Permission\Models\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -48,7 +48,7 @@ class RolePolicy
     /**
      * Determine whether the user can update the role.
      *
-     * @param  \MayIFit\Core\Permission\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
@@ -60,7 +60,7 @@ class RolePolicy
     /**
      * Determine whether the user can delete the role.
      *
-     * @param  \MayIFit\Core\Permission\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
@@ -72,7 +72,7 @@ class RolePolicy
     /**
      * Determine whether the user can restore the role.
      *
-     * @param  \MayIFit\Core\Permission\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
@@ -84,7 +84,7 @@ class RolePolicy
     /**
      * Determine whether the user can permanently delete the role.
      *
-     * @param  \MayIFit\Core\Permission\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */

@@ -5,7 +5,7 @@ namespace MayIFit\Core\Permission\Traits;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-use MayIFit\Core\Permission\Models\User;
+use App\Models\User;
 
 /**
  * Class HasUsers

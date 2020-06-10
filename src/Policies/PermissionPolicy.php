@@ -5,7 +5,7 @@ namespace MayIFit\Core\Permission\Policies;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 use MayIFit\Core\Permission\Models\Permission;
-use MayIFit\Core\Permission\Models\User;
+use App\Models\User;
 
 class PermissionPolicy
 {
