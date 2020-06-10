@@ -15,6 +15,15 @@ use MayIFit\Core\Permission\Models\Role;
  */
 class PermissionsTableSeeder extends Seeder
 {
+
+    protected $whitelist = [
+        'list',
+        'view',
+        'create',
+        'update',
+        'delete'
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -55,13 +64,18 @@ class PermissionsTableSeeder extends Seeder
                 $method = 'list';
             }
 
-            Permission::firstOrCreate([
-                'controller' => 'graphql',
-                'base_controller' => 'graphql',
-                'method' => $method,
-                'name' => $name,
-                'middleware' => 'graphql'
-            ]);
+            foreach ($this->whitelist as $accepted) {
+                if (strpos($method, $accepted) !== false) {
+                    Permission::firstOrCreate([
+                        'controller' => 'graphql',
+                        'base_controller' => 'graphql',
+                        'method' => $method,
+                        'name' => $name,
+                        'middleware' => 'graphql'
+                    ]);
+                    break;
+                }
+            }
         }
     }
 
