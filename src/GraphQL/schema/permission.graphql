@@ -1,5 +1,5 @@
 extend type Query @guard(with: ["sanctum"]) {
-    listPermissions: [Permission!]! 
+    allPermission: [Permission!]! 
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Permission") 
         @all
 }
