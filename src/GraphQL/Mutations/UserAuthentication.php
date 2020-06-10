@@ -18,8 +18,8 @@ class UserAuthentication
      * @return void
      */
     public static function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
-        $email = $args['input']['email'];
-        $password = $args['input']['password'];
+        $email = $args['email'];
+        $password = $args['password'];
 
         $user = User::where('email', $email)->first();
     
