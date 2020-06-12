@@ -20,7 +20,7 @@ trait HasDocuments {
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function documents(): MorphMany {
-        return $this->morphMany(Document::class, 'documentable')->where(['type', 'not like', '%image%']);
+        return $this->morphMany(Document::class, 'documentable')->where('type', 'not like', '%image%');
     }
 
     /**
@@ -29,7 +29,7 @@ trait HasDocuments {
      * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
     public function document(): MorphOne {
-        return $this->morphOne(Document::class, 'documentable')->where(['type', 'not like', '%image%']);
+        return $this->morphOne(Document::class, 'documentable')->where('type', 'not like', '%image%');
     }
 
     /**
@@ -38,7 +38,7 @@ trait HasDocuments {
      * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
     public function images(): MorphMany {
-        return $this->morphMany(Document::class, 'documentable')->where(['type', 'like', '%image%']);
+        return $this->morphMany(Document::class, 'documentable')->where('type', 'like', '%image%');
     }
 
     /**
@@ -47,6 +47,6 @@ trait HasDocuments {
      * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
     public function image(): MorphOne {
-        return $this->morphOne(Document::class, 'documentable')->where(['type', 'like', '%image%']);
+        return $this->morphOne(Document::class, 'documentable')->where('type', 'like', '%image%');
     }
 }
