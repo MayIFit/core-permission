@@ -43,7 +43,7 @@ class Upload
         $document->name = $name;
         $document->type = $file->getMimeType();
         $document->size = $file->getSize();
-        $document->resource_url = Storage::url($storedPath);
+        $document->resource_url = rtrim(config('app.url'), '/').Storage::url($storedPath);
         $document->original_filename = $file->getClientOriginalName();
         $document->save();
 
