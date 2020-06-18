@@ -21,6 +21,28 @@ class TranslationsTableSeeder extends Seeder
     {
         $this->addPermissionRelatedTranslations();
         $this->addFileUploadRelatedTranslations();
+        $this->globalTranslations();
+    }
+
+    protected function globalTranslations() {
+        Translation::updateOrCreate([
+                'group' => 'list',
+                'key' => 'permission'
+            ],
+            ['text' => ['en' => 'Permission List', 'hu' => 'Jogosultság Lista']],
+        );
+        Translation::updateOrCreate([
+                'group' => 'list',
+                'key' => 'user'
+            ],
+            ['text' => ['en' => 'User List', 'hu' => 'Felhasználó Lista']],
+        );
+        Translation::updateOrCreate([
+                'group' => 'list',
+                'key' => 'role'
+            ],
+            ['text' => ['en' => 'Role List', 'hu' => 'Szerepkör Lista']],
+        );
     }
 
     protected function addPermissionRelatedTranslations() {
