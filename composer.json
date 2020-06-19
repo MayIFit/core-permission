@@ -17,7 +17,8 @@
             "MayIFit\\Core\\Permission\\Models\\": "src/Models/",
             "MayIFit\\Core\\Permission\\Policies\\": "src/Policies/",
             "MayIFit\\Core\\Permission\\Traits\\": "src/Traits/",
-            "MayIFit\\Core\\Permission\\Exceptions\\": "src/Exceptions/"
+            "MayIFit\\Core\\Permission\\Exceptions\\": "src/Exceptions/",
+            "MayIFit\\Core\\Permission\\Notifications\\": "src/Notifications/"
         }
     },
     "require": {

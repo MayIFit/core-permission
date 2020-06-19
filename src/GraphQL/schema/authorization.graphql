@@ -33,6 +33,11 @@ extend type Mutation {
         input: ResetUserPasswordInput! @spread
     ): User
         @field(resolver: "UserPasswordReset@resolve")
+    
+    sendUserPasswordResetNotification(
+        input: ResetUserPasswordNotificationInput! @spread
+    ): User
+        @field(resolver: "UserPasswordReset@sendEmailNotification")
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {
@@ -56,6 +61,10 @@ extend type Mutation @guard(with: ["sanctum"]) {
 
     logoutUser: Boolean
         @field(resolver: "UserUnauthentication@resolve")
+}
+
+input ResetUserPasswordNotificationInput {
+    email: String! @rules(apply: ["required", "email", "exists:users,email"])
 }
 
 input LoginUserInput {
