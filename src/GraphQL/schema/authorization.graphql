@@ -82,7 +82,7 @@ input RegisterUserInput {
 input ResetUserPasswordInput {
     email: String! @rules(apply: ["required", "email", "exists:users,email"])
     token: String! @rules(apply: ["required"])
-    password: String! @hash @rules(apply: ["required", "confirmed", "min:8"])
+    password: String! @hash @rules(apply: ["required", "min:8"])
 }
 
 input UpdateUserInput {
