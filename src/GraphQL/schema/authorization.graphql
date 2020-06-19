@@ -75,7 +75,7 @@ input LoginUserInput {
 }
 
 input RegisterUserInput {
-    email: String! @rules(apply: ["required", "email"])
+    email: String! @rules(apply: ["required", "email", "unique:users,email"])
     password: String! @hash @rules(apply: ["required", "min:8"])
 }
 

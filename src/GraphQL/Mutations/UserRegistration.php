@@ -22,14 +22,6 @@ class UserRegistration
         $email = $args['email'];
         $hashedPassword = $args['password'];
         
-        $checkUser = User::where('email', $email)->first();
-        if ($checkUser) {
-            throw new MisMatchedAuthorizationRequest(
-                'error.user_with_email_already_exists',
-                ''
-            );
-        }
-
         $user = User::create([
             'email'          => $email,
             'name'           => Str::random(60),
