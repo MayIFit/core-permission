@@ -1,6 +1,6 @@
 <?php
 
-namespace MayIFit\Extension\Shop\Notifications;
+namespace MayIFit\Core\Permission\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
