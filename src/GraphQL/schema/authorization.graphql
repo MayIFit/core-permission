@@ -59,7 +59,7 @@ extend type Mutation @guard(with: ["sanctum"]) {
 }
 
 input LoginUserInput {
-    email: String! @rules(apply: ["required", "email"])
+    email: String! @rules(apply: ["required", "email", "exists:users,email"])
     password: String! @rules(apply: ["required"])
 }
 
