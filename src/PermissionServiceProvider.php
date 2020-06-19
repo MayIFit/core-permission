@@ -77,6 +77,9 @@
                 __DIR__.'/GraphQL/Mutations' => './app/GraphQL/Mutations/Core',
             ]);
             $this->publishes([
+                __DIR__.'/GraphQL/Scalars' => './app/GraphQL/Scalars/Core',
+            ]);
+            $this->publishes([
                 __DIR__.'/GraphQL/Queries' => './app/GraphQL/Queries/Core',
             ]);
         }
