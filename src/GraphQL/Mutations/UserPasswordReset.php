@@ -47,13 +47,13 @@ class UserPasswordReset
 
         $checkUser->password = $hashedPassword;
         $checkUser->save();
-        DB::table('password_resets')->where('email', $user->email)
+        DB::table('password_resets')->where('email', $checkUser->email)
             ->delete();
     
-        $token = $user->createToken(config('app.name'))->plainTextToken;
-        $user['access_token'] = $token;
+        $token = $checkUser->createToken(config('app.name'))->plainTextToken;
+        $checkUser['access_token'] = $token;
     
-        return $user;
+        return $checkUser;
     }
 
     /**
@@ -81,8 +81,8 @@ class UserPasswordReset
         $tokenData = DB::table('password_resets')
             ->where('email', $checkUser->email)->first();
 
-        $link = '/password-reset/' . $token . '?email=' . urlencode($checkUser->email);
+        $link = '/password-reset/' . $tokenData->token . '?email=' . urlencode($checkUser->email);
 
-        $user->notify(new ResetPassword($link));
+        $checkUser->notify(new PasswordReset($link));
     }
 }
