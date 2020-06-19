@@ -29,8 +29,10 @@ extend type Mutation {
     ): User 
         @field(resolver: "UserAuthentication@resolve")
 
-    logoutUser: Boolean
-        @field(resolver: "UserUnauthentication@resolve")
+    resetUserPassword(
+        input: ResetUserPasswordInput! @spread
+    ): User
+        @field(resolver: "UserPasswordReset@resolve")
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {
@@ -51,6 +53,9 @@ extend type Mutation @guard(with: ["sanctum"]) {
     ): User 
         @can(ability: "delete" find: "id") 
         @delete
+
+    logoutUser: Boolean
+        @field(resolver: "UserUnauthentication@resolve")
 }
 
 input LoginUserInput {
@@ -61,6 +66,12 @@ input LoginUserInput {
 input RegisterUserInput {
     email: String! @rules(apply: ["required", "email"])
     password: String! @hash @rules(apply: ["required", "min:8"])
+}
+
+input ResetUserPasswordInput {
+    email: String! @rules(apply: ["required", "email", "exists:users,email"])
+    token: String! @rules(apply: ["required"])
+    password: String! @hash @rules(apply: ["required", "confirmed", "min:8"])
 }
 
 input UpdateUserInput {
