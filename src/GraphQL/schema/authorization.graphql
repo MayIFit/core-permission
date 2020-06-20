@@ -118,7 +118,9 @@ type User {
     real_name: String
     email: String!
     avatar: String
+    "ISO 639-1"
     language: String
+    "Accessible only for login"
     access_token: String
 }
 
