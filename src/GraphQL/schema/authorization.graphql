@@ -112,16 +112,19 @@ input UpdateUserRelation {
     connect: ID
 }
 
-type User @guard(with: ["sanctum"]) {
+type User {
     id: ID!
     name: String
     real_name: String
     email: String!
-    created_at: DateTime!
-    updated_at: DateTime!
     avatar: String
     language: String
     access_token: String
+}
+
+extend type User @guard(with: ["sanctum"]) {
+    created_at: DateTime!
+    updated_at: DateTime!
     roles: [Role!] @belongsToMany
     permissions: [Permission!] @belongsToMany
 }
