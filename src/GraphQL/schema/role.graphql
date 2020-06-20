@@ -54,7 +54,7 @@ input UpdateRoleRelation {
     sync: [ID!]
 }
 
-type Role @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Role") {
+type Role @guard(with: ["sanctum"]) @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Role") {
     id: ID!
     name: String!
     description: String

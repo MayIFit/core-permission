@@ -112,7 +112,7 @@ input UpdateUserRelation {
     connect: ID
 }
 
-type User {
+type User @guard(with: ["sanctum"]) {
     id: ID!
     name: String
     real_name: String

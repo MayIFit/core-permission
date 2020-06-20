@@ -2,6 +2,7 @@
 
 namespace MayIFit\Core\Permission\Traits;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 use MayIFit\Core\Permission\Models\Permission;
@@ -32,12 +33,12 @@ trait HasPermissions {
        
         $permissionName = $permission[0];
         $permissionMethod = $permission[1];
-        $result = \Auth::user()->whereHas('roles.permissions', function($q) use($permissionName, $permissionMethod) {
+        $result = Auth::user()->whereHas('roles.permissions', function($q) use($permissionName, $permissionMethod) {
             $q->where([
                 'permissions.name' => $permissionName,
                 'permissions.method' => $permissionMethod,
             ]);
-        })->find(\Auth::id());
+        })->find(Auth::id());
 
         return $result ? true : false;
     }
