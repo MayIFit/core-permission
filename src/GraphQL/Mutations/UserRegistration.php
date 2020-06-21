@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 use MayIFit\Core\Permission\Exceptions\MisMatchedAuthorizationRequest;
+use MayIFit\Core\Permission\Models\Role;
 use App\Models\User;
 
 class UserRegistration
@@ -28,6 +29,8 @@ class UserRegistration
             'password'       => $hashedPassword,
             'remember_token' => Str::random(60)
         ]);
+
+        $user->roles()->attach(Role::where('default_role', true)->first());
     
         $token = $user->createToken(config('app.name'))->plainTextToken;
         $user['access_token'] = $token;

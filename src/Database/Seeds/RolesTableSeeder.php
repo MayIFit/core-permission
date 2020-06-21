@@ -23,6 +23,6 @@ class RolesTableSeeder extends Seeder
         $admin_role = Role::firstOrCreate(['name' => 'admin']);
         $admin_role->permissions()->sync(Permission::get());
         Role::firstOrCreate(['name' => 'moderator']);
-        Role::firstOrCreate(['name' => 'user']);
+        Role::firstOrCreate(['name' => 'user', 'default' => true]);
     }
 }
