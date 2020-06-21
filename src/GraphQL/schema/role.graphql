@@ -40,17 +40,17 @@ input UpdateRoleInput {
     name: String!
     active: Boolean!
     description: String
-    permissions: UpdatePermissionRelation
+    permissions: PermissionRelation
 }
 
 input CreateRoleInput {
     name: String!
     active: Boolean!
     description: String
-    permissions: UpdatePermissionRelation
+    permissions: PermissionRelation
 }
 
-input UpdateRoleRelation {
+input RoleRelation {
     sync: [ID!]
 }
 

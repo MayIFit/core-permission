@@ -4,7 +4,7 @@ extend type Query @guard(with: ["sanctum"]) {
         @all
 }
 
-input UpdatePermissionRelation {
+input PermissionRelation {
     sync: [ID!]
 }
 
