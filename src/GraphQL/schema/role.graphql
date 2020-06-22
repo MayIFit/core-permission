@@ -38,14 +38,14 @@ extend type Mutation @guard(with: ["sanctum"]) {
 input UpdateRoleInput {
     id: ID!
     name: String!
-    active: Boolean!
+    default_role: Boolean!
     description: String
     permissions: PermissionRelation
 }
 
 input CreateRoleInput {
     name: String!
-    active: Boolean!
+    default_role: Boolean!
     description: String
     permissions: PermissionRelation
 }
@@ -58,6 +58,6 @@ type Role @guard(with: ["sanctum"]) @modelClass(class: "\\MayIFit\\Core\\Permiss
     id: ID!
     name: String!
     description: String
-    active: Boolean!
+    default_role: Boolean!
     permissions: [Permission]! @belongsToMany 
 }
