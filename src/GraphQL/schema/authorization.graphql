@@ -4,6 +4,8 @@ scalar VoidScalar @scalar(class: "App\\GraphQL\\Scalars\\Core\\VoidScalar")
 extend type Query @guard(with: ["sanctum"]) {
     me: User @auth
 
+    allUser: [UserSelect]! @all
+
     listUser(
         real_name: String @where(operator: "like")
         email: String @where(operator: "like")
@@ -129,4 +131,10 @@ extend type User @guard(with: ["sanctum"]) {
     updated_at: DateTime!
     roles: [Role!] @belongsToMany
     permissions: [Permission!] @belongsToMany
+}
+
+"Subset of User"
+type UserSelect @guard(with: ["sanctum"]) @modelClass(class: "\\App\\Models\\User") {
+    id: ID!
+    email: String!
 }
