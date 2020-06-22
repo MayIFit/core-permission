@@ -16,7 +16,7 @@ class Role extends Model
     protected $fillable = ['id', 'name', 'description', 'default', 'permissions'];
 
     protected $attributes = [
-        'default' => false
+        'default_role' => false
     ];
 
     protected static function booted() {
