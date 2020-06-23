@@ -26,6 +26,13 @@ trait HasPermissions {
      * @return bool
      */
     public function hasPermission($permissionName, $permissionMethod) {
+        $permission = explode('.', $permission);
+        if (!is_array($permission)) {
+            return false;
+        }
+       
+        $permissionName = $permission[0];
+        $permissionMethod = $permission[1];
         $result = Auth::user()->whereHas('roles.permissions', function($q) use($permissionName, $permissionMethod) {
             $q->where([
                 'permissions.name' => $permissionName,
