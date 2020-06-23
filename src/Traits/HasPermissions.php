@@ -25,7 +25,7 @@ trait HasPermissions {
      * @param string $permission
      * @return bool
      */
-    public function hasPermission($permissionName, $permissionMethod) {
+    public function hasPermission($permission) {
         $permission = explode('.', $permission);
         if (!is_array($permission)) {
             return false;
