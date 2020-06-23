@@ -29,19 +29,19 @@ class TranslationsTableSeeder extends Seeder
                 'group' => 'list',
                 'key' => 'permission'
             ],
-            ['text' => ['en' => 'Permission List', 'hu' => 'Jogosultság Lista']],
+            ['text' => ['en' => 'permission list', 'hu' => 'jogosultság lista']],
         );
         Translation::updateOrCreate([
                 'group' => 'list',
                 'key' => 'user'
             ],
-            ['text' => ['en' => 'User List', 'hu' => 'Felhasználó Lista']],
+            ['text' => ['en' => 'user list', 'hu' => 'felhasználó lista']],
         );
         Translation::updateOrCreate([
                 'group' => 'list',
                 'key' => 'role'
             ],
-            ['text' => ['en' => 'Role List', 'hu' => 'Szerepkör Lista']],
+            ['text' => ['en' => 'role list', 'hu' => 'szerepkör lista']],
         );
     }
 
@@ -50,31 +50,31 @@ class TranslationsTableSeeder extends Seeder
 	            'group' => 'permission',
 	            'key' => 'has_right'
 			],
-            ['text' => ['en' => 'Has Right', 'hu' => 'Jogosult']],
+            ['text' => ['en' => 'has right', 'hu' => 'jogosult']],
 		);
         Translation::updateOrCreate([
 	            'group' => 'permission',
 	            'key' => 'permissions'
 			],
-            ['text' => ['en' => 'Permissions', 'hu' => 'Jogosultságok']],
+            ['text' => ['en' => 'permissions', 'hu' => 'jogosultságok']],
 		);
         Translation::updateOrCreate([
 	            'group' => 'permission',
 	            'key' => 'permission'
 			],
-            ['text' => ['en' => 'Permission', 'hu' => 'Jogosultság']],
+            ['text' => ['en' => 'permission', 'hu' => 'jogosultság']],
 		);
         Translation::updateOrCreate([
 	            'group' => 'permission',
 	            'key' => 'roles'
 			],
-            ['text' => ['en' => 'Roles', 'hu' => 'Szerepkörök']],
+            ['text' => ['en' => 'roles', 'hu' => 'szerepkörök']],
 		);
         Translation::updateOrCreate([
 	            'group' => 'permission',
 	            'key' => 'role'
 			],
-            ['text' => ['en' => 'Role', 'hu' => 'Szerepkör']],
+            ['text' => ['en' => 'role', 'hu' => 'szerepkör']],
 		);
     }
 
@@ -83,25 +83,25 @@ class TranslationsTableSeeder extends Seeder
                 'group' => 'files',
                 'key' => 'to_upload'
             ],
-            ['text' => ['en' => 'To Upload', 'hu' => 'Feltöltendő']],
+            ['text' => ['en' => 'to upload', 'hu' => 'feltöltendő']],
         );
         Translation::updateOrCreate([
                 'group' => 'files',
                 'key' => 'drop_zone'
             ],
-            ['text' => ['en' => 'Drop Here', 'hu' => 'Ide Dobja']],
+            ['text' => ['en' => 'drop here', 'hu' => 'ide dobja']],
         );
         Translation::updateOrCreate([
                 'group' => 'files',
                 'key' => 'no_selected'
             ],
-            ['text' => ['en' => 'No File Selected', 'hu' => 'Nincs kiválasztott fájl']],
+            ['text' => ['en' => 'no file selected', 'hu' => 'nincs kiválasztott fájl']],
         );
         Translation::updateOrCreate([
                 'group' => 'files',
                 'key' => 'upload_file'
             ],
-            ['text' => ['en' => 'Upload File', 'hu' => 'Fájl Feltöltése']],
+            ['text' => ['en' => 'upload file', 'hu' => 'fájl feltöltése']],
         );
     }
 }
