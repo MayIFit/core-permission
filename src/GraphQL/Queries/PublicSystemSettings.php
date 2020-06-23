@@ -9,7 +9,12 @@ use MayIFit\Core\Permission\Models\SystemSetting;
 
 class PublicSystemSettings
 {
-    public function __invoke($rootValue,array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
+    /**
+     * Return all publicly available settings
+     * 
+     * @return SystemSetting
+     */
+    public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
         return SystemSetting::where('public', true)->get();
     }
 }
