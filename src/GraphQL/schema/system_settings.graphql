@@ -1,5 +1,6 @@
 extend type Query {
-    allSystemSettings: [SystemSetting!]! @cache
+    publicSystemSettings: [SystemSetting]!
+        @field(resolver: "App\\GraphQL\\Queries\\Core\\PublicSystemSettings")
 }
 
 extend type Query @guard(with: ["sanctum"]) {
