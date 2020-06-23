@@ -7,9 +7,7 @@ extend type Query @guard(with: ["sanctum"]) {
     allUser: [UserSelect]! @all
 
     listUser(
-        real_name: String @where(operator: "like")
-        email: String @where(operator: "like")
-        name: String @where(operator: "like")
+        filter: _ @whereConditions(columnsEnum: "UserWhereColumn")
     ): [User!]! 
         @can(ability: "viewAny" model: "App\\Models\\User") 
         @paginate(type: "paginator")
@@ -137,4 +135,12 @@ extend type User @guard(with: ["sanctum"]) {
 type UserSelect @guard(with: ["sanctum"]) @modelClass(class: "\\App\\Models\\User") {
     id: ID!
     email: String!
+}
+
+
+"A list of filterable columns."
+enum UserWhereColumn {
+    REAL_NAME @enum(value: "real_name")
+    NAME @enum(value: "name")
+    EMAIL @enum(value: "email")
 }

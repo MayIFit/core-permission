@@ -4,7 +4,7 @@ extend type Query @guard(with: ["sanctum"]) {
         @all
 
     listRole(
-        name: String @where(operator: "like")
+        filter: _ @whereConditions(columnsEnum: "RoleWhereColumn")
     ): [Role!]! 
         @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
         @paginate(type: "paginator")
@@ -60,4 +60,9 @@ type Role @guard(with: ["sanctum"]) @modelClass(class: "\\MayIFit\\Core\\Permiss
     description: String
     default_role: Boolean!
     permissions: [Permission]! @belongsToMany 
+}
+
+"A list of filterable columns."
+enum RoleWhereColumn {
+    NAME @enum(value: "name")
 }
