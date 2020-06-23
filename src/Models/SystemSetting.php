@@ -10,6 +10,10 @@ class SystemSetting extends Model
 {
     use HasUsers;
 
+    protected $attributes = [
+        'public' => false
+    ];
+
     public static function booted() {
         self::creating(function(Model $model) {
             $model->created_by = auth()->id();

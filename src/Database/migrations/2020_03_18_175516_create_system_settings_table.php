@@ -18,6 +18,7 @@ class CreateSystemSettingsTable extends Migration
             $table->string('setting_name')->unique();
             $table->string('setting_value');
             $table->string('setting_description');
+            $table->boolean('public');
             $table->foreignId('created_by')->nullable()->references('id')->on('users');
             $table->foreignId('updated_by')->nullable()->references('id')->on('users');
             $table->timestamps();
