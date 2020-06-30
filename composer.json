@@ -23,9 +23,14 @@
     },
     "require": {
         "php": "^7.0",
-        "laravel/framework": "^7.0",
         "laravel/helpers": "^1.2",
         "laravel/socialite": "^4.4.1"
+    },
+    "require-dev": {
+        "laravel/framework": "^6.0 || ^7.0",
+        "phpunit/phpunit": "^8.0",
+        "orchestra/testbench": "^5.3",
+        "orchestra/database": "^5.0"
     },
     "extra": {
         "laravel": {
