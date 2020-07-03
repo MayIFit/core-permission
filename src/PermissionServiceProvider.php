@@ -7,7 +7,6 @@
     use Illuminate\Support\Facades\Request;
     use Illuminate\Contracts\Cache\Factory;
     use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-    use Illuminate\Support\Facades\Gate;
     use Illuminate\Support\Str;
     use Illuminate\Database\Eloquent\Relations\Relation;
     use Symfony\Component\Console\Output\ConsoleOutput;
@@ -69,19 +68,21 @@
          *
          * @return void
          */
-        protected function publishResources() {
+        protected function publishResources(ConfigRepository $configRepository): void {
             $this->publishes([
-                __DIR__.'/GraphQL/schema' => './graphql/core',
-            ]);
+                __DIR__.'/core-permission.php' => $this->app->configPath().'/core-permission.php',
+            ], 'config');
             $this->publishes([
-                __DIR__.'/GraphQL/Mutations' => './app/GraphQL/Mutations/Core',
-            ]);
+                __DIR__.'/GraphQL/schema' => $configRepository->get('core-permission.schema.register'),
+            ], 'schema');
+
             $this->publishes([
-                __DIR__.'/GraphQL/Scalars' => './app/GraphQL/Scalars/Core',
-            ]);
+                __DIR__.'/GraphQL/Queries' => $configRepository->get('core-permission.queries.register'),
+            ], 'graphql');
+
             $this->publishes([
-                __DIR__.'/GraphQL/Queries' => './app/GraphQL/Queries/Core',
-            ]);
+                __DIR__.'/GraphQL/Mutations' => $configRepository->get('core-permission.mutations.register'),
+            ], 'graphql');
         }
 
         /**
