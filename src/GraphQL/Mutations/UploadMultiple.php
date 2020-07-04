@@ -1,10 +1,10 @@
 <?php
 
-namespace App\GraphQL\Mutations\Core;
+namespace App\GraphQL\Mutations;
 
 use Illuminate\Support\Facades\Storage;
 
-use \MayIFit\Core\Permission\Models\Document;
+use MayIFit\Core\Permission\Models\Document;
 
 class UploadMultiple
 {

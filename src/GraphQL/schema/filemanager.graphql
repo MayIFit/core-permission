@@ -1,5 +1,5 @@
 "Can be used as an argument to upload files using https://github.com/jaydenseric/graphql-multipart-request-spec" 
-scalar Upload @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
+scalar Upload
 
 extend type Mutation @guard(with: ["sanctum"]) {
     "Upload multiple files"

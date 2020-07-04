@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Scalars\Core;
+namespace App\GraphQL\Scalars;
 
 use GraphQL\Type\Definition\ScalarType;
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\GraphQL\Mutations\Core;
+namespace App\GraphQL\Mutations;
 
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Str;
 
 use MayIFit\Core\Permission\Exceptions\MisMatchedAuthorizationRequest;
 use MayIFit\Core\Permission\Models\Role;
-use App\Models\User;
 
 class UserRegistration
 {
