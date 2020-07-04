@@ -43,7 +43,7 @@
             Relation::morphMap([
                 'user' => 'App\Models\User',
             ]);
-
+            $this->mergeConfigFrom(__DIR__.'/core-permission.php', 'core-permission');
             $this->publishResources($configRepository);
 
             $this->loadMigrationsFrom(__DIR__.$this->database_folder.'/migrations');
