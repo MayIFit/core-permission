@@ -1,5 +1,5 @@
 "Represents NULL values"
-scalar VoidScalar
+scalar VoidScalar @scalar(class: "MayIFit\\Core\\Permission\\GraphQL\\Scalars\\VoidScalar")
 
 extend type Query @guard(with: ["sanctum"]) {
     me: User @auth

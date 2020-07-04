@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\Mutations;
+namespace MayIFit\Core\Permission\GraphQL\Mutations;
 
 use Illuminate\Support\Facades\Storage;
 
