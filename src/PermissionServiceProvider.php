@@ -83,6 +83,10 @@
             $this->publishes([
                 __DIR__.'/GraphQL/Mutations' => $configRepository->get('core-permission.mutations.register'),
             ], 'graphql');
+
+            $this->publishes([
+                __DIR__.'/GraphQL/Scalars' => $configRepository->get('core-permission.scalars.register'),
+            ], 'graphql');
         }
 
         /**
