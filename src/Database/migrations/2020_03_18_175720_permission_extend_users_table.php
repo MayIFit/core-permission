@@ -13,16 +13,18 @@ class PermissionExtendUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('real_name')->nullable();
-            $table->string('avatar')->nullable();
-            $table->string('about')->nullable();
-            $table->string('provider')->nullable();
-            $table->string('provider_id')->nullable();
-            $table->foreignId('created_by')->nullable()->references('id')->on('users');
-            $table->foreignId('updated_by')->nullable()->references('id')->on('users');
-            $table->softDeletes();
-        });
+        if (Schema::hasTable('users')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->string('real_name')->nullable();
+                $table->string('avatar')->nullable();
+                $table->string('about')->nullable();
+                $table->string('provider')->nullable();
+                $table->string('provider_id')->nullable();
+                $table->foreignId('created_by')->nullable()->references('id')->on('users');
+                $table->foreignId('updated_by')->nullable()->references('id')->on('users');
+                $table->softDeletes();
+            });
+        }
     }
 
     /**
@@ -32,9 +34,11 @@ class PermissionExtendUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['real_name', 'created_by', 'updated_by', 'avatar', 'about', 'provider', 'provider_id']);
-            $table->dropSoftDeletes();
-        });
+        if (Schema::hasTable('users')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropColumn(['real_name', 'created_by', 'updated_by', 'avatar', 'about', 'provider', 'provider_id']);
+                $table->dropSoftDeletes();
+            });
+        }
     }
 }
