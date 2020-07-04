@@ -15,12 +15,12 @@ return [
         'register' => base_path('graphql/core/'),
     ],
     'queries' => [
-        'register' => base_path('app/GraphQL/Queries/Core')
+        'register' => base_path('app/GraphQL/Queries')
     ],
     'scalars' => [
-        'register' => base_path('app/GraphQL/Scalars/Core')
+        'register' => base_path('app/GraphQL/Scalars')
     ],
     'mutations' => [
-        'register' => base_path('app/GraphQL/Mutations/Core')
+        'register' => base_path('app/GraphQL/Mutations')
     ]
 ];
