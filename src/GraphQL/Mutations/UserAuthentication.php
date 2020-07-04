@@ -17,7 +17,7 @@ class UserAuthentication
      * 
      * @return void
      */
-    public static function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
+    public static function login($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
         $email = $args['email'];
         $password = $args['password'];
 
@@ -34,5 +34,10 @@ class UserAuthentication
         $user['access_token'] = $token;
 
         return $user;
+    }
+
+    public static function logout($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
+        $context->user->tokens()->delete();
+        return false;
     }
 }

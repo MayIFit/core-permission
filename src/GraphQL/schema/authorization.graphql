@@ -18,28 +18,28 @@ extend type Query @guard(with: ["sanctum"]) {
         @can(ability: "view" find:"id") @find
 
     hasPermission(entity: String! permission: String!): Boolean! 
-        @field(resolver: "HasPermission@resolve")
+        @field(resolver: "MayIFit\\Core\\Permission\\GraphQL\\Queries\\HasPermission@resolve")
 }
 
 extend type Mutation {
     registerUser(
         input: RegisterUserInput! @spread
     ): User 
-        @field(resolver: "UserRegistration@resolve")
+        @field(resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\UserRegistration@resolve")
 
     loginUser(
         input: LoginUserInput! @spread
     ): User 
-        @field(resolver: "UserAuthentication@resolve")
+        @field(resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\UserAuthentication@login")
 
     resetUserPassword(
         input: ResetUserPasswordInput! @spread
     ): User
-        @field(resolver: "UserPasswordReset@resolve")
+        @field(resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\UserPasswordReset@resolve")
     
     sendUserPasswordResetNotification(
         input: ResetUserPasswordNotificationInput! @spread
-    ): VoidScalar @field(resolver: "UserPasswordReset@sendEmailNotification")
+    ): VoidScalar @field(resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\UserPasswordReset@sendEmailNotification")
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {
@@ -62,7 +62,7 @@ extend type Mutation @guard(with: ["sanctum"]) {
         @delete
 
     logoutUser: Boolean
-        @field(resolver: "UserUnauthentication@resolve")
+        @field(resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\UserAuthentication@logout")
 }
 
 input ResetUserPasswordNotificationInput {
