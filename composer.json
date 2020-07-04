@@ -14,6 +14,11 @@
             "MayIFit\\Core\\Permission\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "MayIFit\\Core\\Permission\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "php": "^7.2",
         "laravel/helpers": "^1.2",
@@ -38,6 +43,11 @@
                 "MayIFit\\Core\\Permission\\PermissionServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "test": "phpunit --colors=always",
+        "test:unit": "phpunit --colors=always --testsuite Unit",
+        "test:feature": "phpunit --colors=always --testsuite Feature"
     },
     "config": {
         "sort-packages": true
