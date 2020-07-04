@@ -1,6 +1,7 @@
 <?php
     namespace MayIFit\Core\Permission;
 
+    use Illuminate\Contracts\Config\Repository as ConfigRepository;
     use Illuminate\Console\Events\CommandFinished;
     use Illuminate\Support\Facades\Artisan;
     use Illuminate\Support\Facades\Event;
@@ -38,10 +39,12 @@
          */
         protected $database_folder = '/Database';
 
-        public function boot(Factory $cache, SystemSetting $settings) {
+        public function boot(Factory $cache, SystemSetting $settings, ConfigRepository $configRepository) {
             Relation::morphMap([
                 'user' => 'App\Models\User',
             ]);
+
+            $this->publishResources($configRepository);
 
             $this->loadMigrationsFrom(__DIR__.$this->database_folder.'/migrations');
             if ($this->app->runningInConsole()) {
@@ -50,17 +53,7 @@
                 }
             }
             
-            $this->publishResources();
             $this->registerPolicies();
-        }
-
-        public function register() {
-            $this->app->bind('permission', function () {
-                return new Permission();
-            });
-            $this->app->bind('role', function () {
-                return new Role();
-            });
         }
 
         /**
@@ -72,6 +65,7 @@
             $this->publishes([
                 __DIR__.'/core-permission.php' => $this->app->configPath().'/core-permission.php',
             ], 'config');
+
             $this->publishes([
                 __DIR__.'/GraphQL/schema' => $configRepository->get('core-permission.schema.register'),
             ], 'schema');
