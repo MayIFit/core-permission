@@ -1,6 +1,6 @@
 extend type Query {
     publicSystemSettings: [SystemSetting]!
-        @field(resolver: "MayIFit\\Core\\Permission\\Queries\\Core\\PublicSystemSettings")
+        @field(resolver: "MayIFit\\Core\\Permission\\Queries\\PublicSystemSettings")
 }
 
 extend type Query @guard(with: ["sanctum"]) {
