@@ -8,7 +8,7 @@ input PermissionRelation {
     sync: [ID!]
 }
 
-type Permission @guard(with: ["sanctum"]) @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\Permission") {
+type Permission @guard(with: ["sanctum"]) @modelClass(class: "MayIFit\\Core\\Permission\\Models\\Permission") {
     id: ID!
     name: String!
     method: String!

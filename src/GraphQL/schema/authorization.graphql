@@ -9,7 +9,7 @@ extend type Query @guard(with: ["sanctum"]) {
     listUser(
         filter: _ @whereConditions(columnsEnum: "UserWhereColumn")
     ): [User!]! 
-        @can(ability: "viewAny" model: "App\\Models\\User") 
+        @can(ability: "viewAny" model: "User") 
         @paginate(type: "paginator")
 
     viewUser(
@@ -46,7 +46,7 @@ extend type Mutation @guard(with: ["sanctum"]) {
     createUser(
         input: CreateUserInput @spread
     ): User 
-        @can(ability: "create" model: "App\\Models\\User") 
+        @can(ability: "create" model: "User") 
         @create
 
     updateUser(
@@ -132,7 +132,7 @@ extend type User @guard(with: ["sanctum"]) {
 }
 
 "Subset of User"
-type UserSelect @guard(with: ["sanctum"]) @modelClass(class: "\\App\\Models\\User") {
+type UserSelect @guard(with: ["sanctum"]) @modelClass(class: "User") {
     id: ID!
     email: String!
 }

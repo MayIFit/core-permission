@@ -1,6 +1,6 @@
 extend type Query {
     publicSystemSettings: [SystemSetting]!
-        @field(resolver: "App\\GraphQL\\Queries\\Core\\PublicSystemSettings")
+        @field(resolver: "MayIFit\\Core\\Permission\\Queries\\Core\\PublicSystemSettings")
 }
 
 extend type Query @guard(with: ["sanctum"]) {
@@ -29,7 +29,7 @@ input UpdateSystemSettingInput {
     setting_value: String!
 }
 
-type SystemSetting @modelClass(class: "\\MayIFit\\Core\\Permission\\Models\\SystemSetting") {
+type SystemSetting @modelClass(class: "MayIFit\\Core\\Permission\\Models\\SystemSetting") {
     id: ID!
     setting_name: String!
     setting_description: String
