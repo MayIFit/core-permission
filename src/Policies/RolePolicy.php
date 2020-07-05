@@ -19,7 +19,7 @@ class RolePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermission('role.list');
+        return $user->tokenCan('role.list');
     }
 
     /**
@@ -31,7 +31,7 @@ class RolePolicy
      */
     public function view(User $user, Role $role)
     {
-        return $role->name !== 'admin' && $user->hasPermission('role.view');
+        return $role->name !== 'admin' && $user->tokenCan('role.view');
     }
 
     /**
@@ -42,7 +42,7 @@ class RolePolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermission('role.create');
+        return $user->tokenCan('role.create');
     }
 
     /**
@@ -54,7 +54,7 @@ class RolePolicy
      */
     public function update(User $user, Role $role)
     {
-        return $role->name !== 'admin' && $user->hasPermission('role.update');
+        return $role->name !== 'admin' && $user->tokenCan('role.update');
     }
 
     /**
@@ -66,7 +66,7 @@ class RolePolicy
      */
     public function delete(User $user, Role $role)
     {
-        return $role->name !== 'admin' && $user->hasPermission('role.delete');
+        return $role->name !== 'admin' && $user->tokenCan('role.delete');
     }
 
     /**

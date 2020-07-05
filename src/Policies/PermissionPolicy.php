@@ -19,7 +19,7 @@ class PermissionPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermission('permission.list');
+        return $user->tokenCan('permission.list');
     }
 
     /**

@@ -19,7 +19,7 @@ class SystemSettingPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermission('systemSetting.list');
+        return $user->tokenCan('systemSetting.list');
     }
 
     /**
@@ -31,7 +31,7 @@ class SystemSettingPolicy
      */
     public function view(User $user, SystemSetting $systemSetting)
     {
-        return $systemSetting->name !== 'admin' && $user->hasPermission('systemSetting.view');
+        return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.view');
     }
 
     /**
@@ -42,7 +42,7 @@ class SystemSettingPolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermission('systemSetting.create');
+        return $user->tokenCan('systemSetting.create');
     }
 
     /**
@@ -54,7 +54,7 @@ class SystemSettingPolicy
      */
     public function update(User $user, SystemSetting $systemSetting)
     {
-        return $systemSetting->name !== 'admin' && $user->hasPermission('systemSetting.update');
+        return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.update');
     }
 
     /**
@@ -66,7 +66,7 @@ class SystemSettingPolicy
      */
     public function delete(User $user, SystemSetting $systemSetting)
     {
-        return $systemSetting->name !== 'admin' && $user->hasPermission('systemSetting.delete');
+        return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.delete');
     }
 
     /**

@@ -37,7 +37,7 @@ class UserPasswordReset
             );
         }
         
-        $checkUser = User::where('email', $email)->first();
+        $checkUser = config('auth.providers.users.model')::where('email', $email)->first();
         if (!$checkUser) {
             throw new MisMatchedAuthorizationRequest(
                 'error.user_with_email_not_found',
@@ -64,7 +64,7 @@ class UserPasswordReset
     public static function sendEmailNotification($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): void {
         $email = $args['email'];
         
-        $checkUser = User::where('email', $email)->first();
+        $checkUser = config('auth.providers.users.model')::where('email', $email)->first();
         if (!$checkUser) {
             throw new MisMatchedAuthorizationRequest(
                 'error.user_with_email_not_found',
