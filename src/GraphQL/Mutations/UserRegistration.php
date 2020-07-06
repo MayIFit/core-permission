@@ -6,11 +6,12 @@ use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Str;
 
 use MayIFit\Core\Permission\Exceptions\MisMatchedAuthorizationRequest;
 use MayIFit\Core\Permission\Models\Role;
+
+use App\Models\User;
 
 class UserRegistration
 {
@@ -31,9 +32,10 @@ class UserRegistration
         ]);
 
         $user->roles()->attach(Role::where('default_role', true)->first());
-    
-        $token = $user->createToken(config('app.name'))->plainTextToken;
-        $user['access_token'] = $token;
+        if ($user->approved) {
+            $token = $user->createToken(config('app.name'))->plainTextToken;
+            $user['access_token'] = $token;
+        }
         
         return $user;
     }

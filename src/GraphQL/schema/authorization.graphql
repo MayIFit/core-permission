@@ -95,6 +95,7 @@ input UpdateUserInput {
     roles: RoleRelation
     avatar: String
     language: String
+    approved: Boolean
 }
 
 input CreateUserInput {
@@ -129,6 +130,7 @@ extend type User @guard(with: ["sanctum"]) {
     updated_at: DateTime!
     roles: [Role!] @belongsToMany
     permissions: [Permission!] @belongsToMany
+    approved: Boolean
 }
 
 "Subset of User"
