@@ -30,6 +30,14 @@ class UserAuthentication
                 ''
             );
         }
+
+        if (!$user->approved) {
+            throw new MisMatchedAuthorizationRequest(
+                'error.registration_has_not_been_approved',
+                ''
+            );
+        }
+
         $result = $user->has('roles.permissions')->orHas('permissions')->find($user->id);
         $permissions = Arr::flatten($result->roles->map(function ($role) { 
             return $role->permissions->map(function ($permission){
