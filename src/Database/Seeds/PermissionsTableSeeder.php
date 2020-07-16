@@ -22,7 +22,7 @@ class PermissionsTableSeeder extends Seeder
         'create',
         'update',
         'delete',
-        'upload'
+        'import'
     ];
 
     /**

@@ -37,15 +37,17 @@ class UploadMultiple
             $path = $this->pathMatrix[$type] ?? '';
     
             if (!$path) {
-                return json(['error' => 'Don\'t know where to save file']);
+                $storedPath = $file->storeAs('private/uploads', str_replace(' ', '_', $file->getClientOriginalName()));
+            } else {
+                $storedPath = $file->store($path);
             }
 
-            $storedPath = $file->store($path);
             $pathArray = explode('/', $storedPath);
             $name = array_pop($pathArray);
 
             $document = new Document();
             $document->name = $name;
+            $document->resource_path = $storedPath;
             $document->type = $file->getMimeType();
             $document->size = $file->getSize();
             $document->resource_url = rtrim(config('app.url'), '/').Storage::url($storedPath);
@@ -56,6 +58,7 @@ class UploadMultiple
                 'original_filename' => $file->getClientOriginalName(),
                 'name' => $document->name,
                 'resource_url' => $document->resource_url,
+                'resource_path' => $document->resource_path,
                 'size' => $document->size,
                 'type' => $document->type,
                 'id' => $document->id

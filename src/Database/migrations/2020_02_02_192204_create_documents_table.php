@@ -17,6 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('original_filename');
+            $table->string('resource_path');
             $table->string('resource_url');
             $table->string('type');
             $table->string('size');
