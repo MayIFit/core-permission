@@ -11,8 +11,7 @@ class UploadMultiple
 
     protected $pathMatrix = [
         'product_photo' => 'public/product_images',
-        'product_file' => 'public/product_additional',
-        'user_avatar' => 'public/images'
+        'product_file' => 'public/product_additional'
     ];
 
     /**

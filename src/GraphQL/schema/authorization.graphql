@@ -93,9 +93,9 @@ input UpdateUserInput {
     password: String @hash
     permissions: PermissionRelation
     roles: RoleRelation
-    avatar: String
     language: String
     approved: Boolean
+    image: UpdateDocumentHasOne
 }
 
 input CreateUserInput {
@@ -105,7 +105,6 @@ input CreateUserInput {
     password: String! @hash
     permissions: PermissionRelation
     roles: RoleRelation
-    avatar: String
     language: String!
 }
 
@@ -118,7 +117,7 @@ type User {
     name: String
     real_name: String
     email: String!
-    avatar: String
+    image: Document
     "ISO 639-1"
     language: String
     "Accessible only for login"
@@ -138,7 +137,6 @@ type UserSelect @guard(with: ["sanctum"]) @modelClass(class: "User") {
     id: ID!
     email: String!
 }
-
 
 "A list of filterable columns."
 enum UserWhereColumn {
