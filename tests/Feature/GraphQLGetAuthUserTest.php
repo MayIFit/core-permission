@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Auth\User;
 
-use MayIFit\Extension\Shop\Tests\TestCase;
+use MayIFit\Core\Permission\Tests\TestCase;
 
 class GraphQLGetAuthUserTest extends TestCase
 {

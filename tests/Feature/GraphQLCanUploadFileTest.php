@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Auth\User;
 
-use MayIFit\Extension\Shop\Tests\TestCase;
+use MayIFit\Core\Permission\Tests\TestCase;
 
 class GraphQLCanUploadFileTest extends TestCase
 {

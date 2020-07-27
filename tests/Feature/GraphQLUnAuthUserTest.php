@@ -2,10 +2,11 @@
 
 namespace MayIFit\Core\Permission\Tests\Feature;
 
-use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+
+use MayIFit\Core\Permission\Tests\TestCase;
 
 class GraphQLUnAuthUserTest extends TestCase
 {
