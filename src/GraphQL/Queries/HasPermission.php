@@ -14,6 +14,7 @@ class HasPermission
      * @return boolean
      */
     public static function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
+        dd($args['entity'].".".$args['permission']);
         return $context->user->tokenCan($args['entity'].".".$args['permission']);
     }
 }

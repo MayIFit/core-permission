@@ -35,12 +35,12 @@ class UserAuthentication
             );
         }
 
-        $result = $user->has('roles.permissions')->orHas('permissions')->find($user->id);
-        $permissions = Arr::flatten($result->roles->map(function ($role) { 
+        $permissions = Arr::flatten($user->roles->map(function ($role) { 
             return $role->permissions->map(function ($permission){
                 return $permission->name.'.'.$permission->method;
             });
         })->toArray());
+
         $token = $user->createToken(config('app.name'), $permissions)->plainTextToken;
         $user['access_token'] = $token;
 
