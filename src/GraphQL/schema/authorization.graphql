@@ -66,23 +66,23 @@ extend type Mutation @guard(with: ["sanctum"]) {
 }
 
 input ResetUserPasswordNotificationInput {
-    email: String! @rules(apply: ["required", "email", "exists:users,email"])
+    email: String! @trim @rules(apply: ["required", "email", "exists:users,email"])
 }
 
 input LoginUserInput {
-    email: String! @rules(apply: ["required", "email", "exists:users,email"])
-    password: String! @rules(apply: ["required"])
+    email: String! @trim @rules(apply: ["required", "email", "exists:users,email"])
+    password: String! @trim @rules(apply: ["required"])
 }
 
 input RegisterUserInput {
-    email: String! @rules(apply: ["required", "email", "unique:users,email"])
-    password: String! @hash @rules(apply: ["required", "min:8"])
+    email: String! @trim @rules(apply: ["required", "email", "unique:users,email"])
+    password: String! @trim @rules(apply: ["required", "min:8"]) @hash
 }
 
 input ResetUserPasswordInput {
-    email: String! @rules(apply: ["required", "email", "exists:users,email"])
-    token: String! @rules(apply: ["required"])
-    password: String! @hash @rules(apply: ["required", "min:8"])
+    email: String! @trim @rules(apply: ["required", "email", "exists:users,email"])
+    token: String! @trim @rules(apply: ["required"])
+    password: String! @trim @rules(apply: ["required", "min:8"]) @hash
 }
 
 input UpdateUserInput {

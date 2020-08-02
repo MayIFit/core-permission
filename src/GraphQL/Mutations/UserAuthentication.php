@@ -5,10 +5,7 @@ namespace MayIFit\Core\Permission\GraphQL\Mutations;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\DB;
 
 use MayIFit\Core\Permission\Exceptions\MisMatchedAuthorizationRequest;
 
