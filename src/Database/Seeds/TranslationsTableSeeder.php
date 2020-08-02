@@ -19,9 +19,19 @@ class TranslationsTableSeeder extends Seeder
      */
     public function run()
     {
+        $this->addAuthenticationRelatedTranslations();
         $this->addPermissionRelatedTranslations();
         $this->addFileUploadRelatedTranslations();
         $this->globalTranslations();
+    }
+
+    protected function addAuthenticationRelatedTranslations() {
+        Translation::updateOrCreate([
+                'group' => 'action',
+                'key' => 'wait_for_approval'
+            ],
+            ['text' => ['en' => 'wait for administrator approval', 'hu' => 'várjon az adminisztrátori jóváhagyásra']],
+        );
     }
 
     protected function globalTranslations() {
