@@ -63,6 +63,11 @@ extend type Mutation @guard(with: ["sanctum"]) {
 
     logoutUser: Boolean
         @field(resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\UserAuthentication@logout")
+
+    impersonateUser(
+        id: ID!
+    ): User 
+        @field(resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\ImpersonateUser@impersonate")
 }
 
 input ResetUserPasswordNotificationInput {
