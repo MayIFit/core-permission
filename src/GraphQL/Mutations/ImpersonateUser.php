@@ -17,7 +17,7 @@ class ImpersonateUser
     public static function impersonate($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
         $id = $args['id'];
 
-        if (!$context->user->tokenCan('impersonate.user')) {
+        if (!$context->user->tokenCan('user.impersonate')) {
             return $context->user;
         }
 
