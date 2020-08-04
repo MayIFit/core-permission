@@ -22,18 +22,18 @@ class UserRegistration
         $email = $args['email'];
         $hashedPassword = $args['password'];
         
-        $user = User::make([
+        $user = User::create([
             'email'          => $email,
             'name'           => Str::random(60),
             'password'       => $hashedPassword,
             'remember_token' => Str::random(60)
         ]);
 
-        // $user->roles()->attach(Role::where('default_role', true)->first());
-        // if ($user->approved) {
-        //     $token = $user->createToken(config('app.name'))->plainTextToken;
-        //     $user['access_token'] = $token;
-        // }
+        $user->roles()->attach(Role::where('default_role', true)->first());
+        if ($user->approved) {
+            $token = $user->createToken(config('app.name'))->plainTextToken;
+            $user['access_token'] = $token;
+        }
 
         $user->notify(new Registration);
         
