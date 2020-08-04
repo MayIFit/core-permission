@@ -7,6 +7,7 @@ use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Illuminate\Support\Str;
 
 use MayIFit\Core\Permission\Models\Role;
+use MayIFit\Core\Permission\Notifications\Registration;
 
 use App\Models\User;
 
@@ -21,18 +22,20 @@ class UserRegistration
         $email = $args['email'];
         $hashedPassword = $args['password'];
         
-        $user = User::create([
+        $user = User::make([
             'email'          => $email,
             'name'           => Str::random(60),
             'password'       => $hashedPassword,
             'remember_token' => Str::random(60)
         ]);
 
-        $user->roles()->attach(Role::where('default_role', true)->first());
-        if ($user->approved) {
-            $token = $user->createToken(config('app.name'))->plainTextToken;
-            $user['access_token'] = $token;
-        }
+        // $user->roles()->attach(Role::where('default_role', true)->first());
+        // if ($user->approved) {
+        //     $token = $user->createToken(config('app.name'))->plainTextToken;
+        //     $user['access_token'] = $token;
+        // }
+
+        $user->notify(new Registration);
         
         return $user;
     }
