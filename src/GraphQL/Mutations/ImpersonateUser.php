@@ -21,7 +21,7 @@ class ImpersonateUser
             return $context->user;
         }
 
-        $user = config('auth.providers.users.model')::find($id)->first();
+        $user = config('auth.providers.users.model')::find($id);
         Auth::setUser($user);
 
         $permissions = Arr::flatten($user->roles->map(function ($role) { 
