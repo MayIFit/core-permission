@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use MayIFit\Core\Permission\Models\Role;
 
 /**
- * Class HasRoles
+ * Trait HasRoles
  *
- * @package MayIFit\Core\Permission\Traits
+ * @package MayIFit\Core\Permission
  */
 trait HasRoles {
 

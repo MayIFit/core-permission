@@ -6,9 +6,13 @@ use Illuminate\Support\Facades\Storage;
 
 use MayIFit\Core\Permission\Models\Document;
 
+/**
+ * Class UploadMultiple
+ *
+ * @package MayIFit\Core\Permission
+ */
 class UploadMultiple
 {
-
     protected $pathMatrix = [
         'product_photo' => 'public/product_images',
         'product_file' => 'public/product_additional'

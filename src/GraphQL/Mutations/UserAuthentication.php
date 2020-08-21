@@ -2,13 +2,18 @@
 
 namespace MayIFit\Core\Permission\GraphQL\Mutations;
 
-use GraphQL\Type\Definition\ResolveInfo;
-use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
+use GraphQL\Type\Definition\ResolveInfo;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 use MayIFit\Core\Permission\Exceptions\MisMatchedAuthorizationRequest;
 
+/**
+ * Class UserAuthentication
+ *
+ * @package MayIFit\Core\Permission
+ */
 class UserAuthentication
 {
     /**

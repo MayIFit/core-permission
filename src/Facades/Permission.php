@@ -4,6 +4,11 @@ namespace MayIFit\Core\Permission\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Class Permission
+ *
+ * @package MayIFit\Core\Permission
+ */
 class Permission extends Facade
 {
     /**

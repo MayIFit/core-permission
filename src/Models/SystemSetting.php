@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 use MayIFit\Core\Permission\Traits\HasUsers;
 
+/**
+ * Class SystemSetting
+ *
+ * @package MayIFit\Core\Permission
+ */
 class SystemSetting extends Model
 {
     use HasUsers;

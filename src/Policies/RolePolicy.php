@@ -7,6 +7,11 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 use MayIFit\Core\Permission\Models\Role;
 use App\Models\User;
 
+/**
+ * Class RolePolicy
+ *
+ * @package MayIFit\Core\Permission
+ */
 class RolePolicy
 {
     use HandlesAuthorization;
@@ -17,8 +22,7 @@ class RolePolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
-    {
+    public function viewAny(User $user) {
         return $user->tokenCan('role.list');
     }
 
@@ -29,8 +33,7 @@ class RolePolicy
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function view(User $user, Role $role)
-    {
+    public function view(User $user, Role $role) {
         return $role->name !== 'admin' && $user->tokenCan('role.view');
     }
 
@@ -40,8 +43,7 @@ class RolePolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
-    {
+    public function create(User $user) {
         return $user->tokenCan('role.create');
     }
 
@@ -52,8 +54,7 @@ class RolePolicy
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function update(User $user, Role $role)
-    {
+    public function update(User $user, Role $role) {
         return $role->name !== 'admin' && $user->tokenCan('role.update');
     }
 
@@ -64,8 +65,7 @@ class RolePolicy
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function delete(User $user, Role $role)
-    {
+    public function delete(User $user, Role $role) {
         return $role->name !== 'admin' && $user->tokenCan('role.delete');
     }
 
@@ -76,8 +76,7 @@ class RolePolicy
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function restore(User $user, Role $role)
-    {
+    public function restore(User $user, Role $role) {
         return false;
     }
 
@@ -88,8 +87,7 @@ class RolePolicy
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function forceDelete(User $user, Role $role)
-    {
+    public function forceDelete(User $user, Role $role) {
         return false;
     }
 }

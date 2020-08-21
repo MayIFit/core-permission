@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use MayIFit\Core\Permission\Models\Document;
 
 /**
- * Class HasDocuments
+ * Trait HasDocuments
  *
- * @package MayIFit\Core\Permission\Traits
+ * @package MayIFit\Core\Permission
  */
 trait HasDocuments {
 

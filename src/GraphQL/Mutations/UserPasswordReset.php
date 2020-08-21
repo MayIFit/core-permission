@@ -2,16 +2,21 @@
 
 namespace MayIFit\Core\Permission\GraphQL\Mutations;
 
-use GraphQL\Type\Definition\ResolveInfo;
-use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
+use GraphQL\Type\Definition\ResolveInfo;
 
-use Carbon\Carbon;
 
 use MayIFit\Core\Permission\Exceptions\MisMatchedAuthorizationRequest;
 use MayIFit\Core\Permission\Notifications\PasswordReset;
 
+/**
+ * Class UserPasswordReset
+ *
+ * @package MayIFit\Core\Permission
+ */
 class UserPasswordReset
 {
     /**

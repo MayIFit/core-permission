@@ -9,9 +9,9 @@ use MayIFit\Core\Permission\Models\Permission;
 use MayIFit\Core\Permission\Models\Role;
 
 /**
- * Class HasPermissions
+ * Trait HasPermissions
  *
- * @package MayIFit\Core\Permission\Traits
+ * @package MayIFit\Core\Permission
  */
 trait HasPermissions {
 

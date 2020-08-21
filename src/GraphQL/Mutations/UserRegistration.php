@@ -2,15 +2,20 @@
 
 namespace MayIFit\Core\Permission\GraphQL\Mutations;
 
+use Illuminate\Support\Str;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
-use Illuminate\Support\Str;
 
 use MayIFit\Core\Permission\Models\Role;
 use MayIFit\Core\Permission\Notifications\Registration;
 
 use App\Models\User;
 
+/**
+ * Class UserRegistration
+ *
+ * @package MayIFit\Core\Permission
+ */
 class UserRegistration
 {
     /**

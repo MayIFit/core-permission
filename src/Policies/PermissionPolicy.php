@@ -7,6 +7,11 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 use MayIFit\Core\Permission\Models\Permission;
 use App\Models\User;
 
+/**
+ * Class PermissionPolicy
+ *
+ * @package MayIFit\Core\Permission
+ */
 class PermissionPolicy
 {
     use HandlesAuthorization;
@@ -17,8 +22,7 @@ class PermissionPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
-    {
+    public function viewAny(User $user) {
         return $user->tokenCan('permission.list');
     }
 
@@ -29,8 +33,7 @@ class PermissionPolicy
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function view(User $user, Permission $permission)
-    {
+    public function view(User $user, Permission $permission) {
         return $user->hasRole('permission.view');
     }
 
@@ -40,8 +43,7 @@ class PermissionPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
-    {
+    public function create(User $user) {
         return false;
     }
 
@@ -52,8 +54,7 @@ class PermissionPolicy
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function update(User $user, Permission $permission)
-    {
+    public function update(User $user, Permission $permission) {
         return false;
     }
 
@@ -64,8 +65,7 @@ class PermissionPolicy
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function delete(User $user, Permission $permission)
-    {
+    public function delete(User $user, Permission $permission) {
         return false;
     }
 
@@ -76,8 +76,7 @@ class PermissionPolicy
      * @param  \App\Models\permission  $permission
      * @return mixed
      */
-    public function restore(User $user, Permission $permission)
-    {
+    public function restore(User $user, Permission $permission) {
         return false;
     }
 
@@ -88,8 +87,7 @@ class PermissionPolicy
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function forceDelete(User $user, Permission $permission)
-    {
+    public function forceDelete(User $user, Permission $permission) {
         return false;
     }
 }

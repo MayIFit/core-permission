@@ -2,11 +2,16 @@
 
 namespace MayIFit\Core\Permission\GraphQL\Mutations;
 
-use GraphQL\Type\Definition\ResolveInfo;
-use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
+use GraphQL\Type\Definition\ResolveInfo;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
+/**
+ * Class ImpersonateUser
+ *
+ * @package MayIFit\Core\Permission
+ */
 class ImpersonateUser
 {
     /**

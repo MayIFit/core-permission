@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\User;
 
 /**
- * Class HasUsers
+ * Trait HasUsers
  *
- * @package MayIFit\Core\Permission\Traits
+ * @package MayIFit\Core\Permission
  */
 trait HasUsers {
 

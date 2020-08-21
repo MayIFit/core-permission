@@ -7,6 +7,11 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 use MayIFit\Core\Permission\Models\SystemSetting;
 use App\Models\User;
 
+/**
+ * Class SystemSettingPolicy
+ *
+ * @package MayIFit\Core\Permission
+ */
 class SystemSettingPolicy
 {
     use HandlesAuthorization;
@@ -17,8 +22,7 @@ class SystemSettingPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
-    {
+    public function viewAny(User $user) {
         return $user->tokenCan('systemSetting.list');
     }
 
@@ -29,8 +33,7 @@ class SystemSettingPolicy
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function view(User $user, SystemSetting $systemSetting)
-    {
+    public function view(User $user, SystemSetting $systemSetting) {
         return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.view');
     }
 
@@ -40,8 +43,7 @@ class SystemSettingPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
-    {
+    public function create(User $user) {
         return $user->tokenCan('systemSetting.create');
     }
 
@@ -52,8 +54,7 @@ class SystemSettingPolicy
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function update(User $user, SystemSetting $systemSetting)
-    {
+    public function update(User $user, SystemSetting $systemSetting) {
         return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.update');
     }
 
@@ -64,8 +65,7 @@ class SystemSettingPolicy
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function delete(User $user, SystemSetting $systemSetting)
-    {
+    public function delete(User $user, SystemSetting $systemSetting) {
         return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.delete');
     }
 
@@ -76,8 +76,7 @@ class SystemSettingPolicy
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function restore(User $user, SystemSetting $systemSetting)
-    {
+    public function restore(User $user, SystemSetting $systemSetting) {
         return false;
     }
 
@@ -88,8 +87,7 @@ class SystemSettingPolicy
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function forceDelete(User $user, SystemSetting $systemSetting)
-    {
+    public function forceDelete(User $user, SystemSetting $systemSetting) {
         return false;
     }
 }

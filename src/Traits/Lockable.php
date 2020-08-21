@@ -2,12 +2,10 @@
 
 namespace MayIFit\Core\Permission\Traits;
 
-use Session;
-
 /**
- * Class Lockable
+ * Trait Lockable
  *
- * @package MayIFit\Core\Permission\Traits
+ * @package MayIFit\Core\Permission
  */
 trait Lockable {
 

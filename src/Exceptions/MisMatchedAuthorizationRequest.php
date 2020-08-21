@@ -5,6 +5,11 @@ namespace MayIFit\Core\Permission\Exceptions;
 use Exception;
 use Nuwave\Lighthouse\Exceptions\RendersErrorsExtensions;
 
+/**
+ * Class MisMatchedAuthorizationRequest
+ *
+ * @package MayIFit\Core\Permission
+ */
 class MisMatchedAuthorizationRequest extends Exception implements RendersErrorsExtensions
 {
     /**

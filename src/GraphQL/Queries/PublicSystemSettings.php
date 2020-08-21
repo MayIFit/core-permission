@@ -7,6 +7,11 @@ use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 use MayIFit\Core\Permission\Models\SystemSetting;
 
+/**
+ * Class PublicSystemSettings
+ *
+ * @package MayIFit\Core\Permission
+ */
 class PublicSystemSettings
 {
     /**

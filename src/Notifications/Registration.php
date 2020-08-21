@@ -9,7 +9,12 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 use MayIFit\Core\Permission\Models\SystemSetting;
 
-class Registration extends Notification
+/**
+ * Class Registration
+ *
+ * @package MayIFit\Core\Permission
+ */
+class Registration extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -32,8 +37,7 @@ class Registration extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable)
-    {
+    public function via($notifiable) {
         return ['mail'];
     }
 
@@ -43,8 +47,7 @@ class Registration extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
+    public function toMail($notifiable) {
         return (new MailMessage)
             ->from($this->senderEmail, $this->senderName)
             ->greeting(trans('global.hello')) 
@@ -59,8 +62,7 @@ class Registration extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
-    {
+    public function toArray($notifiable) {
         return [
             //
         ];

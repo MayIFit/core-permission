@@ -3,9 +3,9 @@
 namespace MayIFit\Core\Permission\Traits;
 
 /**
- * Class HasAdminRole
+ * Trait HasAdminRole
  *
- * @package MayIFit\Core\Permission\Traits
+ * @package MayIFit\Core\Permission
  */
 trait HasAdminRole {
 

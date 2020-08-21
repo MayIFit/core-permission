@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 use MayIFit\Core\Permission\Traits\HasRoles;
 
+/**
+ * Class Permission
+ *
+ * @package MayIFit\Core\Permission
+ */
 class Permission extends Model
 {
     use HasRoles;
@@ -18,7 +23,10 @@ class Permission extends Model
      * @var array
      */
     protected $hidden = [
-        'base_controller', 'controller', 'middleware', 'created_at', 'updated_at',
+        'base_controller',
+        'controller',
+        'middleware',
+        'created_at',
+        'updated_at',
     ];
-
 }

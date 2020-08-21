@@ -9,7 +9,12 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 use MayIFit\Core\Permission\Models\SystemSetting;
 
-class PasswordReset extends Notification
+/**
+ * Class Passwordreset
+ *
+ * @package MayIFit\Core\Permission
+ */
+class PasswordReset extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -34,8 +39,7 @@ class PasswordReset extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable)
-    {
+    public function via($notifiable) {
         return ['mail'];
     }
 
@@ -45,8 +49,7 @@ class PasswordReset extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
+    public function toMail($notifiable) {
         $url = url(rtrim(config('app.url')).$this->link);
         return (new MailMessage)
             ->from($this->senderEmail, $this->senderName)
@@ -62,8 +65,7 @@ class PasswordReset extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
-    {
+    public function toArray($notifiable) {
         return [
             //
         ];

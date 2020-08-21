@@ -5,6 +5,11 @@ namespace MayIFit\Core\Permission\GraphQL\Queries;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
+/**
+ * Class HasPermission
+ *
+ * @package MayIFit\Core\Permission
+ */
 class HasPermission
 {
     /**

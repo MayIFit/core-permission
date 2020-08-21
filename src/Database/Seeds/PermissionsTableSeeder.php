@@ -3,10 +3,10 @@
 namespace MayIFit\Core\Permission\Database\Seeds;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 
 use MayIFit\Core\Permission\Models\Permission;
-use MayIFit\Core\Permission\Models\Role;
 
 /**
  * Class PermissionsTableSeeder
@@ -32,7 +32,9 @@ class PermissionsTableSeeder extends Seeder
      * @return void
      */
     public function run() {
-        
+        // We need to re-enable the application to make the request
+        Artisan::call('up');
+
         // Schema introspection
         $response = $this->graphql("{ 
             __schema {
@@ -50,7 +52,8 @@ class PermissionsTableSeeder extends Seeder
                }
             }
         }");
-        
+        Artisan::call('down');
+
         $queries = array_merge(
             $response['data']['__schema']['queryType']['fields'],
             $response['data']['__schema']['mutationType']['fields'],
@@ -84,6 +87,6 @@ class PermissionsTableSeeder extends Seeder
     protected function graphql(string $query) {
         return Http::post(rtrim(config('app.url'), '/').'/api/v1/graphql', [
             'query' => $query
-        ])->throw()->json();
+        ])->throw()->json(); 
     }
 }
