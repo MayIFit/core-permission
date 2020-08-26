@@ -75,19 +75,22 @@ input ResetUserPasswordNotificationInput {
 }
 
 input LoginUserInput {
-    email: String! @trim @rules(apply: ["required", "email", "exists:users,email"])
+    email: String! @trim @rules(apply: ["required", "email", "exists:users,email"], messages: {email: "error.invalid_email", required: "error.email_not_provided", exists: "error.not_found"})
     password: String! @trim @rules(apply: ["required"])
+    captcha_token: String! @rules(apply: ["required"])
 }
 
 input RegisterUserInput {
-    email: String! @trim @rules(apply: ["required", "email", "unique:users,email"])
+    email: String! @trim @rules(apply: ["required", "email", "unique:users,email"], messages: {email: "error.invalid_email", required: "error.email_not_provided", unique: "error.not_unique"})
     password: String! @trim @rules(apply: ["required", "min:8"]) @hash
+    captcha_token: String! @rules(apply: ["required"])
 }
 
 input ResetUserPasswordInput {
-    email: String! @trim @rules(apply: ["required", "email", "exists:users,email"])
+    email: String! @trim @rules(apply: ["required", "email", "exists:users,email"], messages: {email: "error.invalid_email", required: "error.email_not_provided", exists: "error.not_found"})
     token: String! @trim @rules(apply: ["required"])
     password: String! @trim @rules(apply: ["required", "min:8"]) @hash
+    captcha_token: String @rules(apply: ["required"])
 }
 
 input UpdateUserInput {

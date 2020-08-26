@@ -15,13 +15,13 @@ class MisMatchedAuthorizationRequest extends Exception implements RendersErrorsE
     /**
     * @var @string
     */
-    private $reason;
+    private $validation;
 
-    public function __construct(string $message, string $reason)
+    public function __construct(string $message, string $validation)
     {
         parent::__construct($message);
 
-        $this->reason = $reason;
+        $this->validation = $validation;
     }
 
     /**
@@ -57,7 +57,9 @@ class MisMatchedAuthorizationRequest extends Exception implements RendersErrorsE
     public function extensionsContent(): array
     {
         return [
-            'reason' => $this->reason,
+            'validation' => [
+                $this->message => [$this->validation]
+            ],
         ];
     }
 }

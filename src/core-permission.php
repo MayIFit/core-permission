@@ -22,5 +22,6 @@ return [
     ],
     'mutations' => [
         'register' => base_path('app/GraphQL/Mutations')
-    ]
+    ],
+    'google_captcha_secret' => env('GOOGLE_CAPTCHA_SECRET', ''),
 ];
