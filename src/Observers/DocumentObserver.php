@@ -14,7 +14,6 @@ class DocumentObserver
      */
     public function creating(Document $model) {
         $model->createdBy()->associate(auth()->id());
-        $model->updatedBy()->associate(auth()->id());
     }
 
     /**
