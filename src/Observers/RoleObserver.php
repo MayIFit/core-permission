@@ -12,7 +12,8 @@ class RoleObserver
      * @param  \MayIFit\Extension\Shop\Models\Role  $model
      * @return void
      */
-    public function creating(Role $model) {
+    public function creating(Role $model)
+    {
         $model->createdBy()->associate(auth()->id());
         $model->updatedBy()->associate(auth()->id());
     }
@@ -23,8 +24,9 @@ class RoleObserver
      * @param  \MayIFit\Extension\Shop\Models\Role  $model
      * @return void
      */
-    public function created(Role $model) {
-        // 
+    public function created(Role $model)
+    {
+        //
     }
 
     /**
@@ -33,7 +35,8 @@ class RoleObserver
      * @param  \MayIFit\Extension\Shop\Models\Role  $model
      * @return void
      */
-    public function saving(Role $model): void {
+    public function saving(Role $model): void
+    {
         //
     }
 
@@ -43,8 +46,9 @@ class RoleObserver
      * @param  \MayIFit\Extension\Shop\Models\Role  $model
      * @return void
      */
-    public function saved(Role $model): void {
-        // 
+    public function saved(Role $model): void
+    {
+        //
     }
 
     /**
@@ -53,8 +57,9 @@ class RoleObserver
      * @param  \MayIFit\Extension\Shop\Models\Role  $model
      * @return mixed
      */
-    public function updating(Role $model) {
-        // 
+    public function updating(Role $model)
+    {
+        //
     }
 
     /**
@@ -63,8 +68,9 @@ class RoleObserver
      * @param  \MayIFit\Extension\Shop\Models\Role  $model
      * @return void
      */
-    public function updated(Role $model): void {
-        // 
+    public function updated(Role $model): void
+    {
+        //
     }
 
     /**
@@ -73,8 +79,9 @@ class RoleObserver
      * @param  \MayIFit\Extension\Shop\Models\Role  $model
      * @return mixed
      */
-    public function deleting(Role $model) {
-    //    
+    public function deleting(Role $model)
+    {
+        //
     }
 
     /**
@@ -83,7 +90,8 @@ class RoleObserver
      * @param  \MayIFit\Extension\Shop\Models\Role  $model
      * @return void
      */
-    public function deleted(Role $model): void {
+    public function deleted(Role $model): void
+    {
         //
     }
 
@@ -93,7 +101,8 @@ class RoleObserver
      * @param  \MayIFit\Extension\Shop\Models\Role  $model
      * @return void
      */
-    public function forceDeleted(Role $model): void {
+    public function forceDeleted(Role $model): void
+    {
         //
     }
 }

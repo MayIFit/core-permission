@@ -7,12 +7,14 @@ namespace MayIFit\Core\Permission\Traits;
  *
  * @package MayIFit\Core\Permission
  */
-trait HasAdminRole {
+trait HasAdminRole
+{
 
     /**
      * @return bool
      */
-    public function isAdministrator() {
+    public function isAdministrator()
+    {
         return $this->hasRole('admin');
     }
 }

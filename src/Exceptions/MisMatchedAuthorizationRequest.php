@@ -13,8 +13,8 @@ use Nuwave\Lighthouse\Exceptions\RendersErrorsExtensions;
 class MisMatchedAuthorizationRequest extends Exception implements RendersErrorsExtensions
 {
     /**
-    * @var @string
-    */
+     * @var @string
+     */
     private $validation;
 
     public function __construct(string $message, string $validation)

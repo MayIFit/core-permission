@@ -24,7 +24,8 @@ use MayIFit\Core\Permission\Observers\RoleObserver;
 use MayIFit\Core\Permission\Observers\DocumentObserver;
 use MayIFit\Core\Permission\Observers\SystemSettingObserver;
 
-class PermissionServiceProvider extends ServiceProvider {
+class PermissionServiceProvider extends ServiceProvider
+{
 
     /**
      * The policy mappings for the application.
@@ -44,20 +45,21 @@ class PermissionServiceProvider extends ServiceProvider {
      */
     protected $database_folder = '/Database';
 
-    public function boot(Factory $cache, SystemSetting $settings, ConfigRepository $configRepository) {
+    public function boot(Factory $cache, SystemSetting $settings, ConfigRepository $configRepository)
+    {
         Relation::morphMap([
             'user' => 'App\Models\User',
         ]);
-        $this->mergeConfigFrom(__DIR__.'/core-permission.php', 'core-permission');
+        $this->mergeConfigFrom(__DIR__ . '/core-permission.php', 'core-permission');
         $this->publishResources($configRepository);
 
-        $this->loadMigrationsFrom(__DIR__.$this->database_folder.'/migrations');
+        $this->loadMigrationsFrom(__DIR__ . $this->database_folder . '/migrations');
         if ($this->app->runningInConsole()) {
-            if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], [ '--class', 'help', '-h' ])) {
+            if ($this->isConsoleCommandContains(['db:seed', '--seed'], ['--class', 'help', '-h'])) {
                 $this->addSeedsAfterConsoleCommandFinished();
             }
         }
-        
+
         $this->registerPolicies();
         $this->registerObservers();
     }
@@ -67,25 +69,26 @@ class PermissionServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    protected function publishResources(ConfigRepository $configRepository): void {
+    protected function publishResources(ConfigRepository $configRepository): void
+    {
         $this->publishes([
-            __DIR__.'/core-permission.php' => $this->app->configPath().'/core-permission.php',
+            __DIR__ . '/core-permission.php' => $this->app->configPath() . '/core-permission.php',
         ], 'config');
 
         $this->publishes([
-            __DIR__.'/GraphQL/schema' => $configRepository->get('core-permission.schema.register'),
+            __DIR__ . '/GraphQL/schema' => $configRepository->get('core-permission.schema.register'),
         ], 'schema');
 
         $this->publishes([
-            __DIR__.'/GraphQL/Queries' => $configRepository->get('core-permission.queries.register'),
+            __DIR__ . '/GraphQL/Queries' => $configRepository->get('core-permission.queries.register'),
         ], 'graphql');
 
         $this->publishes([
-            __DIR__.'/GraphQL/Mutations' => $configRepository->get('core-permission.mutations.register'),
+            __DIR__ . '/GraphQL/Mutations' => $configRepository->get('core-permission.mutations.register'),
         ], 'graphql');
 
         $this->publishes([
-            __DIR__.'/GraphQL/Scalars' => $configRepository->get('core-permission.scalars.register'),
+            __DIR__ . '/GraphQL/Scalars' => $configRepository->get('core-permission.scalars.register'),
         ], 'graphql');
     }
 
@@ -98,7 +101,8 @@ class PermissionServiceProvider extends ServiceProvider {
      *
      * @return bool
      */
-    protected function isConsoleCommandContains($contain_options, $exclude_options = null) : bool {
+    protected function isConsoleCommandContains($contain_options, $exclude_options = null): bool
+    {
         $args = Request::server('argv', null);
         if (is_array($args)) {
             $command = implode(' ', $args);
@@ -112,12 +116,13 @@ class PermissionServiceProvider extends ServiceProvider {
     /**
      * Add seeds from the $seed_path after the current command in console finished.
      */
-    protected function addSeedsAfterConsoleCommandFinished() {
-        Event::listen(CommandFinished::class, function(CommandFinished $event) {
+    protected function addSeedsAfterConsoleCommandFinished()
+    {
+        Event::listen(CommandFinished::class, function (CommandFinished $event) {
             // Accept command in console only,
             // exclude all commands from Artisan::call() method.
             if ($event->output instanceof ConsoleOutput) {
-                Artisan::call('db:seed', [ '--class' => "MayIFit\Core\Permission\Database\Seeds\DatabaseSeeder", '--force' => '' ]);
+                Artisan::call('db:seed', ['--class' => "MayIFit\Core\Permission\Database\Seeds\DatabaseSeeder", '--force' => '']);
             }
         });
     }
@@ -127,7 +132,8 @@ class PermissionServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    private function registerObservers(): void {
+    private function registerObservers(): void
+    {
         Document::observe(DocumentObserver::class);
         Role::observe(RoleObserver::class);
         SystemSetting::observe(SystemSettingObserver::class);

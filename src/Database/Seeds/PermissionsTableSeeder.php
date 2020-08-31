@@ -31,12 +31,13 @@ class PermissionsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         // We need to re-enable the application to make the request
         Artisan::call('up');
 
         // Schema introspection
-        $response = $this->graphql("{ 
+        $response = $this->graphql("{
             __schema {
                 queryType {
                     name
@@ -84,9 +85,10 @@ class PermissionsTableSeeder extends Seeder
         }
     }
 
-    protected function graphql(string $query) {
-        return Http::post(rtrim(config('app.url'), '/').'/api/v1/graphql', [
+    protected function graphql(string $query)
+    {
+        return Http::post(rtrim(config('app.url'), '/') . '/api/v1/graphql', [
             'query' => $query
-        ])->throw()->json(); 
+        ])->throw()->json();
     }
 }

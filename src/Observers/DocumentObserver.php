@@ -12,7 +12,8 @@ class DocumentObserver
      * @param  \MayIFit\Extension\Shop\Models\Document  $model
      * @return void
      */
-    public function creating(Document $model) {
+    public function creating(Document $model)
+    {
         $model->createdBy()->associate(auth()->id());
     }
 
@@ -22,8 +23,9 @@ class DocumentObserver
      * @param  \MayIFit\Extension\Shop\Models\Document  $model
      * @return void
      */
-    public function created(Document $model) {
-        // 
+    public function created(Document $model)
+    {
+        //
     }
 
     /**
@@ -32,7 +34,8 @@ class DocumentObserver
      * @param  \MayIFit\Extension\Shop\Models\Document  $model
      * @return void
      */
-    public function saving(Document $model): void {
+    public function saving(Document $model): void
+    {
         //
     }
 
@@ -42,8 +45,9 @@ class DocumentObserver
      * @param  \MayIFit\Extension\Shop\Models\Document  $model
      * @return void
      */
-    public function saved(Document $model): void {
-        // 
+    public function saved(Document $model): void
+    {
+        //
     }
 
     /**
@@ -52,8 +56,9 @@ class DocumentObserver
      * @param  \MayIFit\Extension\Shop\Models\Document  $model
      * @return mixed
      */
-    public function updating(Document $model) {
-        // 
+    public function updating(Document $model)
+    {
+        //
     }
 
     /**
@@ -62,8 +67,9 @@ class DocumentObserver
      * @param  \MayIFit\Extension\Shop\Models\Document  $model
      * @return void
      */
-    public function updated(Document $model): void {
-        // 
+    public function updated(Document $model): void
+    {
+        //
     }
 
     /**
@@ -72,8 +78,9 @@ class DocumentObserver
      * @param  \MayIFit\Extension\Shop\Models\Document  $model
      * @return mixed
      */
-    public function deleting(Document $model) {
-    //    
+    public function deleting(Document $model)
+    {
+        //
     }
 
     /**
@@ -82,7 +89,8 @@ class DocumentObserver
      * @param  \MayIFit\Extension\Shop\Models\Document  $model
      * @return void
      */
-    public function deleted(Document $model): void {
+    public function deleted(Document $model): void
+    {
         //
     }
 
@@ -92,7 +100,8 @@ class DocumentObserver
      * @param  \MayIFit\Extension\Shop\Models\Document  $model
      * @return void
      */
-    public function forceDeleted(Document $model): void {
+    public function forceDeleted(Document $model): void
+    {
         //
     }
 }

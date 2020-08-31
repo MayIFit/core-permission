@@ -20,7 +20,8 @@ class UsersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         if (User::count() == 0) {
             $systemUser = User::create([
                 'email'          => '',
@@ -42,7 +43,7 @@ class UsersTableSeeder extends Seeder
 
             if (env("APP_ENV") === 'local') {
                 $systemUser->roles()->attach($adminRole);
-                print 'Bearer '.$systemUser->createToken('development')->plainTextToken."\n";
+                print 'Bearer ' . $systemUser->createToken('development')->plainTextToken . "\n";
             }
         }
     }

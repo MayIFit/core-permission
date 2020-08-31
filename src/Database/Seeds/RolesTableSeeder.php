@@ -19,7 +19,8 @@ class RolesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         $admin_role = Role::firstOrCreate(['name' => 'admin']);
         $admin_role->permissions()->sync(Permission::get());
         Role::firstOrCreate(['name' => 'moderator']);

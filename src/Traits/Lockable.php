@@ -7,19 +7,22 @@ namespace MayIFit\Core\Permission\Traits;
  *
  * @package MayIFit\Core\Permission
  */
-trait Lockable {
+trait Lockable
+{
 
     /**
      * @return double
      */
-    public function getLockoutTime() {
+    public function getLockoutTime()
+    {
         return $this->lockout_time;
     }
 
     /**
      * @return bool
      */
-    public function isLocked() {
+    public function isLocked()
+    {
         if ($this->hasLockoutTime()) {
             return session('lock-expires-at') <= now();
         }
@@ -29,7 +32,8 @@ trait Lockable {
     /**
      * @return bool
      */
-    public function hasLockoutTime() {
+    public function hasLockoutTime()
+    {
         return $this->getLockoutTime() > 0;
     }
 }

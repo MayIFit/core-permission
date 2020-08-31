@@ -16,10 +16,11 @@ class ImpersonateUser
 {
     /**
      * Try to impersonate a User
-     * 
+     *
      * @return void
      */
-    public static function impersonate($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
+    public static function impersonate($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
         $id = $args['id'];
 
         if (!$context->user->tokenCan('user.impersonate')) {
@@ -29,9 +30,9 @@ class ImpersonateUser
         $user = config('auth.providers.users.model')::find($id);
         Auth::setUser($user);
 
-        $permissions = Arr::flatten($user->roles->map(function ($role) { 
-            return $role->permissions->map(function ($permission){
-                return $permission->name.'.'.$permission->method;
+        $permissions = Arr::flatten($user->roles->map(function ($role) {
+            return $role->permissions->map(function ($permission) {
+                return $permission->name . '.' . $permission->method;
             });
         })->toArray());
 

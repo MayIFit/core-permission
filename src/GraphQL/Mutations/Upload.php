@@ -29,10 +29,10 @@ class Upload
     public function resolve($root, array $args): ?array
     {
         $type = $args['type'];
-        
+
         /** @var \Illuminate\Http\UploadedFile $file */
         $file = $args['file'];
-        
+
         $path = $this->pathMatrix[$type] ?? '';
 
         if (!$path) {
@@ -49,7 +49,7 @@ class Upload
         $document->resource_path = $storedPath;
         $document->type = $file->getMimeType();
         $document->size = $file->getSize();
-        $document->resource_url = rtrim(config('app.url'), '/').Storage::url($storedPath);
+        $document->resource_url = rtrim(config('app.url'), '/') . Storage::url($storedPath);
         $document->original_filename = $file->getClientOriginalName();
         $document->save();
 

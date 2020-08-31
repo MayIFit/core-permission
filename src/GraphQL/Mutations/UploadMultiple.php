@@ -28,17 +28,17 @@ class UploadMultiple
     public function resolve($root, array $args): ?array
     {
         $files = $args['input'];
-        
+
         $retFiles = [];
-        
+
         foreach ($files as $element) {
             $type = $element['type'];
-            
+
             /** @var \Illuminate\Http\UploadedFile $file */
             $file = $element['file'];
-            
+
             $path = $this->pathMatrix[$type] ?? '';
-    
+
             if (!$path) {
                 $storedPath = $file->storeAs('private/uploads', str_replace(' ', '_', $file->getClientOriginalName()));
             } else {
@@ -53,10 +53,10 @@ class UploadMultiple
             $document->resource_path = $storedPath;
             $document->type = $file->getMimeType();
             $document->size = $file->getSize();
-            $document->resource_url = rtrim(config('app.url'), '/').Storage::url($storedPath);
+            $document->resource_url = rtrim(config('app.url'), '/') . Storage::url($storedPath);
             $document->original_filename = $file->getClientOriginalName();
             $document->save();
-    
+
             $retFiles[] = [
                 'original_filename' => $file->getClientOriginalName(),
                 'name' => $document->name,

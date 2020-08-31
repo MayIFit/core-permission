@@ -13,12 +13,14 @@ use MayIFit\Core\Permission\Models\Role;
  *
  * @package MayIFit\Core\Permission
  */
-trait HasPermissions {
+trait HasPermissions
+{
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongstoMany
      */
-    public function permissions(): BelongsToMany {
+    public function permissions(): BelongsToMany
+    {
         return $this->belongstoMany(Permission::class);
     }
 }

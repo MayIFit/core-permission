@@ -19,8 +19,9 @@ class SystemSetting extends Model
         'public' => false
     ];
 
-    public static function booted() {
-        self::creating(function(Model $model) {
+    public static function booted()
+    {
+        self::creating(function (Model $model) {
             $model->created_by = auth()->id();
             $model->updated_by = auth()->id();
         });

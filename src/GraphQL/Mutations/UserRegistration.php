@@ -23,11 +23,12 @@ use App\Models\User;
 class UserRegistration
 {
     /**
-     * Try to register a new User 
-     * 
+     * Try to register a new User
+     *
      * @return void
      */
-    public static function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
+    public static function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
         $email = $args['email'];
         $hashedPassword = $args['password'];
 
@@ -38,7 +39,7 @@ class UserRegistration
         if ($resp->getScore() < 0.7) {
             return response()->json(['captcha' => true]);
         }
-        
+
         $user = User::create([
             'email'          => $email,
             'name'           => Str::random(60),
@@ -55,7 +56,7 @@ class UserRegistration
         $user->notify(new Registration);
         Notification::route('mail', 'info@gude.hu')
             ->notify(new NewRegistration($user->email));
-        
+
         return $user;
     }
 }

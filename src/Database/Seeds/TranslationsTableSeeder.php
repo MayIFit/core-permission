@@ -25,8 +25,10 @@ class TranslationsTableSeeder extends Seeder
         $this->globalTranslations();
     }
 
-    protected function addAuthenticationRelatedTranslations() {
-        Translation::updateOrCreate([
+    protected function addAuthenticationRelatedTranslations()
+    {
+        Translation::updateOrCreate(
+            [
                 'group' => 'action',
                 'key' => 'wait_for_approval'
             ],
@@ -34,20 +36,24 @@ class TranslationsTableSeeder extends Seeder
         );
     }
 
-    protected function globalTranslations() {
-        Translation::updateOrCreate([
+    protected function globalTranslations()
+    {
+        Translation::updateOrCreate(
+            [
                 'group' => 'list',
                 'key' => 'permission'
             ],
             ['text' => ['en' => 'permission list', 'hu' => 'jogosultság lista']],
         );
-        Translation::updateOrCreate([
+        Translation::updateOrCreate(
+            [
                 'group' => 'list',
                 'key' => 'user'
             ],
             ['text' => ['en' => 'user list', 'hu' => 'felhasználó lista']],
         );
-        Translation::updateOrCreate([
+        Translation::updateOrCreate(
+            [
                 'group' => 'list',
                 'key' => 'role'
             ],
@@ -55,59 +61,70 @@ class TranslationsTableSeeder extends Seeder
         );
     }
 
-    protected function addPermissionRelatedTranslations() {
-        Translation::updateOrCreate([
-	            'group' => 'permission',
-	            'key' => 'has_right'
-			],
+    protected function addPermissionRelatedTranslations()
+    {
+        Translation::updateOrCreate(
+            [
+                'group' => 'permission',
+                'key' => 'has_right'
+            ],
             ['text' => ['en' => 'has right', 'hu' => 'jogosult']],
-		);
-        Translation::updateOrCreate([
-	            'group' => 'permission',
-	            'key' => 'permissions'
-			],
+        );
+        Translation::updateOrCreate(
+            [
+                'group' => 'permission',
+                'key' => 'permissions'
+            ],
             ['text' => ['en' => 'permissions', 'hu' => 'jogosultságok']],
-		);
-        Translation::updateOrCreate([
-	            'group' => 'permission',
-	            'key' => 'permission'
-			],
+        );
+        Translation::updateOrCreate(
+            [
+                'group' => 'permission',
+                'key' => 'permission'
+            ],
             ['text' => ['en' => 'permission', 'hu' => 'jogosultság']],
-		);
-        Translation::updateOrCreate([
-	            'group' => 'permission',
-	            'key' => 'roles'
-			],
+        );
+        Translation::updateOrCreate(
+            [
+                'group' => 'permission',
+                'key' => 'roles'
+            ],
             ['text' => ['en' => 'roles', 'hu' => 'szerepkörök']],
-		);
-        Translation::updateOrCreate([
-	            'group' => 'permission',
-	            'key' => 'role'
-			],
+        );
+        Translation::updateOrCreate(
+            [
+                'group' => 'permission',
+                'key' => 'role'
+            ],
             ['text' => ['en' => 'role', 'hu' => 'szerepkör']],
-		);
+        );
     }
 
-    protected function addFileUploadRelatedTranslations() {
-        Translation::updateOrCreate([
+    protected function addFileUploadRelatedTranslations()
+    {
+        Translation::updateOrCreate(
+            [
                 'group' => 'files',
                 'key' => 'to_upload'
             ],
             ['text' => ['en' => 'to upload', 'hu' => 'feltöltendő']],
         );
-        Translation::updateOrCreate([
+        Translation::updateOrCreate(
+            [
                 'group' => 'files',
                 'key' => 'drop_zone'
             ],
             ['text' => ['en' => 'drop here', 'hu' => 'ide dobja']],
         );
-        Translation::updateOrCreate([
+        Translation::updateOrCreate(
+            [
                 'group' => 'files',
                 'key' => 'no_selected'
             ],
             ['text' => ['en' => 'no file selected', 'hu' => 'nincs kiválasztott fájl']],
         );
-        Translation::updateOrCreate([
+        Translation::updateOrCreate(
+            [
                 'group' => 'files',
                 'key' => 'upload_file'
             ],

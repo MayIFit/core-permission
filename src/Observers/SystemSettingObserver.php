@@ -12,7 +12,8 @@ class SystemSettingObserver
      * @param  \MayIFit\Extension\Shop\Models\SystemSetting  $model
      * @return void
      */
-    public function creating(SystemSetting $model) {
+    public function creating(SystemSetting $model)
+    {
         $model->createdBy()->associate(auth()->id());
         $model->updatedBy()->associate(auth()->id());
     }
@@ -23,8 +24,9 @@ class SystemSettingObserver
      * @param  \MayIFit\Extension\Shop\Models\SystemSetting  $model
      * @return void
      */
-    public function created(SystemSetting $model) {
-        // 
+    public function created(SystemSetting $model)
+    {
+        //
     }
 
     /**
@@ -33,7 +35,8 @@ class SystemSettingObserver
      * @param  \MayIFit\Extension\Shop\Models\SystemSetting  $model
      * @return void
      */
-    public function saving(SystemSetting $model): void {
+    public function saving(SystemSetting $model): void
+    {
         //
     }
 
@@ -43,8 +46,9 @@ class SystemSettingObserver
      * @param  \MayIFit\Extension\Shop\Models\SystemSetting  $model
      * @return void
      */
-    public function saved(SystemSetting $model): void {
-        // 
+    public function saved(SystemSetting $model): void
+    {
+        //
     }
 
     /**
@@ -53,8 +57,9 @@ class SystemSettingObserver
      * @param  \MayIFit\Extension\Shop\Models\SystemSetting  $model
      * @return mixed
      */
-    public function updating(SystemSetting $model) {
-        // 
+    public function updating(SystemSetting $model)
+    {
+        //
     }
 
     /**
@@ -63,8 +68,9 @@ class SystemSettingObserver
      * @param  \MayIFit\Extension\Shop\Models\SystemSetting  $model
      * @return void
      */
-    public function updated(SystemSetting $model): void {
-        // 
+    public function updated(SystemSetting $model): void
+    {
+        //
     }
 
     /**
@@ -73,8 +79,9 @@ class SystemSettingObserver
      * @param  \MayIFit\Extension\Shop\Models\SystemSetting  $model
      * @return mixed
      */
-    public function deleting(SystemSetting $model) {
-    //    
+    public function deleting(SystemSetting $model)
+    {
+        //
     }
 
     /**
@@ -83,7 +90,8 @@ class SystemSettingObserver
      * @param  \MayIFit\Extension\Shop\Models\SystemSetting  $model
      * @return void
      */
-    public function deleted(SystemSetting $model): void {
+    public function deleted(SystemSetting $model): void
+    {
         //
     }
 
@@ -93,7 +101,8 @@ class SystemSettingObserver
      * @param  \MayIFit\Extension\Shop\Models\SystemSetting  $model
      * @return void
      */
-    public function forceDeleted(SystemSetting $model): void {
+    public function forceDeleted(SystemSetting $model): void
+    {
         //
     }
 }

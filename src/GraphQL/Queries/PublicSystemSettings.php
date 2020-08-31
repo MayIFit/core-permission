@@ -16,10 +16,11 @@ class PublicSystemSettings
 {
     /**
      * Return all publicly available settings
-     * 
+     *
      * @return SystemSetting
      */
-    public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo) {
+    public function __invoke($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
         return SystemSetting::where('public', true)->get();
     }
 }
