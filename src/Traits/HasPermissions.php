@@ -23,8 +23,15 @@ trait HasPermissions
 
     public function hasPermission($permission): bool
     {
-        return $this->permissions->filter(function ($p) use ($permission) {
-            return $permission instanceof Permission ? $permission->is($p) : $p->name === $permission;
+        $permissionName = '';
+        $permissionMethod = '';
+
+        if (!$permission instanceof Permission) {
+            [$permissionName, $permissionMethod] = explode('.', $permission);
+        };
+
+        return $this->permissions->filter(function ($p) use ($permissionName, $permissionMethod, $permission) {
+            return $permission instanceof Permission ? $permission->is($p) : ($p->name === $permissionName && $p->method === $permissionMethod);
         })->count() > 0 ? true : false;
     }
 

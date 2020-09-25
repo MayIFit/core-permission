@@ -23,7 +23,7 @@ class RolePolicy
      */
     public function viewAny($model)
     {
-        return $model->tokenCan('role.list');
+        return $model->hasPermission('role.list');
     }
 
     /**
@@ -46,7 +46,7 @@ class RolePolicy
      */
     public function create($model)
     {
-        return $model->tokenCan('role.create');
+        return $model->hasPermission('role.create');
     }
 
     /**

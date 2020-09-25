@@ -23,7 +23,7 @@ class SystemSettingPolicy
      */
     public function viewAny($model)
     {
-        return $model->tokenCan('systemSetting.list');
+        return $model->hasPermission('systemSetting.list');
     }
 
     /**
@@ -46,7 +46,7 @@ class SystemSettingPolicy
      */
     public function create($model)
     {
-        return $model->tokenCan('systemSetting.create');
+        return $model->hasPermission('systemSetting.create');
     }
 
     /**

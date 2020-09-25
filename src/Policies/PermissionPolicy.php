@@ -23,7 +23,7 @@ class PermissionPolicy
      */
     public function viewAny($model)
     {
-        return $model->tokenCan('permission.list');
+        return $model->hasPermission('permission.list');
     }
 
     /**
