@@ -5,7 +5,6 @@ namespace MayIFit\Core\Permission\Policies;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 use MayIFit\Core\Permission\Models\Permission;
-use App\Models\User;
 
 /**
  * Class PermissionPolicy
@@ -17,83 +16,83 @@ class PermissionPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any permissions.
+     * Determine whether the can view any permissions.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny($model)
     {
-        return $user->tokenCan('permission.list');
+        return $model->tokenCan('permission.list');
     }
 
     /**
-     * Determine whether the user can view the permission.
+     * Determine whether the can view the permission.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function view(User $user, Permission $permission)
+    public function view($model, Permission $permission)
     {
-        return $user->hasRole('permission.view');
+        return $model->hasRole('permission.view');
     }
 
     /**
-     * Determine whether the user can create permissions.
+     * Determine whether the can create permissions.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create($model)
     {
         return false;
     }
 
     /**
-     * Determine whether the user can update the permission.
+     * Determine whether the can update the permission.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function update(User $user, Permission $permission)
+    public function update($model, Permission $permission)
     {
         return false;
     }
 
     /**
-     * Determine whether the user can delete the permission.
+     * Determine whether the can delete the permission.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function delete(User $user, Permission $permission)
+    public function delete($model, Permission $permission)
     {
         return false;
     }
 
     /**
-     * Determine whether the user can restore the permission.
+     * Determine whether the can restore the permission.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \App\Models\permission  $permission
      * @return mixed
      */
-    public function restore(User $user, Permission $permission)
+    public function restore($model, Permission $permission)
     {
         return false;
     }
 
     /**
-     * Determine whether the user can permanently delete the permission.
+     * Determine whether the can permanently delete the permission.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function forceDelete(User $user, Permission $permission)
+    public function forceDelete($model, Permission $permission)
     {
         return false;
     }

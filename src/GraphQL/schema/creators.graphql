@@ -1,0 +1,8 @@
+input UserRelation {
+  connect: ConnectUserableInput
+}
+
+input ConnectUserableInput {
+  type: String!
+  id: ID!
+}

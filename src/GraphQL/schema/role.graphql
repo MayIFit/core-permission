@@ -1,68 +1,71 @@
 extend type Query @guard(with: ["sanctum"]) {
-    allRole: [Role!]! 
-        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
-        @all
+  allRole: [Role!]!
+  @can(ability: "viewAny", model: "MayIFit\\Core\\Permission\\Models\\Role")
+  @all
 
-    listRole(
-        filter: _ @whereConditions(columnsEnum: "RoleWhereColumn")
-    ): [Role!]! 
-        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Role") 
-        @paginate(type: "paginator")
+  listRole(filter: _ @whereConditions(columnsEnum: "RoleWhereColumn")): [Role!]!
+  @can(ability: "viewAny", model: "MayIFit\\Core\\Permission\\Models\\Role")
+  @paginate(type: "paginator")
 
-    viewRole(
-        id: ID @eq
-    ): Role! 
-        @can(ability: "view" find:"id") @find
+  viewRole(id: ID @eq): Role! @can(ability: "view", find: "id") @find
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {
-    updateRole(
-        input: UpdateRoleInput! @spread
-    ): Role 
-        @can(ability: "update" find: "id") 
-        @update
+  updateRole(input: UpdateRoleInput! @spread): Role
+  @can(ability: "update", find: "id")
+  @update
 
-    createRole(
-        input: CreateRoleInput! @spread
-    ): Role
-        @can(ability: "create" model: "MayIFit\\Core\\Permission\\Models\\Role") 
-        @create
+  createRole(input: CreateRoleInput! @spread): Role
+  @can(ability: "create", model: "MayIFit\\Core\\Permission\\Models\\Role")
+  @create
 
-    deleteRole(
-        id: ID! @rules(apply: ["required"])
-    ): Role 
-        @can(ability: "delete" find: "id") 
-        @delete
+  deleteRole(id: ID! @rules(apply: ["required"])): Role
+  @can(ability: "delete", find: "id")
+  @delete
 }
 
 input UpdateRoleInput {
-    id: ID!
-    name: String!
-    default_role: Boolean!
-    description: String
-    permissions: PermissionRelation
+  id: ID!
+  name: String!
+  default_role: Boolean!
+  description: String
+  permissions: PermissionRelation
 }
 
 input CreateRoleInput {
-    name: String!
-    default_role: Boolean!
-    description: String
-    permissions: PermissionRelation
+  name: String!
+  default_role: Boolean!
+  description: String
+  permissions: PermissionRelation
 }
 
 input RoleRelation {
-    sync: [ID!]
+  sync: [ID!]
 }
 
-type Role @guard(with: ["sanctum"]) @modelClass(class: "MayIFit\\Core\\Permission\\Models\\Role") {
-    id: ID!
-    name: String!
-    description: String
-    default_role: Boolean!
-    permissions: [Permission]! @belongsToMany 
+type Role
+@guard(with: ["sanctum"])
+@modelClass(class: "MayIFit\\Core\\Permission\\Models\\Role") {
+  id: ID!
+  name: String!
+  description: String
+  default_role: Boolean!
+  permissions: [Permission]! @belongsToMany
 }
 
 "A list of filterable columns."
 enum RoleWhereColumn {
-    NAME @enum(value: "name")
+  NAME @enum(value: "name")
+}
+
+extend type User @guard(with: ["sanctum"]) {
+  roles: [Role!] @belongsToMany
+}
+
+extend input CreateUserInput {
+  roles: RoleRelation
+}
+
+extend input UpdateUserInput {
+  roles: RoleRelation
 }

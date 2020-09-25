@@ -6,26 +6,26 @@ use Laravel\Sanctum\Sanctum;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Auth\User;
 
 use MayIFit\Core\Permission\Tests\TestCase;
+use MayIFit\Core\Permission\Tests\User;
 
 class GraphQLCanUploadFileTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_user_can_upload_files() {
+    public function test_user_can_upload_files()
+    {
         parent::setUp();
 
-        $mockUser = factory(User::class)->create();
-        Sanctum::actingAs(
-           $mockUser
-        );
+        $user = factory(User::class)->create();
+        Sanctum::actingAs($user, ['*']);
 
         $mockFile = UploadedFile::fake()->create('image.jpg', 500);
         $response = $this->multipartGraphQL(
             [
-                'operations' => /** @lang JSON */
+                'operations' =>
+                /** @lang JSON */
                 '
                     {
                         "query": "mutation Upload($input: FileUploadInput!) { upload(input: $input) }",
@@ -37,8 +37,9 @@ class GraphQLCanUploadFileTest extends TestCase
                         }
                     }
                 ',
-                'map' => /** @lang JSON */
-                    '
+                'map' =>
+                /** @lang JSON */
+                '
                     {
                         "0": ["variables.input.file"]
                     }
@@ -48,6 +49,6 @@ class GraphQLCanUploadFileTest extends TestCase
                 '0' =>  $mockFile,
             ]
         )->assertStatus(200);
-        Storage::assertExists('public/product_images/'.$response['data']['upload']['name']);
+        Storage::assertExists('public/product_images/' . $response['data']['upload']['name']);
     }
 }

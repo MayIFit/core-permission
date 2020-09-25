@@ -4,8 +4,6 @@ namespace MayIFit\Core\Permission\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use MayIFit\Core\Permission\Traits\HasRoles;
-
 /**
  * Class Permission
  *
@@ -13,8 +11,6 @@ use MayIFit\Core\Permission\Traits\HasRoles;
  */
 class Permission extends Model
 {
-    use HasRoles;
-
     protected $table = 'permissions';
 
     /**
@@ -29,4 +25,9 @@ class Permission extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function roles()
+    {
+        return $this->morphedByMany(Role::class, 'roles');
+    }
 }

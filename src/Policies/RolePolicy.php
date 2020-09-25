@@ -5,7 +5,6 @@ namespace MayIFit\Core\Permission\Policies;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 use MayIFit\Core\Permission\Models\Role;
-use App\Models\User;
 
 /**
  * Class RolePolicy
@@ -17,83 +16,83 @@ class RolePolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any roles.
+     * Determine whether the can view any roles.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny($model)
     {
-        return $user->tokenCan('role.list');
+        return $model->tokenCan('role.list');
     }
 
     /**
-     * Determine whether the user can view the role.
+     * Determine whether the can view the role.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function view(User $user, Role $role)
+    public function view($model, Role $role)
     {
         return $role->name !== 'admin' && $user->tokenCan('role.view');
     }
 
     /**
-     * Determine whether the user can create roles.
+     * Determine whether the can create roles.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create($model)
     {
-        return $user->tokenCan('role.create');
+        return $model->tokenCan('role.create');
     }
 
     /**
-     * Determine whether the user can update the role.
+     * Determine whether the can update the role.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function update(User $user, Role $role)
+    public function update($model, Role $role)
     {
         return $role->name !== 'admin' && $user->tokenCan('role.update');
     }
 
     /**
-     * Determine whether the user can delete the role.
+     * Determine whether the can delete the role.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function delete(User $user, Role $role)
+    public function delete($model, Role $role)
     {
         return $role->name !== 'admin' && $user->tokenCan('role.delete');
     }
 
     /**
-     * Determine whether the user can restore the role.
+     * Determine whether the can restore the role.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function restore(User $user, Role $role)
+    public function restore($model, Role $role)
     {
         return false;
     }
 
     /**
-     * Determine whether the user can permanently delete the role.
+     * Determine whether the can permanently delete the role.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function forceDelete(User $user, Role $role)
+    public function forceDelete($model, Role $role)
     {
         return false;
     }

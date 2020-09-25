@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Contracts\Cache\Factory;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 use MayIFit\Core\Permission\Models\Role;
@@ -47,9 +46,6 @@ class PermissionServiceProvider extends ServiceProvider
 
     public function boot(Factory $cache, SystemSetting $settings, ConfigRepository $configRepository)
     {
-        Relation::morphMap([
-            'user' => 'App\Models\User',
-        ]);
         $this->mergeConfigFrom(__DIR__ . '/core-permission.php', 'core-permission');
         $this->publishResources($configRepository);
 

@@ -5,7 +5,6 @@ namespace MayIFit\Core\Permission\Policies;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 use MayIFit\Core\Permission\Models\SystemSetting;
-use App\Models\User;
 
 /**
  * Class SystemSettingPolicy
@@ -17,83 +16,83 @@ class SystemSettingPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any roles.
+     * Determine whether the can view any roles.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny($model)
     {
-        return $user->tokenCan('systemSetting.list');
+        return $model->tokenCan('systemSetting.list');
     }
 
     /**
-     * Determine whether the user can view the systemSetting.
+     * Determine whether the can view the systemSetting.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function view(User $user, SystemSetting $systemSetting)
+    public function view($model, SystemSetting $systemSetting)
     {
         return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.view');
     }
 
     /**
-     * Determine whether the user can create roles.
+     * Determine whether the can create roles.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create($model)
     {
-        return $user->tokenCan('systemSetting.create');
+        return $model->tokenCan('systemSetting.create');
     }
 
     /**
-     * Determine whether the user can update the systemSetting.
+     * Determine whether the can update the systemSetting.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function update(User $user, SystemSetting $systemSetting)
+    public function update($model, SystemSetting $systemSetting)
     {
         return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.update');
     }
 
     /**
-     * Determine whether the user can delete the systemSetting.
+     * Determine whether the can delete the systemSetting.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function delete(User $user, SystemSetting $systemSetting)
+    public function delete($model, SystemSetting $systemSetting)
     {
         return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.delete');
     }
 
     /**
-     * Determine whether the user can restore the systemSetting.
+     * Determine whether the can restore the systemSetting.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function restore(User $user, SystemSetting $systemSetting)
+    public function restore($model, SystemSetting $systemSetting)
     {
         return false;
     }
 
     /**
-     * Determine whether the user can permanently delete the systemSetting.
+     * Determine whether the can permanently delete the systemSetting.
      *
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function forceDelete(User $user, SystemSetting $systemSetting)
+    public function forceDelete($model, SystemSetting $systemSetting)
     {
         return false;
     }

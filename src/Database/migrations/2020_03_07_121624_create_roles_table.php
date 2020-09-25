@@ -18,8 +18,8 @@ class CreateRolesTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->boolean('default_role');
-            $table->foreignId('created_by')->nullable()->references('id')->on('users');
-            $table->foreignId('updated_by')->nullable()->references('id')->on('users');
+            $table->morphs('created_by');
+            $table->nullableMorphs('updated_by');
             $table->timestamps();
             $table->softDeletes();
         });

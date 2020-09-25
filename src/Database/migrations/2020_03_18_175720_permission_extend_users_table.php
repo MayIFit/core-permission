@@ -20,8 +20,8 @@ class PermissionExtendUsersTable extends Migration
                 $table->string('provider')->nullable();
                 $table->string('provider_id')->nullable();
                 $table->boolean('approved')->default(false);
-                $table->foreignId('created_by')->nullable()->references('id')->on('users');
-                $table->foreignId('updated_by')->nullable()->references('id')->on('users');
+                $table->morphs('created_by');
+                $table->nullableMorphs('updated_by');
                 $table->softDeletes();
             });
         }

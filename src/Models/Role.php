@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use MayIFit\Core\Permission\Traits\HasPermissions;
-use MayIFit\Core\Permission\Traits\HasUsers;
+use MayIFit\Core\Permission\Traits\HasCreators;
 
 /**
  * Class Role
@@ -15,7 +15,9 @@ use MayIFit\Core\Permission\Traits\HasUsers;
  */
 class Role extends Model
 {
-    use SoftDeletes, HasPermissions, HasUsers;
+    use SoftDeletes;
+    use HasPermissions;
+    use HasCreators;
 
     protected $fillable = [
         'id',

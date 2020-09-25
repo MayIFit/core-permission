@@ -1,0 +1,86 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+env:
+  REQUIRED_PHP_EXTENSIONS: "dom, curl, libxml, mbstring, zip"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [7.3, 7.4]
+        laravel: [^7.0]
+
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - Tests
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP with extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.REQUIRED_PHP_EXTENSIONS }}
+          coverage: none
+
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.composer/cache/files
+          key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+
+      - name: Install dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run: composer require "illuminate/contracts=${{ matrix.laravel }}" --prefer-dist --no-interaction --no-suggest
+
+      - name: Execute tests
+        run: vendor/bin/phpunit --verbose
+
+  code-coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [7.3, 7.4]
+        laravel: [^7.0]
+
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - Code Coverage
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP with extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.REQUIRED_PHP_EXTENSIONS }}
+          coverage: pcov
+
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.composer/cache/files
+          key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+
+      - name: Install dependencies
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+        run: composer require "illuminate/contracts=${{ matrix.laravel }}" --prefer-dist --no-interaction --no-suggest
+
+      - name: Collect code coverage with pcov and phpunit/phpunit
+        run: "vendor/bin/phpunit --coverage-clover=coverage.xml"
+
+      - name: "Send code coverage report to Codecov.io"
+        env:
+          CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"
+        run: "bash <(curl -s https://codecov.io/bash)"

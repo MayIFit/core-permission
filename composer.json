@@ -1,8 +1,14 @@
 {
     "name": "mayifit/core-permission",
     "description": "Core permission system for Laravel based MayIFit systems",
-    "keywords": ["permission", "laravel", "php", "roles", "management"],
-    "type": "project",
+    "keywords": [
+        "permission",
+        "laravel",
+        "php",
+        "roles",
+        "management"
+    ],
+    "type": "package",
     "authors": [
         {
             "name": "MayIFit",
@@ -22,14 +28,18 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
+        "doctrine/dbal": "^2.10",
         "google/recaptcha": "^1.2",
+        "guzzlehttp/guzzle": "^7.1",
         "illuminate/contracts": "^6.9 || ^7.0",
         "illuminate/database": "^6.9 || ^7.0",
         "illuminate/support": "^6.9 || ^7.0",
         "laravel/helpers": "^1.2",
         "laravel/sanctum": "^2.0",
+        "mayifit/core-translation": "^1.0",
+        "mll-lab/graphql-php-scalars": "^3.0",
         "nesbot/carbon": "^1.26.0 || ^2.0",
-        "nuwave/lighthouse": "^4.12"
+        "nuwave/lighthouse": "^4.16"
     },
     "require-dev": {
         "orchestra/testbench": "^4.0 || ^5.0",

@@ -5,7 +5,7 @@ namespace MayIFit\Core\Permission\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-use MayIFit\Core\Permission\Traits\HasUsers;
+use MayIFit\Core\Permission\Traits\HasCreators;
 
 /**
  * Class Document
@@ -14,7 +14,7 @@ use MayIFit\Core\Permission\Traits\HasUsers;
  */
 class Document extends Model
 {
-    use HasUsers;
+    use HasCreators;
 
     protected $fillable = [
         'id'

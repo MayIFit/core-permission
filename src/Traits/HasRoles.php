@@ -2,7 +2,7 @@
 
 namespace MayIFit\Core\Permission\Traits;
 
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 use MayIFit\Core\Permission\Models\Role;
 
@@ -15,11 +15,11 @@ trait HasRoles
 {
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongstoMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    public function roles(): BelongsToMany
+    public function roles(): MorphToMany
     {
-        return $this->belongstoMany(Role::class);
+        return $this->morphToMany(Role::class, 'roleable');
     }
 
     /**
@@ -31,5 +31,29 @@ trait HasRoles
             return true;
         }
         return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdministrator()
+    {
+        return $this->hasRole('admin');
+    }
+
+    /**
+     * @param \MayIFit\Core\Permission\Models\Role
+     */
+    public function grantRole(Role $role)
+    {
+        return $this->roles()->attach($role);
+    }
+
+    /**
+     * @param \MayIFit\Core\Permission\Models\Role
+     */
+    public function revokeRole(Role $role)
+    {
+        return $this->roles()->detach($role);
     }
 }

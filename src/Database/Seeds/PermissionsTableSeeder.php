@@ -56,8 +56,8 @@ class PermissionsTableSeeder extends Seeder
         Artisan::call('down');
 
         $queries = array_merge(
-            $response['data']['__schema']['queryType']['fields'],
-            $response['data']['__schema']['mutationType']['fields'],
+            $response['data']['__schema']['queryType']['fields'] ?? [],
+            $response['data']['__schema']['mutationType']['fields'] ?? [],
         );
         foreach ($queries as $query) {
             $split = preg_split('/(?=[A-Z])/', $query['name']);

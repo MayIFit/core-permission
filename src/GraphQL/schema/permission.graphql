@@ -1,16 +1,33 @@
 extend type Query @guard(with: ["sanctum"]) {
-    allPermission: [Permission!]! 
-        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\Permission") 
-        @all
+  allPermission: [Permission!]!
+  @can(
+    ability: "viewAny"
+    model: "MayIFit\\Core\\Permission\\Models\\Permission"
+  )
+  @all
 }
 
 input PermissionRelation {
-    sync: [ID!]
+  sync: [ID!]
 }
 
-type Permission @guard(with: ["sanctum"]) @modelClass(class: "MayIFit\\Core\\Permission\\Models\\Permission") {
-    id: ID!
-    name: String!
-    method: String!
-    roles: [Role!] @belongsToMany 
+type Permission
+@guard(with: ["sanctum"])
+@modelClass(class: "MayIFit\\Core\\Permission\\Models\\Permission") {
+  id: ID!
+  name: String!
+  method: String!
+  roles: [Role!] @belongsToMany
+}
+
+extend type User @guard(with: ["sanctum"]) {
+  permissions: [Permission!] @belongsToMany
+}
+
+extend input CreateUserInput {
+  permissions: PermissionRelation
+}
+
+extend input UpdateUserInput {
+  permissions: PermissionRelation
 }

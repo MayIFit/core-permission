@@ -2,11 +2,8 @@
 
 namespace MayIFit\Core\Permission\Traits;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use MayIFit\Core\Permission\Models\Permission;
-use MayIFit\Core\Permission\Models\Role;
 
 /**
  * Trait HasPermissions
@@ -17,10 +14,33 @@ trait HasPermissions
 {
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongstoMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
-    public function permissions(): BelongsToMany
+    public function permissions(): MorphToMany
     {
-        return $this->belongstoMany(Permission::class);
+        return $this->morphToMany(Permission::class, 'permissionable');
+    }
+
+    public function hasPermission($permission): bool
+    {
+        return $this->permissions->filter(function ($p) use ($permission) {
+            return $permission instanceof Permission ? $permission->is($p) : $p->name === $permission;
+        })->count() > 0 ? true : false;
+    }
+
+    /**
+     * @param \MayIFit\Core\Permission\Models\Permission
+     */
+    public function grantPermission(Permission $permission)
+    {
+        return $this->permissions()->attach($permission);
+    }
+
+    /**
+     * @param \MayIFit\Core\Permission\Models\Permission
+     */
+    public function revokePermission(Permission $permission)
+    {
+        return $this->permissions()->detach($permission);
     }
 }
