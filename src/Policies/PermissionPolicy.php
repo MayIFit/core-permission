@@ -18,33 +18,33 @@ class PermissionPolicy
     /**
      * Determine whether the can view any permissions.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @return mixed
      */
-    public function viewAny($model)
+    public function viewAny($authModel)
     {
-        return $model->hasPermission('permission.list');
+        return $authModel->hasPermission('permission.list');
     }
 
     /**
      * Determine whether the can view the permission.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function view($model, Permission $permission)
+    public function view($authModel, Permission $permission)
     {
-        return $model->hasRole('permission.view');
+        return $authModel->hasRole('permission.view');
     }
 
     /**
      * Determine whether the can create permissions.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @return mixed
      */
-    public function create($model)
+    public function create($authModel)
     {
         return false;
     }
@@ -52,11 +52,11 @@ class PermissionPolicy
     /**
      * Determine whether the can update the permission.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function update($model, Permission $permission)
+    public function update($authModel, Permission $permission)
     {
         return false;
     }
@@ -64,11 +64,11 @@ class PermissionPolicy
     /**
      * Determine whether the can delete the permission.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function delete($model, Permission $permission)
+    public function delete($authModel, Permission $permission)
     {
         return false;
     }
@@ -76,11 +76,11 @@ class PermissionPolicy
     /**
      * Determine whether the can restore the permission.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \App\Models\permission  $permission
      * @return mixed
      */
-    public function restore($model, Permission $permission)
+    public function restore($authModel, Permission $permission)
     {
         return false;
     }
@@ -88,11 +88,11 @@ class PermissionPolicy
     /**
      * Determine whether the can permanently delete the permission.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \App\Models\Permission  $permission
      * @return mixed
      */
-    public function forceDelete($model, Permission $permission)
+    public function forceDelete($authModel, Permission $permission)
     {
         return false;
     }

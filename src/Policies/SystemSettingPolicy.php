@@ -18,69 +18,69 @@ class SystemSettingPolicy
     /**
      * Determine whether the can view any roles.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @return mixed
      */
-    public function viewAny($model)
+    public function viewAny($authModel)
     {
-        return $model->hasPermission('systemSetting.list');
+        return $authModel->hasPermission('systemSetting.list');
     }
 
     /**
      * Determine whether the can view the systemSetting.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function view($model, SystemSetting $systemSetting)
+    public function view($authModel, SystemSetting $systemSetting)
     {
-        return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.view');
+        return $systemSetting->name !== 'admin' && $authModel->hasPermission('systemSetting.view');
     }
 
     /**
      * Determine whether the can create roles.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @return mixed
      */
-    public function create($model)
+    public function create($authModel)
     {
-        return $model->hasPermission('systemSetting.create');
+        return $authModel->hasPermission('systemSetting.create');
     }
 
     /**
      * Determine whether the can update the systemSetting.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function update($model, SystemSetting $systemSetting)
+    public function update($authModel, SystemSetting $systemSetting)
     {
-        return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.update');
+        return $systemSetting->name !== 'admin' && $authModel->hasPermission('systemSetting.update');
     }
 
     /**
      * Determine whether the can delete the systemSetting.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function delete($model, SystemSetting $systemSetting)
+    public function delete($authModel, SystemSetting $systemSetting)
     {
-        return $systemSetting->name !== 'admin' && $user->tokenCan('systemSetting.delete');
+        return $systemSetting->name !== 'admin' && $authModel->hasPermission('systemSetting.delete');
     }
 
     /**
      * Determine whether the can restore the systemSetting.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function restore($model, SystemSetting $systemSetting)
+    public function restore($authModel, SystemSetting $systemSetting)
     {
         return false;
     }
@@ -88,11 +88,11 @@ class SystemSettingPolicy
     /**
      * Determine whether the can permanently delete the systemSetting.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \MayIFit\Core\Permission\Models\SystemSetting  $systemSetting
      * @return mixed
      */
-    public function forceDelete($model, SystemSetting $systemSetting)
+    public function forceDelete($authModel, SystemSetting $systemSetting)
     {
         return false;
     }

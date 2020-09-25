@@ -18,69 +18,69 @@ class RolePolicy
     /**
      * Determine whether the can view any roles.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @return mixed
      */
-    public function viewAny($model)
+    public function viewAny($authModel)
     {
-        return $model->hasPermission('role.list');
+        return $authModel->hasPermission('role.list');
     }
 
     /**
      * Determine whether the can view the role.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function view($model, Role $role)
+    public function view($authModel, Role $role)
     {
-        return $role->name !== 'admin' && $user->tokenCan('role.view');
+        return $role->name !== 'admin' && $authModel->hasPermission('role.view');
     }
 
     /**
      * Determine whether the can create roles.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @return mixed
      */
-    public function create($model)
+    public function create($authModel)
     {
-        return $model->hasPermission('role.create');
+        return $authModel->hasPermission('role.create');
     }
 
     /**
      * Determine whether the can update the role.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function update($model, Role $role)
+    public function update($authModel, Role $role)
     {
-        return $role->name !== 'admin' && $user->tokenCan('role.update');
+        return $role->name !== 'admin' && $authModel->hasPermission('role.update');
     }
 
     /**
      * Determine whether the can delete the role.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function delete($model, Role $role)
+    public function delete($authModel, Role $role)
     {
-        return $role->name !== 'admin' && $user->tokenCan('role.delete');
+        return $role->name !== 'admin' && $authModel->hasPermission('role.delete');
     }
 
     /**
      * Determine whether the can restore the role.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function restore($model, Role $role)
+    public function restore($authModel, Role $role)
     {
         return false;
     }
@@ -88,11 +88,11 @@ class RolePolicy
     /**
      * Determine whether the can permanently delete the role.
      *
-     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable|null  $authModel
      * @param  \MayIFit\Core\Permission\Models\Role  $role
      * @return mixed
      */
-    public function forceDelete($model, Role $role)
+    public function forceDelete($authModel, Role $role)
     {
         return false;
     }
