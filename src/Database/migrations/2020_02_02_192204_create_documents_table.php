@@ -22,7 +22,7 @@ class CreateDocumentsTable extends Migration
             $table->string('type');
             $table->string('size');
             $table->string('description')->nullable();
-            $table->morphs('documentable');
+            $table->nullableMorphs('documentable');
             $table->morphs('created_by');
             $table->timestamps();
             $table->softDeletes();
