@@ -24,4 +24,5 @@ return [
         'register' => base_path('app/GraphQL/Mutations')
     ],
     'google_captcha_secret' => env('GOOGLE_CAPTCHA_SECRET', ''),
+    'check_token_for_permission' => ENV('TOKEN_BASED_PERMISSIONS', TRUE)
 ];

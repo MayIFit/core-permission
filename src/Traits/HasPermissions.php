@@ -3,6 +3,8 @@
 namespace MayIFit\Core\Permission\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Facades\Auth;
+
 use MayIFit\Core\Permission\Models\Permission;
 
 /**
@@ -21,6 +23,10 @@ trait HasPermissions
         return $this->morphToMany(Permission::class, 'permissionable');
     }
 
+    /**
+     * @param \MayIFit\Core\Permission\Models\Permission|string  $permission
+     * @return bool
+     */
     public function hasPermission($permission): bool
     {
         $permissionName = '';
@@ -28,6 +34,9 @@ trait HasPermissions
 
         if (!$permission instanceof Permission) {
             [$permissionName, $permissionMethod] = explode('.', $permission);
+            if (config('core-permission.check_token_for_permission') === TRUE) {
+                return Auth::user()->tokenCan($permission);
+            }
         };
 
         return $this->permissions->filter(function ($p) use ($permissionName, $permissionMethod, $permission) {
