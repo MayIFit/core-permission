@@ -12,7 +12,7 @@ class PermissionIsRevokableTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_permission_is_assignable()
+    public function test_permission_is_revokable()
     {
         parent::setUp();
 

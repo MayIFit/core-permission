@@ -12,7 +12,7 @@ class PermissionIsGrantableTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_permission_is_assignable()
+    public function test_permission_is_grantable()
     {
         parent::setUp();
 

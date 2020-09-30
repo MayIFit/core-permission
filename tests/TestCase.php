@@ -226,6 +226,7 @@ type Mutation
 
     private function graphQL(string $query)
     {
+        dd(route(config('lighthouse.route.name')));
         return $this->post(route(config('lighthouse.route.name')), [
             'query' => $query
         ])->json();

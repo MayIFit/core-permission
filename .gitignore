@@ -9,13 +9,11 @@
 /public/*.map
 /storage/*.key
 /vendor
-/database/database.sqlite
-/app/GraphQL
 .env
 .env.backup
+coverage.xml
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
-npm-debug.log
-yarn-error.log
 composer.lock
+*.log
