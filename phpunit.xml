@@ -14,7 +14,7 @@
             <directory suffix=".php">./src</directory>
             <exclude>
                 <directory>src/Database/Factories</directory>
-                <file>src/core-admin.php</file>
+                <file>src/core-permission.php</file>
             </exclude>
         </whitelist>
     </filter>
