@@ -2,7 +2,6 @@
 
 namespace MayIFit\Core\Permission\Tests\Feature;
 
-use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use MayIFit\Core\Permission\Tests\TestCase;

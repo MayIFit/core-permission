@@ -1,10 +1,15 @@
 extend type Query @guard(with: ["sanctum"]) {
   allPermission: [Permission!]!
-  @can(
-    ability: "viewAny"
-    model: "MayIFit\\Core\\Permission\\Models\\Permission"
-  )
-  @all
+    @can(
+      ability: "viewAny"
+      model: "MayIFit\\Core\\Permission\\Models\\Permission"
+    )
+    @all
+
+  hasPermission(entity: String!, permission: String!): Boolean!
+    @field(
+      resolver: "MayIFit\\Core\\Permission\\GraphQL\\Queries\\HasPermission@resolve"
+    )
 }
 
 input PermissionRelation {
@@ -12,8 +17,8 @@ input PermissionRelation {
 }
 
 type Permission
-@guard(with: ["sanctum"])
-@modelClass(class: "MayIFit\\Core\\Permission\\Models\\Permission") {
+  @guard(with: ["sanctum"])
+  @modelClass(class: "MayIFit\\Core\\Permission\\Models\\Permission") {
   id: ID!
   name: String!
   method: String!

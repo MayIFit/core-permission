@@ -4,11 +4,11 @@ on:
   push:
     branches: [master]
   pull_request:
-    branches: [master]
+    branches: [master, develop]
 
 env:
   REQUIRED_PHP_EXTENSIONS: "dom, curl, libxml, mbstring, zip"
-  GITHUB_WORKFLOW_URL: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+  GITHUB_WORKFLOW_URL: "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
 
 jobs:
   tests:

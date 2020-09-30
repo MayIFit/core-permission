@@ -1,0 +1,24 @@
+extend type Mutation @guard(with: ["sanctum"]) {
+  """
+  Creates a never expiring auth token for the authenticated user that can be used for accessing the API from third party services.
+  The returned token is visible only once so make sure to save it!
+  """
+  createAuthToken(input: CreateAuthTokenInput! @spread): String
+    @field(
+      resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\AuthTokenHandler@create"
+    )
+
+  "Revokes a token from the authenticated user."
+  revoke(input: RevokeAuthTokenInput! @spread): String
+    @field(
+      resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\AuthTokenHandler@revoke"
+    )
+}
+
+input CreateAuthTokenInput {
+  name: String!
+}
+
+input RevokeAuthTokenInput {
+  id: ID!
+}

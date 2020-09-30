@@ -1,27 +1,29 @@
 extend type Query @guard(with: ["sanctum"]) {
   allRole: [Role!]!
-  @can(ability: "viewAny", model: "MayIFit\\Core\\Permission\\Models\\Role")
-  @all
+    @can(ability: "viewAny", model: "MayIFit\\Core\\Permission\\Models\\Role")
+    @all
 
-  listRole(filter: _ @whereConditions(columnsEnum: "RoleWhereColumn")): [Role!]!
-  @can(ability: "viewAny", model: "MayIFit\\Core\\Permission\\Models\\Role")
-  @paginate(type: "paginator")
+  listRole(
+    filter: _ @whereConditions(columnsEnum: "RoleWhereColumn")
+  ): [Role!]!
+    @can(ability: "viewAny", model: "MayIFit\\Core\\Permission\\Models\\Role")
+    @paginate(type: "paginator")
 
   viewRole(id: ID @eq): Role! @can(ability: "view", find: "id") @find
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {
   updateRole(input: UpdateRoleInput! @spread): Role
-  @can(ability: "update", find: "id")
-  @update
+    @can(ability: "update", find: "id")
+    @update
 
   createRole(input: CreateRoleInput! @spread): Role
-  @can(ability: "create", model: "MayIFit\\Core\\Permission\\Models\\Role")
-  @create
+    @can(ability: "create", model: "MayIFit\\Core\\Permission\\Models\\Role")
+    @create
 
   deleteRole(id: ID! @rules(apply: ["required"])): Role
-  @can(ability: "delete", find: "id")
-  @delete
+    @can(ability: "delete", find: "id")
+    @delete
 }
 
 input UpdateRoleInput {
@@ -44,8 +46,8 @@ input RoleRelation {
 }
 
 type Role
-@guard(with: ["sanctum"])
-@modelClass(class: "MayIFit\\Core\\Permission\\Models\\Role") {
+  @guard(with: ["sanctum"])
+  @modelClass(class: "MayIFit\\Core\\Permission\\Models\\Role") {
   id: ID!
   name: String!
   description: String

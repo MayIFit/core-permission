@@ -1,29 +1,31 @@
 input UpdateDocumentHasMany {
-	update: [UpdateDocumentInput!]
-	delete: [ID!]
+  update: [UpdateDocumentInput!]
+  delete: [ID!]
 }
 
 input UpdateDocumentHasOne {
-	update: UpdateDocumentInput
-	delete: ID
+  update: UpdateDocumentInput
+  delete: ID
 }
 
 input UpdateDocumentInput {
-    id: ID!
-    name: String
-    documentable_type: String
-    documentable_id: Int
+  id: ID!
+  name: String
+  documentable_type: String
+  documentable_id: Int
 }
 
-type Document @modelClass(class: "MayIFit\\Core\\Permission\\Models\\Document") {
-    id: ID!
-    name: String!
-    original_filename: String!
-    resource_url: String!
-    resource_path: String!
-    size: String!
-    type: String!
-    documentable: Documentable @morphTo 
+"An uploaded file for a particular type e.g. Product photo"
+type Document
+  @modelClass(class: "MayIFit\\Core\\Permission\\Models\\Document") {
+  id: ID!
+  name: String!
+  original_filename: String!
+  resource_url: String!
+  resource_path: String!
+  size: String!
+  type: String!
+  documentable: Documentable @morphTo
 }
 
 union Documentable = Product | User | ProductCategory

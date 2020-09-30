@@ -13,6 +13,8 @@ class Permission extends Model
 {
     protected $table = 'permissions';
 
+    protected $guarded = [];
+
     /**
      * The attributes that should be hidden for arrays.
      *

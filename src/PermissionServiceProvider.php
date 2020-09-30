@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Contracts\Cache\Factory;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Str;
+use MayIFit\Core\Permission\Console\GeneratePermissionsCommand;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 use MayIFit\Core\Permission\Models\Role;
@@ -51,6 +52,10 @@ class PermissionServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__ . $this->database_folder . '/migrations');
         if ($this->app->runningInConsole()) {
+            $this->commands([
+                GeneratePermissionsCommand::class,
+            ]);
+
             if ($this->isConsoleCommandContains(['db:seed', '--seed'], ['--class', 'help', '-h'])) {
                 $this->addSeedsAfterConsoleCommandFinished();
             }

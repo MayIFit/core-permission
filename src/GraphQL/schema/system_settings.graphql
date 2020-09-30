@@ -1,37 +1,40 @@
 extend type Query {
-    publicSystemSettings: [SystemSetting]!
-        @field(resolver: "MayIFit\\Core\\Permission\\GraphQL\\Queries\\PublicSystemSettings")
+  publicSystemSettings: [SystemSetting]!
+    @field(
+      resolver: "MayIFit\\Core\\Permission\\GraphQL\\Queries\\PublicSystemSettings"
+    )
 }
 
 extend type Query @guard(with: ["sanctum"]) {
-    listSystemSetting: [SystemSetting!]! 
-        @can(ability: "viewAny" model: "MayIFit\\Core\\Permission\\Models\\SystemSetting") 
-        @paginate(type: "paginator")
+  listSystemSetting: [SystemSetting!]!
+    @can(
+      ability: "viewAny"
+      model: "MayIFit\\Core\\Permission\\Models\\SystemSetting"
+    )
+    @paginate(type: "paginator")
 
-    viewSystemSetting(
-        id: ID @eq
-    ): SystemSetting! 
-        @can(ability: "view" find:"id") @find
+  viewSystemSetting(id: ID @eq): SystemSetting!
+    @can(ability: "view", find: "id")
+    @find
 }
 
 extend type Mutation @guard(with: ["sanctum"]) {
-    updateSystemSetting(
-        input: UpdateSystemSettingInput! @spread
-    ): SystemSetting
-        @can(ability: "update" find: "id") 
-        @update
+  updateSystemSetting(input: UpdateSystemSettingInput! @spread): SystemSetting
+    @can(ability: "update", find: "id")
+    @update
 }
 
 input UpdateSystemSettingInput {
-    id: ID!
-    setting_name: String!
-    setting_description: String
-    setting_value: String!
+  id: ID!
+  setting_name: String!
+  setting_description: String
+  setting_value: String!
 }
 
-type SystemSetting @modelClass(class: "MayIFit\\Core\\Permission\\Models\\SystemSetting") {
-    id: ID!
-    setting_name: String!
-    setting_description: String
-    setting_value: String!
+type SystemSetting
+  @modelClass(class: "MayIFit\\Core\\Permission\\Models\\SystemSetting") {
+  id: ID!
+  setting_name: String!
+  setting_description: String
+  setting_value: String!
 }

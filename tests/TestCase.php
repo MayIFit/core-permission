@@ -13,10 +13,21 @@ use Nuwave\Lighthouse\Testing\MakesGraphQLRequests;
 use MayIFit\Core\Translation\TranslationServiceProvider;
 use MayIFit\Core\Permission\PermissionServiceProvider;
 use MayIFit\Core\Permission\Tests\User;
+use MayIFit\Core\Permission\Models\Permission;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     use MakesGraphQLRequests;
+
+    private $permissionMethodWhitelist = [
+        'list',
+        'view',
+        'create',
+        'update',
+        'delete',
+        'import',
+        'impersonate'
+    ];
 
     /**
      * Setup the test environment.
@@ -41,6 +52,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
         ]);
 
         $this->artisan('db:seed', ['--database' => 'testbench', '--class' => 'MayIFit\\Core\\Permission\\Database\\Seeds\\DatabaseSeeder'])->run();
+        $this->registerPermissions();
     }
 
     /**
@@ -151,5 +163,71 @@ type Mutation
         $protectedProperty = new \ReflectionProperty($this->app['auth'], 'guards');
         $protectedProperty->setAccessible(true);
         $protectedProperty->setValue($this->app['auth'], []);
+    }
+
+    private function registerPermissions(): void
+    {
+        // Schema introspection
+        $response = $this->graphQL('
+            {
+                __schema {
+                    queryType {
+                        name
+                        fields {
+                            name
+                        }
+                    }
+                    mutationType {
+                        name
+                        fields {
+                            name
+                        }
+                    }
+                }
+            }
+        ');
+
+        $queries = array_merge(
+            $response['data']['__schema']['queryType']['fields'] ?? [],
+            $response['data']['__schema']['mutationType']['fields'] ?? [],
+        );
+        foreach ($queries as $query) {
+            $split = preg_split('/(?=[A-Z])/', $query['name']);
+            if (!is_array($split) || count($split) <= 1) {
+                continue;
+            }
+            $method = strtolower(array_shift($split));
+            $name = strtolower(implode('-', $split));
+            if ($method === 'all') {
+                $method = 'list';
+            }
+
+            foreach ($this->permissionMethodWhitelist as $accepted) {
+                if (strpos($method, $accepted) !== false) {
+                    Permission::firstOrCreate(
+                        [
+                            'method' => $method,
+                            'name' => $name,
+                        ],
+                        [
+                            'controller' => 'graphql',
+                            'base_controller' => 'graphql',
+                            'method' => $method,
+                            'name' => $name,
+                            'middleware' => 'graphql'
+                        ]
+                    );
+                    break;
+                }
+            }
+        }
+    }
+
+
+    private function graphQL(string $query)
+    {
+        return $this->post(route(config('lighthouse.route.name')), [
+            'query' => $query
+        ])->json();
     }
 }
