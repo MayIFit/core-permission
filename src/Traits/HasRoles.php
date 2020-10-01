@@ -56,4 +56,9 @@ trait HasRoles
     {
         return $this->roles()->detach($role);
     }
+
+    public function attachDefaultRole()
+    {
+        return $this->roles()->attach(Role::where('default', true));
+    }
 }

@@ -32,6 +32,12 @@ trait HasPermissions
         $permissionName = '';
         $permissionMethod = '';
 
+        if (method_exists(Auth::user(), 'hasRole')) {
+            if (Auth::user()->hasRole('admin')) {
+                return true;
+            }
+        }
+
         if (!$permission instanceof Permission) {
             [$permissionName, $permissionMethod] = explode('.', $permission);
             if (config('core-permission.check_token_for_permission') === TRUE) {
