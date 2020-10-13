@@ -22,9 +22,7 @@ class AuthTokenHandler
 
         $permissions = $context->user->permissions()->get(['name', 'method'])->map(function ($perm) {
             return $perm->name . '.' . $perm->method;
-        });
-
-        dd($permissions);
+        })->toArray();
 
         return $context->user->createToken($tokenName, $permissions)->plainTextToken;
     }
@@ -33,5 +31,10 @@ class AuthTokenHandler
     {
         $context->user->tokens()->where('id', $args['id'])->delete();
         return true;
+    }
+
+    public static function list($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
+        return $context->user->tokens()->select(['id', 'name'])->get();
     }
 }

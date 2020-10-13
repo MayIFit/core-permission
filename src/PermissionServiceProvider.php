@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Contracts\Cache\Factory;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Str;
-use MayIFit\Core\Permission\Console\GeneratePermissionsCommand;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 use MayIFit\Core\Permission\Models\Role;
@@ -23,6 +22,7 @@ use MayIFit\Core\Permission\Policies\SystemSettingPolicy;
 use MayIFit\Core\Permission\Observers\RoleObserver;
 use MayIFit\Core\Permission\Observers\DocumentObserver;
 use MayIFit\Core\Permission\Observers\SystemSettingObserver;
+use MayIFit\Core\Permission\Console\GeneratePermissionsCommand;
 
 class PermissionServiceProvider extends ServiceProvider
 {

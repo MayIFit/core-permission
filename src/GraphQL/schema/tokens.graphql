@@ -1,3 +1,13 @@
+extend type Query @guard(with: ["sanctum"]) {
+  """
+  Lists the tokens for the authenticated user
+  """
+  listAuthTokens: [ObjectScalar]!
+    @field(
+      resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\AuthTokenHandler@list"
+    )
+}
+
 extend type Mutation @guard(with: ["sanctum"]) {
   """
   Creates a never expiring auth token for the authenticated user that can be used for accessing the API from third party services.
@@ -9,7 +19,7 @@ extend type Mutation @guard(with: ["sanctum"]) {
     )
 
   "Revokes a token from the authenticated user."
-  revoke(input: RevokeAuthTokenInput! @spread): String
+  revokeAuthToken(input: RevokeAuthTokenInput! @spread): String
     @field(
       resolver: "MayIFit\\Core\\Permission\\GraphQL\\Mutations\\AuthTokenHandler@revoke"
     )
