@@ -29,7 +29,6 @@
         "php": "^7.2",
         "ext-json": "*",
         "doctrine/dbal": "^2.10",
-        "google/recaptcha": "^1.2",
         "guzzlehttp/guzzle": "^7.1",
         "illuminate/contracts": "^6.9 || ^7.0",
         "illuminate/database": "^6.9 || ^7.0",
