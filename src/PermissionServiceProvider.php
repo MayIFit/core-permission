@@ -3,6 +3,7 @@
 namespace MayIFit\Core\Permission;
 
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Console\Events\CommandFinished;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
@@ -47,6 +48,10 @@ class PermissionServiceProvider extends ServiceProvider
 
     public function boot(Factory $cache, SystemSetting $settings, ConfigRepository $configRepository)
     {
+        Relation::morphMap([
+            'role' => 'MayIFit\Core\Permission\Models\Role',
+        ]);
+
         $this->mergeConfigFrom(__DIR__ . '/core-permission.php', 'core-permission');
         $this->publishResources($configRepository);
 
