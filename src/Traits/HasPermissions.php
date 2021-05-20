@@ -2,6 +2,7 @@
 
 namespace MayIFit\Core\Permission\Traits;
 
+use DateInterval;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,9 @@ trait HasPermissions
      */
     public function permissions(): MorphToMany
     {
-        return $this->morphToMany(Permission::class, 'permissionable');
+        return $this->cache->remember('permissions', DateInterval::createFromDateString('24 hours'), function () {
+            return $this->morphToMany(Permission::class, 'permissionable')->with('roles')->get();
+        });
     }
 
     /**
